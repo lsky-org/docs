@@ -11,4 +11,5 @@ package-lock.json
 .vuepress/dist/
 .vuepress/.cache/
 .vuepress/.temp/
-.vercel
+.vercel.temp
+.cache
