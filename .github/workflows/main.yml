@@ -34,7 +34,10 @@ jobs:
         run: yarn --frozen-lockfile
 
       - name: Build Docs site
-        run: yarn docs:build
+        run: |
+          yarn docs:build
+          touch CNAME
+          echo 'docs.lsky.pro' > CNAME
 
       - name: Deploy to GitHub Pages
         uses: crazy-max/ghaction-github-pages@v2
