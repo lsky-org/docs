@@ -35,6 +35,7 @@ jobs:
 
       - name: Build Docs site
         run: |
+          touch .vuepress/dist/CNAME
           echo 'docs.lsky.pro' > .vuepress/dist/CNAME
           yarn docs:build
 
