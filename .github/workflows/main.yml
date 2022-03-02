@@ -34,7 +34,9 @@ jobs:
         run: yarn --frozen-lockfile
 
       - name: Build Docs site
-        run: yarn docs:build
+        run: |
+          echo 'docs.lsky.pro' > .vuepress/dist/CNAME
+          yarn docs:build
 
       - name: Deploy to GitHub Pages
         uses: crazy-max/ghaction-github-pages@v2
