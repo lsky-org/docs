@@ -34,10 +34,10 @@ jobs:
         run: yarn --frozen-lockfile
 
       - name: Build Docs site
-        run: |
-          touch .vuepress/dist/CNAME
-          echo 'docs.lsky.pro' > .vuepress/dist/CNAME
-          yarn docs:build
+        run: yarn docs:build
+
+      - name: Set custom domain
+        run: echo 'docs.lsky.pro' > .vuepress/dist/CNAME
 
       - name: Deploy to GitHub Pages
         uses: crazy-max/ghaction-github-pages@v2
