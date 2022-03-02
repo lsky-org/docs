@@ -1,4 +1,7 @@
-module.exports = {
+import { defineUserConfig } from 'vuepress'
+import type { DefaultThemeOptions } from 'vuepress'
+
+export default defineUserConfig<DefaultThemeOptions>({
     lang: 'zh-CN',
     title: 'Lsky Pro',
     description: '兰空图床使用文档',
@@ -7,4 +10,4 @@ module.exports = {
     themeConfig: {
         logo: 'https://avatars.githubusercontent.com/u/100565733?s=200',
     },
-}
+})
