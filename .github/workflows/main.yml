@@ -33,7 +33,7 @@ jobs:
         if: steps.yarn-cache.outputs.cache-hit != 'true'
         run: yarn --frozen-lockfile
 
-      - name: Build Docs site
+      - name: Build docs site
         run: yarn docs:build
 
       - name: Set custom domain
