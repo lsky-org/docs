@@ -3,7 +3,7 @@
 .iml
 .DS_Store
 /node_modules
-/dist
+.vuepress/dist
 .phpunit.result.cache
 npm-debug.log
 yarn-error.log

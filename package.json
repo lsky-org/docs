@@ -1,4 +1,9 @@
 {
+  "name": "docs",
+  "version": "1.0.0",
+  "repository": "https://github.com/lsky-org/docs.git",
+  "author": "Wisp X <i@wispx.cn>",
+  "license": "GPL-3.0-only",
   "scripts": {
     "docs:dev": "vuepress dev .",
     "docs:build": "vuepress build ."
