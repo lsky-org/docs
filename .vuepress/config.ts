@@ -34,18 +34,35 @@ export default defineUserConfig<DefaultThemeOptions>({
         docsBranch: 'master',
         lastUpdated: true,
         sidebarDepth: 2,
-        sidebar: {
-            '/docs/v1/': [
-            ],
-            '/docs/v2/': [
-                {
-                    text: '快速入门',
-                    link: '/docs/v2/',
-                    children: [
-                        '/docs/v2/installation.md',
-                    ]
-                },
-            ],
-        }
+        sidebar: [
+            {
+                text: '主页',
+                link: '/',
+            },
+            {
+                text: 'V1.x',
+                link: '/docs/v1/',
+                children: [
+                    {
+                        text: '安装',
+                        link: '/docs/v1/Install',
+                    },
+                    {
+                        text: '环境变量',
+                        link: '/docs/v1/env',
+                        children: [],
+                    },
+                    {
+                        text: '存储策略',
+                        link: '/docs/v1/StorageStrategy',
+                        children: [
+                            {
+                                text: ''
+                            },
+                        ],
+                    }
+                ],
+            }
+        ],
     },
 })
