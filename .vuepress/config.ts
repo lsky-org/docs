@@ -37,11 +37,12 @@ export default defineUserConfig<DefaultThemeOptions>({
         sidebar: [
             {
                 text: '主页',
-                link: '/docs',
+                link: '/',
             },
             {
                 text: 'V1.x',
                 link: '/docs/v1/',
+                collapsible: true,
                 children: [
                     {
                         text: '安装',
@@ -79,6 +80,37 @@ export default defineUserConfig<DefaultThemeOptions>({
                             {
                                 text: 'FTP',
                                 link: '/docs/v1/SS/FTP'
+                            },
+                            
+                        ],
+                    },
+                    {
+                        text: '系统参数',
+                        link: '/docs/v1/SystemParameters',
+                        children: [
+                            {
+                                text: '基础配置',
+                                link: '/docs/v1/SP/BasicConf'
+                            },
+                            {
+                                text: '上传配置',
+                                link: '/docs/v1/SP/UploadConf'
+                            },
+                            {
+                                text: '用户配置',
+                                link: '/docs/v1/SP/UserConf'
+                            },
+                            {
+                                text: '邮件配置',
+                                link: '/docs/v1/SP/MailConf'
+                            },
+                            {
+                                text: '其他配置',
+                                link: '/docs/v1/SP/OtherConf'
+                            },
+                            {
+                                text: '图片鉴黄',
+                                link: '/docs/v1/SP/ImgSex'
                             },
                         ],
                     }
