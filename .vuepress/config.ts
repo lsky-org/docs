@@ -10,7 +10,7 @@ export default defineUserConfig<DefaultThemeOptions>({
     themeConfig: {
         logo: '/logo.png',
         navbar: [
-            { text: '首页', link: '/docs' },
+            { text: '首页', link: '/' },
             {
                 text: '选择版本',
                 children: [
