@@ -117,7 +117,15 @@ export default defineUserConfig<DefaultThemeOptions>({
                     {
                         text: '水印设置',
                         link: '/docs/v1/Watermark'
-                    }
+                    },
+                    {
+                        text: '系统升级',
+                        link: '/docs/v1/SystemUpdate'
+                    },
+                    {
+                        text: '常见问题',
+                        link: '/docs/v1/CommonQ'
+                    },
                 ],
             }
         ],
