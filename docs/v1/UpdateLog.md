@@ -56,7 +56,7 @@
 - 重构鉴权方式、接口认证方式
 - 重构更新数据库结构的方法
 - 安装条件增加需要 ZipArchive 支持
-- 图片最大上传限制兼容 KB 单位 #91
+- 图片最大上传限制兼容 KB 单位 [#91](https://github.com/lsky-org/lsky-pro/issues/91)
 - 删除本地静态资源, 使用第三方 CDN(jsdelivr)
 - 改进控制台样式
 - 恢复上传后出现的清除按钮
@@ -128,9 +128,9 @@ FAQ：如果更新出现错误，请尝试手动访问 `http://域名/install/up
 - 改进策略组编辑
 - 修复更新后出现重复默认组的bug
 - 默认组设置为禁止删除
-- 增加原文件名命名规则 #17
+- 增加原文件名命名规则 [#17](https://github.com/lsky-org/lsky-pro/issues/17)
 - 接口上传成功后返回更多的数据(size,mime,sha1,md5)
-- 阻止浏览器翻译(lang="zh-CN") #16
+- 阻止浏览器翻译(lang="zh-CN") [#16](https://github.com/lsky-org/lsky-pro/issues/16)
 - 更换二维码接口
 - 修复被冻结用户通过接口能上传的bug
 - 其他细节改进
