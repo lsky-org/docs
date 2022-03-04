@@ -36,13 +36,34 @@ export default defineUserConfig<DefaultThemeOptions>({
         sidebarDepth: 2,
         sidebar: {
             '/docs/v1/': [
+                {
+                    text: 'V1.x手册',
+                    link: '/docs/v1/',
+                    children: [
+                        '/docs/v1/Install.md','/docs/v1/env.md',
+                        {
+                            text: '存储策略',
+                            link: '/docs/v1/StorageStrategy.md',
+                            children: [
+                                '/docs/v1/SS/Local.md','/docs/v1/SS/AliyunOSS.md','/docs/v1/SS/TencentCloudCOS.md','/docs/v1/SS/UpyunUSS.md','/docs/v1/SS/KODO.md','/docs/v1/SS/FTP.md'
+                            ]
+                        },
+                        {
+                            text: '系统参数配置',
+                            link: '/docs/v1/SystemParameters',
+                            children: [
+                                '/docs/v1/SP/BasicConf','/docs/v1/SP/UploadConf','/docs/v1/SP/UserConf','/docs/v1/SP/MailConf','/docs/v1/SP/OtherConf','/docs/v1/SP/ImgSex'
+                            ]
+                        },'/docs/v1/Watermark','/docs/v1/SystemUpdate','/docs/v1/CommonQ','/docs/v1/UpdateLog'
+                    ]
+                },
             ],
             '/docs/v2/': [
                 {
                     text: '快速入门',
                     link: '/docs/v2/',
                     children: [
-                        '/docs/v2/installation.md',
+                        '/docs/v2/installation.md'
                     ]
                 },
             ],
