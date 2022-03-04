@@ -113,6 +113,10 @@ export default defineUserConfig<DefaultThemeOptions>({
                                 link: '/docs/v1/SP/ImgSex'
                             },
                         ],
+                    },
+                    {
+                        text: '水印设置',
+                        link: '/docs/v1/Watermark'
                     }
                 ],
             }
