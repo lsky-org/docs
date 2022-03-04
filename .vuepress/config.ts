@@ -34,104 +34,39 @@ export default defineUserConfig<DefaultThemeOptions>({
         docsBranch: 'master',
         lastUpdated: true,
         sidebarDepth: 2,
-        sidebar: [
-            {
-                text: '主页',
-                link: '/',
-            },
-            {
-                text: 'V1.x',
-                link: '/docs/v1/',
-                collapsible: true,
-                children: [
-                    {
-                        text: '安装',
-                        link: '/docs/v1/Install',
-                    },
-                    {
-                        text: '环境变量',
-                        link: '/docs/v1/env',
-                        children: [],
-                    },
-                    {
-                        text: '存储策略',
-                        link: '/docs/v1/StorageStrategy',
-                        children: [
-                            {
-                                text: '本地',
-                                link: '/docs/v1/SS/Local'
-                            },
-                            {
-                                text: '阿里云OSS',
-                                link: '/docs/v1/SS/AliyunOSS'
-                            },
-                            {
-                                text: '腾讯云COS',
-                                link: '/docs/v1/SS/TencentCloudCOS'
-                            },
-                            {
-                                text: '又拍云USS',
-                                link: '/docs/v1/SS/UpyunUSS'
-                            },
-                            {
-                                text: '七牛云KODO',
-                                link: '/docs/v1/SS/KODO'
-                            },
-                            {
-                                text: 'FTP',
-                                link: '/docs/v1/SS/FTP'
-                            },
-                            
-                        ],
-                    },
-                    {
-                        text: '系统参数',
-                        link: '/docs/v1/SystemParameters',
-                        children: [
-                            {
-                                text: '基础配置',
-                                link: '/docs/v1/SP/BasicConf'
-                            },
-                            {
-                                text: '上传配置',
-                                link: '/docs/v1/SP/UploadConf'
-                            },
-                            {
-                                text: '用户配置',
-                                link: '/docs/v1/SP/UserConf'
-                            },
-                            {
-                                text: '邮件配置',
-                                link: '/docs/v1/SP/MailConf'
-                            },
-                            {
-                                text: '其他配置',
-                                link: '/docs/v1/SP/OtherConf'
-                            },
-                            {
-                                text: '图片鉴黄',
-                                link: '/docs/v1/SP/ImgSex'
-                            },
-                        ],
-                    },
-                    {
-                        text: '水印设置',
-                        link: '/docs/v1/Watermark'
-                    },
-                    {
-                        text: '系统升级',
-                        link: '/docs/v1/SystemUpdate'
-                    },
-                    {
-                        text: '常见问题',
-                        link: '/docs/v1/CommonQ'
-                    },
-                    {
-                        text: '更新日志',
-                        link: '/docs/v1/UpdateLog'
-                    }
-                ],
-            }
-        ],
+        sidebar: {
+            '/docs/v1/': [
+                {
+                    text: 'V1.x手册',
+                    link: '/docs/v1/',
+                    children: [
+                        '/docs/v1/Install.md','/docs/v1/env.md',
+                        {
+                            text: '存储策略',
+                            link: '/docs/v1/StorageStrategy.md',
+                            children: [
+                                '/docs/v1/SS/Local.md','/docs/v1/SS/AliyunOSS.md','/docs/v1/SS/TencentCloudCOS.md','/docs/v1/SS/UpyunUSS.md','/docs/v1/SS/KODO.md','/docs/v1/SS/FTP.md'
+                            ]
+                        },
+                        {
+                            text: '系统参数配置',
+                            link: '/docs/v1/SystemParameters',
+                            children: [
+                                '/docs/v1/SP/BasicConf','/docs/v1/SP/UploadConf','/docs/v1/SP/UserConf','/docs/v1/SP/MailConf','/docs/v1/SP/OtherConf','/docs/v1/SP/ImgSex'
+                            ]
+                        },'/docs/v1/Watermark','/docs/v1/SystemUpdate','/docs/v1/CommonQ','/docs/v1/UpdateLog'
+                    ]
+                },
+            ],
+            '/docs/v2/': [
+                {
+                    text: '快速入门',
+                    link: '/docs/v2/',
+                    children: [
+                        '/docs/v2/installation.md','/docs/v2/2222.md'
+                    ]
+                },
+            ],
+        }
     },
 })

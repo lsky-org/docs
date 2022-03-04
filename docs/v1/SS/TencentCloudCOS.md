@@ -1,3 +1,7 @@
+---
+title: 腾讯云COS
+---
+
 腾讯云对象储存COS申请地址：[https://cloud.tencent.com/product/cos](https://cloud.tencent.com/product/cos)
 
 申请了腾讯云对象储存COS以后，进入对象储存控制台，然后点击储存桶列表，如下图：

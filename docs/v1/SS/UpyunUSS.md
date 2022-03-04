@@ -1,3 +1,7 @@
+---
+title: 又拍云USS
+---
+
 又拍云对象储存USS申请地址：[https://www.upyun.com/products/file-storage](https://www.upyun.com/products/file-storage)
 
 登录又拍云后，鼠标点击导航栏“云产品”，点击“云储存”。

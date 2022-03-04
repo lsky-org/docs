@@ -1,3 +1,7 @@
+---
+title: 图片鉴黄
+---
+
 图片鉴黄申请地址：[https://www.moderatecontent.com](https://www.moderatecontent.com)
 
 ### 开启图片鉴黄

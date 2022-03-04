@@ -1,3 +1,7 @@
+---
+title: FTP
+---
+
 ::: warning 注意！
 使用 FTP 功能，需要 PHP 的 FTP 函数支持！
 :::

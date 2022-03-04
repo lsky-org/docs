@@ -1,3 +1,7 @@
+---
+title: 七牛云KODO
+---
+
 七牛云对象储存申请地址：[https://www.qiniu.com/products/kodo](https://www.qiniu.com/products/kodo)
 
 申请后进入对象储存控制台，点击“新建储存空间”。
