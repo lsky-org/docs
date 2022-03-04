@@ -126,6 +126,10 @@ export default defineUserConfig<DefaultThemeOptions>({
                         text: '常见问题',
                         link: '/docs/v1/CommonQ'
                     },
+                    {
+                        text: '更新日志',
+                        link: '/docs/v1/UpdateLog'
+                    }
                 ],
             }
         ],
