@@ -63,7 +63,7 @@ export default defineUserConfig<DefaultThemeOptions>({
                     text: '快速入门',
                     link: '/docs/v2/',
                     children: [
-                        '/docs/v2/installation.md','/docs/v2/2222.md'
+                        '/docs/v2/installation.md'
                     ]
                 },
             ],
