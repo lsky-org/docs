@@ -10,7 +10,7 @@ export default defineUserConfig<DefaultThemeOptions>({
     themeConfig: {
         logo: '/logo.png',
         navbar: [
-            { text: '首页', link: '/' },
+            { text: '首页', link: '/docs' },
             {
                 text: '选择版本',
                 children: [
@@ -37,7 +37,7 @@ export default defineUserConfig<DefaultThemeOptions>({
         sidebar: [
             {
                 text: '主页',
-                link: '/',
+                link: '/docs',
             },
             {
                 text: 'V1.x',
@@ -57,7 +57,28 @@ export default defineUserConfig<DefaultThemeOptions>({
                         link: '/docs/v1/StorageStrategy',
                         children: [
                             {
-                                text: ''
+                                text: '本地',
+                                link: '/docs/v1/SS/Local'
+                            },
+                            {
+                                text: '阿里云OSS',
+                                link: '/docs/v1/SS/AliyunOSS'
+                            },
+                            {
+                                text: '腾讯云COS',
+                                link: '/docs/v1/SS/TencentCloudCOS'
+                            },
+                            {
+                                text: '又拍云USS',
+                                link: '/docs/v1/SS/UpyunUSS'
+                            },
+                            {
+                                text: '七牛云KODO',
+                                link: '/docs/v1/SS/KODO'
+                            },
+                            {
+                                text: 'FTP',
+                                link: '/docs/v1/SS/FTP'
                             },
                         ],
                     }
