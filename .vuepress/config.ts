@@ -11,19 +11,15 @@ export default defineUserConfig<DefaultThemeOptions>({
         logo: '/logo.png',
         navbar: [
             { text: '首页', link: '/' },
+            { text: '官网', link: 'https://www.lsky.pro' },
             {
                 text: '选择版本',
                 children: [
                     {
-                        text: 'Lsky Pro 1.x',
+                        text: 'Lsky Pro',
                         children: [
-                            { text: 'v1.x', link: '/docs/v1/', activeMatch: '^/docs/v1/' }
-                        ]
-                    },
-                    {
-                        text: 'Lsky Pro 2.x',
-                        children: [
-                            { text: 'v2.x', link: '/docs/v2/', activeMatch: '^/docs/v2/' }
+                            { text: 'V 1.x', link: '/docs/v1/', activeMatch: '^/docs/v1/' },
+                            { text: 'V 2.x', link: '/docs/v2/', activeMatch: '^/docs/v2/' }
                         ]
                     },
                 ]
@@ -60,13 +56,17 @@ export default defineUserConfig<DefaultThemeOptions>({
             ],
             '/docs/v2/': [
                 {
-                    text: '快速入门',
+                    text: '概述',
                     link: '/docs/v2/',
+                },
+                {
+                    text: '快速入门',
                     children: [
-                        '/docs/v2/installation.md'
+                        '/docs/v2/quick-start/installation.md',
+                        '/docs/v2/quick-start/questions.md'
                     ]
                 },
             ],
-        }
+        },
     },
 })
