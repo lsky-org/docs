@@ -59,6 +59,15 @@ Lsky Pro 的开发和更新等，都是作者在业余时间独立开发，并�
     </tr>
 </table>
 
+## 反馈问题
+- 若你在使用过程中遇到了匪夷所思的问题，第一步请先确认该问题是如何导致的，尝试自行检查解决
+- 如果你觉得可能遇到了错误，认为该错误是程序的 bug，你可以前往 [https://github.com/lsky-org/lsky-pro/issues](https://github.com/lsky-org/lsky-pro/issues) 进行反馈
+- 如果程序出现了崩溃级别的异常，例如 500 错误，通常情况下程序会在 `storage/logs` 目录下生成错误日志，出现这种情况反馈时请将日志文件携带(注意，日志中可能存在敏感信息)
+- 不接受任何无厘头的提议、例如：
+  - 能不能支持上传图片至 github、gitee、jsdelivr 等
+  - 能不能支持上传 mp4、avi 等视频
+- 当你准备向他人提问时，你应该先准备好你的问题，描述清楚你的场景。建议阅读 [提问的智慧](https://github.com/ryanhanwu/How-To-Ask-Questions-The-Smart-Way/blob/main/README-zh_CN.md)
+
 ## 升级指南
 
 由于 2.x 版本与 1.x 存在巨大差异，且数据库结构层面变化较大，无法从旧版本直接升级至 2.x 版本，但是作者我用了亿点时间写了迁移脚本，尽管如此，从旧版本迁移还是一个比较繁琐的步骤。
