@@ -11,6 +11,8 @@ description: 安装 Lsky Pro 2.x
 
 兰空图床的每个版本都是通过 github 发布，下次正式版本请访问 [https://github.com/lsky-org/lsky-pro/releases](https://github.com/lsky-org/lsky-pro/releases)
 
+如果你**不是**开发者，**请不要**下载名称为 `Source Code` 的压缩包，此为核心源代码，需要自己安装拓展。
+
 ## 运行环境配置
 
 1. 需要关闭 `open_basedir`，否则会有意想不到的错误。简单来说，open_basedir 是用来限制 PHP 读取目录。

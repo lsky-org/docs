@@ -31,7 +31,7 @@ description: 常见的问题以及解决方法
 这与浏览器限制有关，站点必须以 https 的方式访问。了解更多 [https://w3c.github.io/clipboard-apis/#dom-navigator-clipboard](https://w3c.github.io/clipboard-apis/#dom-navigator-clipboard)
 
 ### 原图保护功能是什么？
-原图保护功能指的是开启后，上传后图片返回的 url 中不是图片的真实路径，而是一串随机字符串。
+原图保护功能指的是开启后，上传后图片返回的 url 中不是图片的真实路径，而是一串随机字符串。开启后将会消耗更多的内存。
 
 ### 开启原图保护功能后访问图片 404
 这种情况是因为运行环境接管图片资源导致的，请更改 nginx 或 apache 的配置，例如 nginx：
