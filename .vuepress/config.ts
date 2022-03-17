@@ -50,7 +50,7 @@ export default defineUserConfig<DefaultThemeOptions>({
                             children: [
                                 '/docs/v1/SP/BasicConf','/docs/v1/SP/UploadConf','/docs/v1/SP/UserConf','/docs/v1/SP/MailConf','/docs/v1/SP/OtherConf','/docs/v1/SP/ImgSex'
                             ]
-                        },'/docs/v1/Watermark','/docs/v1/SystemUpdate','/docs/v1/CommonQ','/docs/v1/UpdateLog'
+                        }, '/docs/v1/Watermark','/docs/v1/SystemUpdate','/docs/v1/CommonQ','/docs/v1/UpdateLog'
                     ]
                 },
             ],
@@ -64,6 +64,15 @@ export default defineUserConfig<DefaultThemeOptions>({
                     children: [
                         '/docs/v2/quick-start/installation.md',
                         '/docs/v2/quick-start/questions.md'
+                    ]
+                },
+                {
+                    text: '角色组',
+                    children: [
+                        '/docs/v2/group/basic.md',
+                        '/docs/v2/group/picture-review.md',
+                        '/docs/v2/group/original-protection.md',
+                        '/docs/v2/group/watermark.md'
                     ]
                 },
             ],
