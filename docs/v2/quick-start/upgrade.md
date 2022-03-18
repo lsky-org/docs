@@ -12,13 +12,14 @@ description: 升级兰空图床
 如果在线升级失败，可以尝试手动升级。首先你需要前往 [https://github.com/lsky-org/lsky-pro/releases](https://github.com/lsky-org/lsky-pro/releases) 找到最新的版本，下载完整的安装包。(如果你不是开发人员，请**不要**下载名为 `Source code` 的压缩包，此为未安装依赖的源码包)
 
 然后按照以下步骤进行升级：
-1. 备份 `public` 目录下的缩略图文件夹(默认该文件夹名称为 `thumbnails`)
-2. 删除 **除了** `storage` 目录， `.env` 文件和 `installed.lock` 文件以外的所有文件夹以及文件
+1. 备份 `storage` 和 `public` 目录下的缩略图文件夹(默认该文件夹名称为 `thumbnails`)
+2. 删除 **除了** 目录 `.env` 文件和 `installed.lock` 文件以外的所有文件夹以及文件
 3. 解压新版本到程序根目录(替换掉旧版本)
-4. 将备份的缩略图文件夹放置原位置
+4. 将备份的 `storage` 文件夹替换掉**已解压**的 `storage` 文件夹，将备份的缩略图文件夹放到 `public` 目录下
 5. 执行清除缓存命令 `php artisan cache:clear`
 
 ::: danger 本地储存以及使用 sqlite 需要注意的事情
 - 使用 sqlite 默认情况下会将数据库文件放置 `database` 文件夹下，请在升级之前备份该数据库文件，并在上述第三步操作以后将数据库文件放置原位。
+- 本地储存策略的所有上传的图片都会保存在 `storage` 文件夹下，数据无价，请注意备份该文件夹。
 - 本地储存策略会在 `public` 文件夹下生成符号连接(软连接)，删除 `public` 目录后，请在升级完成以后编辑本地储存策略，保存一下以重新生成符号连接。
 :::
