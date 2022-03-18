@@ -77,6 +77,13 @@ export default defineUserConfig<DefaultThemeOptions>({
                         '/docs/v2/group/watermark.md'
                     ]
                 },
+                {
+                    text: '储存策略',
+                    children: [
+                        '/docs/v2/storage/intro.md',
+                        '/docs/v2/storage/faq.md',
+                    ]
+                },
             ],
         },
     },

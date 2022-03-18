@@ -16,7 +16,11 @@ description: 升级兰空图床
 2. 删除 **除了** 目录 `.env` 文件和 `installed.lock` 文件以外的所有文件夹以及文件
 3. 解压新版本到程序根目录(替换掉旧版本)
 4. 将备份的 `storage` 文件夹替换掉**已解压**的 `storage` 文件夹，将备份的缩略图文件夹放到 `public` 目录下
-5. 执行清除缓存命令 `php artisan cache:clear`
+5. 进入程序跟目录执行依次执行一下命令(需要PHP 8+)
+   - `php artisan route:clear`
+   - `php artisan cache:clear`
+   - `php artisan view:clear`
+   - `php artisan clear`
 
 ::: danger 本地储存以及使用 sqlite 需要注意的事情
 - 使用 sqlite 默认情况下会将数据库文件放置 `database` 文件夹下，请在升级之前备份该数据库文件，并在上述第三步操作以后将数据库文件放置原位。

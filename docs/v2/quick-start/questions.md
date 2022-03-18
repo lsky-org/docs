@@ -55,3 +55,9 @@ location ~ .*\.(gif|jpg|jpeg|png|bmp|swf)$
 
 ### 上传出现失败，请稍后重试？
 上传失败有很多原因，比如配置错误、文件较大返回 423 Request Entity Too Large、生成缩略图时图片较大导致超时被强行断开连接等等，出现错误通常情况下可以在`storage/logs`文件夹下找到错误日志，如果没有则表示错误并不是发生在程序中，而是外在原因。
+
+### 使用反向代理并且域名使用了 https 的情况下，程序请求静态资源、生成的链接却是 http ？
+这种情况通常是因为你的程序正在从 80 端口进行转发流量，详细解释和解决方法：[https://laravel.com/docs/9.x/requests#configuring-trusted-proxies](https://laravel.com/docs/9.x/requests#configuring-trusted-proxies)
+
+### 能不能支持 xxxx 、xxxx 储存？
+市面上各种厂家的产品层出不穷，兰空图床只会对主流的、具备相应接口的产品作适配，兰空图床的储存是由 [flysystem](https://flysystem.thephpleague.com/) 实现，欢迎你提交 PR！
