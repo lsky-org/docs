@@ -3,6 +3,8 @@ title: 安装
 description: 安装 Lsky Pro 2.x
 ---
 
+# 安装兰空图床
+
 ::: warning 请注意
 兰空图床不支持共享型虚拟主机(不支持安装拓展、修改 php.ini 等操作)安装
 :::
