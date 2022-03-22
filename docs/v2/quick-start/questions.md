@@ -61,3 +61,11 @@ location ~ .*\.(gif|jpg|jpeg|png|bmp|swf)$
 
 ### 能不能支持 xxxx 、xxxx 储存？
 市面上各种厂家的产品层出不穷，兰空图床只会对主流的、具备相应接口的产品作适配，兰空图床的储存是由 [flysystem](https://flysystem.thephpleague.com/) 实现，欢迎你提交 PR！
+
+### 缩略图文件夹可以改名字吗？
+可以，编辑 `.env` 文件，增加一项配置：  
+`THUMBNAIL_PATH=your folder`  
+但是请注意，此操作影响所以图片的缩略图地址，包括已上传的图片。
+
+### 缩略图文件夹、文件被我删掉了怎么办
+你可以通过执行命令 `php artisan lsky:thumbnails` 来重新生成所有图片的缩略图，但是注意，这个操作等待时间可能会比较漫长，取决于图片数量。

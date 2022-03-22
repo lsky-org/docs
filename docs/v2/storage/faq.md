@@ -26,5 +26,8 @@ description: 各个储存的特殊说明
   - QcloudAccessForDsgcRole
   - QcloudAccessForTCRRole
   - QcloudAccessForTCSRole
-
+  
 - 腾讯云的储存桶名称由 名称+appid 组合，在兰空图床后台的储存策略表单中请分开填写。
+
+## Minio
+- 如果使用内网 ip 进行连接，region 可以为空，如果是外网，sdk 则会验证区域，没有设置区域则可以固定为 us-east-1

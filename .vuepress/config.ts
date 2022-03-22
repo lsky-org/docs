@@ -84,6 +84,13 @@ export default defineUserConfig<DefaultThemeOptions>({
                         '/docs/v2/storage/faq.md',
                     ]
                 },
+                {
+                    text: '进阶教程',
+                    children: [
+                        '/docs/v2/advanced/cache.md',
+                        '/docs/v2/advanced/octane.md',
+                    ]
+                },
             ],
         },
     },
