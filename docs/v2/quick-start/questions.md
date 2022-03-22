@@ -69,3 +69,6 @@ location ~ .*\.(gif|jpg|jpeg|png|bmp|swf)$
 
 ### 缩略图文件夹、文件被我删掉了怎么办
 你可以通过执行命令 `php artisan lsky:thumbnails` 来重新生成所有图片的缩略图，但是注意，这个操作等待时间可能会比较漫长，取决于图片数量。
+
+### 如何增加统计代码？
+在 `public/js` 目录下新建 `custom.js` 文件，程序会自动加载该 js 文件
