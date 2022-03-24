@@ -5,9 +5,20 @@ description: 图片审核
 
 # 图片审核
 
-::: tip 提示
-目前仅支持阿里云图片内容安全驱动，未来会新增更多第三方审核。
-:::
+## 腾讯云内容安全
+申请地址：[https://cloud.tencent.com/product/ims](https://cloud.tencent.com/product/ims)
+
+### Endpoint
+固定为 ims.tencentcloudapi.com 即可。
+
+## 地域
+华北地区(北京)	ap-beijing
+华南地区(广州)	ap-guangzhou
+亚太南部(孟买)	ap-mumbai
+华东地区(上海)	ap-shanghai
+亚太东南(新加坡)	ap-singapore
+美国东部(弗吉尼亚)	na-ashburn
+美国西部(硅谷)	na-siliconvalley
 
 ## 阿里云内容安全
 申请地址：[https://www.aliyun.com/product/lvwang](https://www.aliyun.com/product/lvwang)
@@ -22,6 +33,25 @@ description: 图片审核
 - cn-shenzhen：华南1（深圳）
 - ap-southeast-1：新加坡
 
-::: warning
-如果你使用阿里云的「子用户 AccessKey」，即 RAM 账户，请授予该账户 AliyunYundunGreenWebFullAccess 权限。
+## NsfwJS
+
+::: tip
+此图片审核驱动需要自建，该项目地址：[https://github.com/infinitered/nsfwjs](https://github.com/infinitered/nsfwjs)
 :::
+
+你需要使用 node 环境启动一个服务器，并适配 nsfwjs。然后上传接口必须返回以下结构：
+```
+{
+    "porn": 0,
+    "sexy": 0,
+    "hentai": 0,
+    "neutral": 0,
+    "drawing": 0
+}
+```
+
+::: warning
+如果你使用阿里云的「子用户 AccessKey」，即 RAM 账户，请授予该账户 AliyunYundunGreenWebFullAccess 权限。  
+使用腾讯云的子用户，请授予该账户 QcloudIMSFullAccess、QcloudIMSReadOnlyAccess 权限
+:::
+
