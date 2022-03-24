@@ -39,6 +39,8 @@ description: 图片审核
 此图片审核驱动需要自建，该项目地址：[https://github.com/infinitered/nsfwjs](https://github.com/infinitered/nsfwjs)
 :::
 
+### 接口地址
+你自建的审核接口地址  
 你需要使用 node 环境启动一个服务器，并适配 nsfwjs。然后上传接口必须返回以下结构：
 ```
 {
@@ -49,6 +51,11 @@ description: 图片审核
     "drawing": 0
 }
 ```
+
+> 请注意，以上所有属性值，都应该是使用 0-1 之间的数值来表示百分比。
+
+### 属性名称
+接口的文件属性名称，例如 `image`
 
 ::: warning
 如果你使用阿里云的「子用户 AccessKey」，即 RAM 账户，请授予该账户 AliyunYundunGreenWebFullAccess 权限。  
