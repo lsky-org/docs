@@ -12,13 +12,13 @@ description: 图片审核
 固定为 ims.tencentcloudapi.com 即可。
 
 #### 地域
-华北地区(北京)	ap-beijing
-华南地区(广州)	ap-guangzhou
-亚太南部(孟买)	ap-mumbai
-华东地区(上海)	ap-shanghai
-亚太东南(新加坡)	ap-singapore
-美国东部(弗吉尼亚)	na-ashburn
-美国西部(硅谷)	na-siliconvalley
+- 华北地区(北京)	ap-beijing
+- 华南地区(广州)	ap-guangzhou
+- 亚太南部(孟买)	ap-mumbai
+- 华东地区(上海)	ap-shanghai
+- 亚太东南(新加坡)	ap-singapore
+- 美国东部(弗吉尼亚)	na-ashburn
+- 美国西部(硅谷)	na-siliconvalley
 
 ::: warning
 如果使用子用户，请授予该账户 QcloudIMSFullAccess、QcloudIMSReadOnlyAccess 权限
