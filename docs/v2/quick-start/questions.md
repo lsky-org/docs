@@ -58,6 +58,10 @@ location ~ .*\.(gif|jpg|jpeg|png|bmp|swf)$
 
 ### 使用反向代理并且域名使用了 https 的情况下，程序请求静态资源、生成的链接却是 http ？
 这种情况通常是因为你的程序正在从 80 端口进行转发流量，详细解释和解决方法：[https://laravel.com/docs/9.x/requests#configuring-trusted-proxies](https://laravel.com/docs/9.x/requests#configuring-trusted-proxies)
+请尝试增加反向代理配置：  
+```
+proxy_set_header X-Forwarded-Proto $scheme;
+```
 
 ### 能不能支持 xxxx 、xxxx 储存？
 市面上各种厂家的产品层出不穷，兰空图床只会对主流的、具备相应接口的产品作适配，兰空图床的储存是由 [flysystem](https://flysystem.thephpleague.com/) 实现，欢迎你提交 PR！
