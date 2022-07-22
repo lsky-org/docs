@@ -3,8 +3,9 @@ title: 升级
 description: Lsky Pro 企业版本升级
 ---
 
-::: danger 注意
-当您进入到系统更新页面时，程序会在本地通过安装时填写的 `APP_URL`、`APP_SERIAL_NO`、`APP_SECRET` 生成签名，如果配置错误，您将会在这个页面收到错误通知： `No permission`。
+::: warning 注意
+- 当您进入到系统更新页面时，程序会在本地通过安装时填写的 `APP_URL`、`APP_SERIAL_NO`、`APP_SECRET` 生成签名，如果配置错误，您将会在这个页面收到错误通知： `No permission`。
+- 更新需要 PHP 启用了 zip 拓展(ZipArchive)
 :::
 
 ## 在线升级

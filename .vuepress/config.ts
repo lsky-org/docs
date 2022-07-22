@@ -109,6 +109,8 @@ export default defineUserConfig<DefaultThemeOptions>({
                     children: [
                         '/docs/enterprise/v1/quick-start/installation.md',
                         '/docs/enterprise/v1/quick-start/upgrade.md',
+                        '/docs/enterprise/v1/quick-start/migration.md',
+                        '/docs/enterprise/v1/quick-start/questions.md',
                     ]
                 },
             ]
