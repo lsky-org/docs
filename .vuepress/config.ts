@@ -16,10 +16,16 @@ export default defineUserConfig<DefaultThemeOptions>({
                 text: '选择版本',
                 children: [
                     {
-                        text: 'Lsky Pro',
+                        text: 'Lsky Pro 开源版',
                         children: [
-                            { text: 'V 1.x', link: '/docs/v1/', activeMatch: '^/docs/v1/' },
-                            { text: 'V 2.x', link: '/docs/v2/', activeMatch: '^/docs/v2/' }
+                            { text: 'V 1.x', link: '/docs/free/v1/', activeMatch: '^/docs/free/v1/' },
+                            { text: 'V 2.x', link: '/docs/free/v2/', activeMatch: '^/docs/free/v2/' }
+                        ]
+                    },
+                    {
+                        text: 'Lsky Pro 企业版',
+                        children: [
+                            { text: 'V 1.x', link: '/docs/enterprise/v1/', activeMatch: '^/docs/enterprise/v1/' },
                         ]
                     },
                 ]
@@ -31,67 +37,80 @@ export default defineUserConfig<DefaultThemeOptions>({
         lastUpdated: true,
         sidebarDepth: 2,
         sidebar: {
-            '/docs/v1/': [
+            '/docs/free/v1/': [
                 {
                     text: 'V1.x手册',
-                    link: '/docs/v1/',
+                    link: '/docs/free/v1/',
                     children: [
-                        '/docs/v1/Install.md','/docs/v1/env.md',
+                        '/docs/free/v1/Install.md','/docs/free/v1/env.md',
                         {
                             text: '存储策略',
-                            link: '/docs/v1/StorageStrategy.md',
+                            link: '/docs/free/v1/StorageStrategy.md',
                             children: [
-                                '/docs/v1/SS/Local.md','/docs/v1/SS/AliyunOSS.md','/docs/v1/SS/TencentCloudCOS.md','/docs/v1/SS/UpyunUSS.md','/docs/v1/SS/KODO.md','/docs/v1/SS/FTP.md'
+                                '/docs/free/v1/SS/Local.md','/docs/free/v1/SS/AliyunOSS.md','/docs/free/v1/SS/TencentCloudCOS.md','/docs/free/v1/SS/UpyunUSS.md','/docs/free/v1/SS/KODO.md','/docs/free/v1/SS/FTP.md'
                             ]
                         },
                         {
                             text: '系统参数配置',
-                            link: '/docs/v1/SystemParameters',
+                            link: '/docs/free/v1/SystemParameters',
                             children: [
-                                '/docs/v1/SP/BasicConf','/docs/v1/SP/UploadConf','/docs/v1/SP/UserConf','/docs/v1/SP/MailConf','/docs/v1/SP/OtherConf','/docs/v1/SP/ImgSex'
+                                '/docs/free/v1/SP/BasicConf','/docs/free/v1/SP/UploadConf','/docs/free/v1/SP/UserConf','/docs/free/v1/SP/MailConf','/docs/free/v1/SP/OtherConf','/docs/free/v1/SP/ImgSex'
                             ]
-                        }, '/docs/v1/Watermark','/docs/v1/SystemUpdate','/docs/v1/CommonQ','/docs/v1/UpdateLog'
+                        }, '/docs/free/v1/Watermark','/docs/free/v1/SystemUpdate','/docs/free/v1/CommonQ','/docs/free/v1/UpdateLog'
                     ]
                 },
             ],
-            '/docs/v2/': [
+            '/docs/free/v2/': [
                 {
                     text: '概述',
-                    link: '/docs/v2/',
+                    link: '/docs/free/v2/',
                 },
                 {
                     text: '快速入门',
                     children: [
-                        '/docs/v2/quick-start/installation.md',
-                        '/docs/v2/quick-start/upgrade.md',
-                        '/docs/v2/quick-start/migration.md',
-                        '/docs/v2/quick-start/questions.md'
+                        '/docs/free/v2/quick-start/installation.md',
+                        '/docs/free/v2/quick-start/upgrade.md',
+                        '/docs/free/v2/quick-start/migration.md',
+                        '/docs/free/v2/quick-start/questions.md'
                     ]
                 },
                 {
                     text: '角色组',
                     children: [
-                        '/docs/v2/group/basic.md',
-                        '/docs/v2/group/picture-review.md',
-                        '/docs/v2/group/original-protection.md',
-                        '/docs/v2/group/watermark.md'
+                        '/docs/free/v2/group/basic.md',
+                        '/docs/free/v2/group/picture-review.md',
+                        '/docs/free/v2/group/original-protection.md',
+                        '/docs/free/v2/group/watermark.md'
                     ]
                 },
                 {
                     text: '储存策略',
                     children: [
-                        '/docs/v2/storage/intro.md',
-                        '/docs/v2/storage/faq.md',
+                        '/docs/free/v2/storage/intro.md',
+                        '/docs/free/v2/storage/faq.md',
                     ]
                 },
                 {
                     text: '进阶教程',
                     children: [
-                        '/docs/v2/advanced/cache.md',
-                        '/docs/v2/advanced/octane.md',
+                        '/docs/free/v2/advanced/cache.md',
+                        '/docs/free/v2/advanced/octane.md',
                     ]
                 },
             ],
+
+            '/docs/enterprise/v1/': [
+                {
+                    text: '概述',
+                    link: '/docs/enterprise/v1/',
+                },
+                {
+                    text: '快速入门',
+                    children: [
+                        '/docs/enterprise/v1/quick-start/installation.md',
+                    ]
+                },
+            ]
         },
     },
 })
