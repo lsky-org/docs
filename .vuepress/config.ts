@@ -108,6 +108,7 @@ export default defineUserConfig<DefaultThemeOptions>({
                     text: '快速入门',
                     children: [
                         '/docs/enterprise/v1/quick-start/installation.md',
+                        '/docs/enterprise/v1/quick-start/upgrade.md',
                     ]
                 },
             ]

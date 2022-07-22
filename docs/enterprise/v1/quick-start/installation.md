@@ -102,3 +102,7 @@ service crond restart
 ![crontab-config](/bt-crontab-config.png)
 
 至此，完成安装。
+
+::: tip 提示
+- 验证队列处理进程有没有正确配置，可以通过查看上传的图片是否生成了缩略图进行判断。
+:::
