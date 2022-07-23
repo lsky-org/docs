@@ -1,0 +1,1 @@
+const t={key:"v-40c9fa97",path:"/docs/free/v1/StorageStrategy.html",title:"\u5B58\u50A8\u7B56\u7565",lang:"zh-CN",frontmatter:{title:"\u5B58\u50A8\u7B56\u7565"},excerpt:"",headers:[],git:{updatedTime:165846869e4,contributors:[{name:"Wisp X",email:"1591788658@qq.com",commits:1}]},filePathRelative:"docs/free/v1/StorageStrategy.md"};export{t as data};

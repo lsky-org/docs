@@ -1,0 +1,1 @@
+const e={key:"v-7ae52b75",path:"/docs/free/v1/SystemUpdate.html",title:"\u7CFB\u7EDF\u5347\u7EA7",lang:"zh-CN",frontmatter:{title:"\u7CFB\u7EDF\u5347\u7EA7"},excerpt:"",headers:[],git:{updatedTime:165846869e4,contributors:[{name:"Wisp X",email:"1591788658@qq.com",commits:1}]},filePathRelative:"docs/free/v1/SystemUpdate.md"};export{e as data};

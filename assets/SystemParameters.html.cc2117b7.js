@@ -1,0 +1,1 @@
+const e={key:"v-5e967718",path:"/docs/free/v1/SystemParameters.html",title:"\u7CFB\u7EDF\u53C2\u6570\u8BBE\u7F6E",lang:"zh-CN",frontmatter:{title:"\u7CFB\u7EDF\u53C2\u6570\u8BBE\u7F6E"},excerpt:"",headers:[],git:{updatedTime:165846869e4,contributors:[{name:"Wisp X",email:"1591788658@qq.com",commits:1}]},filePathRelative:"docs/free/v1/SystemParameters.md"};export{e as data};
