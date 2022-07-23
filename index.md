@@ -5,7 +5,7 @@ heroText: Lsky Pro
 tagline: ☁️兰空图床 - Your photo album on the cloud.
 actions:
 - text: 现在开始 →
-  link: /docs/v2/
+  link: /docs/free/v2/
   type: primary
 features:
 - title: 稳定
