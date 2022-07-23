@@ -113,6 +113,12 @@ export default defineUserConfig<DefaultThemeOptions>({
                         '/docs/enterprise/v1/quick-start/questions.md',
                     ]
                 },
+                {
+                    text: '其他',
+                    children: [
+                        '/docs/enterprise/v1/others/free-upgrade.md',
+                    ]
+                },
             ]
         },
     },
