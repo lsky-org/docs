@@ -45,7 +45,7 @@ www 站点根目录
 :::
 
 ## 修改配置
-2. 在企业版本根目录，将 `.env.example` 复制一份并重命名为 `.env`，然后编辑这个文件，下列内容都是必填项：
+在企业版本根目录，将 `.env.example` 复制一份并重命名为 `.env`，然后编辑这个文件，下列内容都是必填项：
   - `APP_URL`=站点域名(需要 http(s): //，例如 https://pic.iqy.ink)
   - `APP_SERIAL_NO`=购买后得到的序列号
   - `APP_SECRET`=许可证的密钥
@@ -98,6 +98,7 @@ php artisan optimize:clear
 ```
 
 6. 最后一步(重要)
+
 此时还差最后一步，配置命令行，此步骤与安装教程中一致。参考安装教程中的最后一步，[命令行配置](/docs/enterprise/v1/quick-start/installation.html#最后一步-命令行配置-重要)。
 
 此时站点正常情况下已经可以访问了，注意需要清除浏览器缓存，否则样式可能会变得奇怪。
