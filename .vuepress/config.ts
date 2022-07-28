@@ -114,8 +114,25 @@ export default defineUserConfig<DefaultThemeOptions>({
                     ]
                 },
                 {
+                    text: '基础功能',
+                    children: [
+                        '/docs/enterprise/v1/features/basic/page.md',
+                        '/docs/enterprise/v1/features/basic/plan.md',
+                        '/docs/enterprise/v1/features/basic/coupon.md',
+                        '/docs/enterprise/v1/features/basic/payment.md',
+                    ]
+                },
+                {
+                    text: '核心功能',
+                    children: [
+                        '/docs/enterprise/v1/features/core/group.md',
+                        '/docs/enterprise/v1/features/core/strategy.md',
+                    ]
+                },
+                {
                     text: '其他',
                     children: [
+                        '/docs/enterprise/v1/others/optimization.md',
                         '/docs/enterprise/v1/others/free-upgrade.md',
                     ]
                 },
