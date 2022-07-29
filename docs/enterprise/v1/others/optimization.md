@@ -13,10 +13,6 @@ description: 企业版优化站点加载速度
 :::
 
 ## 常规优化方案
-### 优化自动加载
-```shell
-composer install --optimize-autoloader --no-dev
-```
 
 ### 优化配置加载
 ```shell
