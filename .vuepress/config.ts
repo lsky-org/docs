@@ -111,6 +111,7 @@ export default defineUserConfig<DefaultThemeOptions>({
                         '/docs/enterprise/v1/quick-start/upgrade.md',
                         '/docs/enterprise/v1/quick-start/migration.md',
                         '/docs/enterprise/v1/quick-start/questions.md',
+                        '/docs/enterprise/v1/quick-start/basic.md',
                     ]
                 },
                 {
