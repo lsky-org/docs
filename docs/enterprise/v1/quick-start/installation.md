@@ -76,6 +76,10 @@ stderr_logfile_maxbytes=2MB
 
 ![supervisor-config](/bt-supervisor-config.png)
 
+::: warning 注意
+如果进程无法启动，请尝试解禁 PHP 的 `pcntl_signal` 函数。
+:::
+
 #### 2. 配置计划任务处理进程
 
 计划任务需要用到 linux 中的 Crontab，我们还是假设项目绝对路径为 `/www/wwwroot/lsky-pro`，登录 SSH 后，执行以下命令：
