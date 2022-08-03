@@ -77,7 +77,7 @@ stderr_logfile_maxbytes=2MB
 ![supervisor-config](/bt-supervisor-config.png)
 
 ::: warning 注意
-如果进程无法启动，请尝试解禁 PHP 的 `pcntl_signal` 函数。
+如果进程无法启动，请尝试解禁 PHP 的 `pcntl_signal`、`pcntl_alarm` 函数。
 :::
 
 #### 2. 配置计划任务处理进程
