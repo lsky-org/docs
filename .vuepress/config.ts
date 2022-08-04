@@ -134,6 +134,7 @@ export default defineUserConfig<DefaultThemeOptions>({
                     text: '其他',
                     children: [
                         '/docs/enterprise/v1/others/optimization.md',
+                        '/docs/enterprise/v1/others/commands.md',
                         '/docs/enterprise/v1/others/free-upgrade.md',
                     ]
                 },
