@@ -32,3 +32,7 @@ php artisan view:cache
 ## 进阶优化方案
 - [安装 PHP Opcache 拓展](https://www.php.net/manual/zh/book.opcache.php)<Badge type="tip" text="推荐" vertical="top" />
 - [使用 Laravel Octane](https://laravel.com/docs/9.x/octane)<Badge type="danger" text="实验性" vertical="top" />
+
+::: warning 注意
+强烈推荐使用 opcache 拓展，使用 Octane 可能会对使站点产生一些奇怪的副作用。
+:::
