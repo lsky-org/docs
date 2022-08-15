@@ -76,7 +76,7 @@ php artisan key:generate
 
 2. 迁移数据库结构
 ```shell
-php artisan migrate
+php artisan migrate --seed
 ```
 
 3. 填充基础数据
