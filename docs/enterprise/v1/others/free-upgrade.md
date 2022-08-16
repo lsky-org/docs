@@ -106,3 +106,5 @@ php artisan optimize:clear
 ::: tip 提示
 数据无价，请在升级前做好备份。
 :::
+
+<CommentService />

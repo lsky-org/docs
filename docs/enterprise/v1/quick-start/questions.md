@@ -75,3 +75,5 @@ proxy_set_header X-Forwarded-Proto $scheme;
 
 ### 如何增加统计代码？
 在 `public/js` 目录下新建 `custom.js` 文件，程序会自动加载该 js 文件，如果单个js文件不满足需求，还可以在 `resources/views/layouts` 目录新建 `custom.blade.php` 文件，在里面可以添加任何代码。
+
+<CommentService />

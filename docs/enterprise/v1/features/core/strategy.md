@@ -157,3 +157,5 @@ return array_merge($array, match((int)$this->input('key')) {
 
 #### Minio
 - 如果使用内网 ip 进行连接，region 可以为空，如果是外网，sdk 则会验证区域，没有设置区域则可以固定为 us-east-1
+
+<CommentService />
