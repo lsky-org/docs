@@ -2,6 +2,7 @@ import {defaultTheme, defineUserConfig} from 'vuepress'
 
 const { searchPlugin } = require('@vuepress/plugin-search')
 const { nprogressPlugin } = require('@vuepress/plugin-nprogress')
+const { commentPlugin } = require('vuepress-plugin-comment2')
 
 export default defineUserConfig({
     locales: {
@@ -156,5 +157,20 @@ export default defineUserConfig({
             },
         }),
         nprogressPlugin(),
+        commentPlugin({
+            provider: "Giscus",
+            comment: true,
+            mapping: "pathname",
+            repo: "lsky-org/lsky-pro",
+            repoId: "MDEwOlJlcG9zaXRvcnkxNTI3NzI1Njg=",
+            category: "问答",
+            categoryId: "MDE4OkRpc2N1c3Npb25DYXRlZ29yeTMyMDUwMDMx",
+            strict: false,
+            reactionsEnabled: true,
+            inputPosition: "bottom",
+            locale: "zh-CN",
+            meta: false,
+            login: "force",
+        }),
     ]
 })
