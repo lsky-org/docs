@@ -15,6 +15,21 @@ description: 安装 Lsky Pro 企业版本
 - Supervisor
 
 ## 第一步，准备安装
+1. 使用 `php -v` 命令查看并确认 cli php 命令行版本是否符合要求，最低需要 8.0.2。
+
+![php version](/installation/php-version.png)
+
+2. 使用 `php -m`，确保已经安装必要的拓展。
+
+![php modules](/installation/php-modules.png)
+
+::: tip 提示
+- 通常情况下大部分拓展都是预装的，如果没有需要自行编译安装。
+- 必须程序必须用到的拓展有且不限于 `curl`、`fileinfo`、`ftp`、`imagick`、`PDO`、`openssl`、`pcntl`、`redis`、`zip`
+- 可选拓展 `pgsql`、`pdo_pgsql`、`sqlite3`、`pdo_sqlite`
+:::
+
+## 第二步，准备运行环境
 1. 先创建站点和数据库，然后关闭站点的防跨站攻击功能，设置伪静态。Nginx 如下：
 ```
 location / {
@@ -28,16 +43,22 @@ location / {
 3. 将程序所在目录的所有文件夹、子文件夹、文件的权限，用户组和所有者改为 www，权限改为 0755
 > 通常情况下，Web 站点目录的所有者和用户组为 www:www
 
-## 第二步，初始化配置
-编辑根目录中的 `.env` 文件，如果没有该文件可以将 `.env.example` 复制一份并重命名为 `.env` ，然后修改对应的配置值：
-- `APP_URL`=站点域名(需要 http(s): //，例如 https://pic.iqy.ink)
-- `APP_SERIAL_NO`=购买后得到的序列号
-- `APP_SECRET`=许可证的密钥
-- `REDIS_HOST`=Redis 连接地址(默认为 127.0.0.1)
-- `REDIS_PASSWORD`=Redis 连接密码(默认为 null，表示没有密码)
-- `REDIS_PORT`=Redis 连接端口(默认为 6379)
+## 第三步，初始化配置
+1. 进入终端，执行命令生成 key
 
-## 第三步，开始安装
+```shell
+php artisan key:generate
+```
+
+2. 编辑根目录中的 `.env` 文件，如果没有该文件可以将 `.env.example` 复制一份并重命名为 `.env` ，然后修改对应的配置值：
+   - `APP_URL`=站点域名(需要 http(s): //，例如 https://pic.iqy.ink)
+   - `APP_SERIAL_NO`=购买后得到的序列号
+   - `APP_SECRET`=许可证的密钥
+   - `REDIS_HOST`=Redis 连接地址(默认为 127.0.0.1)
+   - `REDIS_PASSWORD`=Redis 连接密码(默认为 null，表示没有密码)
+   - `REDIS_PORT`=Redis 连接端口(默认为 6379)
+
+## 第四步，开始安装
 上述步骤完成以后，即可访问站点首页，程序会自动跳转至图形化安装页面，根据指引完成数据库配置、管理员账号配置等。
 
 ## 最后一步，命令行配置(重要)
