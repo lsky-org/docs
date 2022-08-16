@@ -1,15 +1,18 @@
-import { defineUserConfig } from 'vuepress'
-import type { DefaultThemeOptions } from 'vuepress'
+import {defaultTheme, defineUserConfig} from 'vuepress'
 
 const { searchPlugin } = require('@vuepress/plugin-search')
+const { nprogressPlugin } = require('@vuepress/plugin-nprogress')
 
-export default defineUserConfig<DefaultThemeOptions>({
-    lang: 'zh-CN',
-    title: 'Lsky Pro',
-    description: '兰空图床使用文档',
+export default defineUserConfig({
+    locales: {
+        "/": {
+            lang: 'zh-CN',
+            title: 'Lsky Pro',
+            description: '兰空图床使用文档',
+        }
+    },
 
-    theme: '@vuepress/theme-default',
-    themeConfig: {
+    theme: defaultTheme({
         logo: '/logo.png',
         navbar: [
             { text: '首页', link: '/' },
@@ -143,8 +146,15 @@ export default defineUserConfig<DefaultThemeOptions>({
                 },
             ]
         },
-    },
+    }),
     plugins: [
-        searchPlugin()
+        searchPlugin({
+            locales: {
+                '/': {
+                    placeholder: '输入关键字搜索...',
+                },
+            },
+        }),
+        nprogressPlugin(),
     ]
 })
