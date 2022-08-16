@@ -164,7 +164,7 @@ export default defineUserConfig({
             mapping: "title",
             repo: "lsky-org/lsky",
             repoId: "R_kgDOG8eCww",
-            category: "Docs comments",
+            category: "Comments",
             categoryId: "DIC_kwDOG8eCw84CQ2iA",
             strict: false,
             reactionsEnabled: true,
