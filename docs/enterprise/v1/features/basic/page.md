@@ -16,5 +16,3 @@ description: 企业版自定义页面功能介绍
 - 样式方面还可以使用 [Tailwindcss](https://tailwindcss.com/)，可以使用以下命令开发或编译
   - `npm run watch` 开发模式，实时编译
   - `npm run prod` 编译并压缩
-
-<CommentService />

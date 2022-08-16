@@ -1,4 +1,5 @@
 import {defaultTheme, defineUserConfig} from 'vuepress'
+import { customTheme } from "./theme";
 
 const { searchPlugin } = require('@vuepress/plugin-search')
 const { nprogressPlugin } = require('@vuepress/plugin-nprogress')
@@ -13,7 +14,7 @@ export default defineUserConfig({
         }
     },
 
-    theme: defaultTheme({
+    theme: customTheme({
         logo: '/logo.png',
         navbar: [
             { text: '首页', link: '/' },

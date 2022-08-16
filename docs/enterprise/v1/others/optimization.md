@@ -36,5 +36,3 @@ php artisan view:cache
 ::: warning 注意
 强烈推荐使用 opcache 拓展，使用 Octane 可能会对使站点产生一些奇怪的副作用。
 :::
-
-<CommentService />

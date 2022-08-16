@@ -17,5 +17,3 @@ php artisan lsky:symlinks
 ```shell
 php artisan db:seed --class=CorrectStatSeeder
 ```
-
-<CommentService />
