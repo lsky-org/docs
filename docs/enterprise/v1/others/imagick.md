@@ -30,7 +30,7 @@ make && make install
 
 ## 编译安装 PHP Imagick
 ::: warning 注意
-请先使用 `php -v` 命令输出并确认当前使用的 cli php 版本。
+请先使用 `php -v` 命令输出并确认当前使用的 cli php 版本，避免将拓展安装到了其他的 php 版本上。
 :::
 
 ### 下载并解压 PHP Imagick
