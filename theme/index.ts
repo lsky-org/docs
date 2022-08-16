@@ -12,6 +12,6 @@ export const customTheme = (options: DefaultThemeOptions): Theme => ({
 
     layouts: {
         // we override the default layout to provide comment service
-        Layout: path.resolve(__dirname, "layouts", "Layout.vue"),
+        Layout: path.resolve(__dirname, "layouts", "layout.vue"),
     },
 });
