@@ -14,8 +14,8 @@ imagick 分为两个部分，第一个是 [ImageImagick](http://www.imagemagick.
 ### 下载并解压 ImageImagick
 ```shell
 wget https://github.com/ImageMagick/ImageMagick/archive/refs/heads/main.zip
-tar -xzvf ImageMagick-main.zip
-cd ImageMagick-main/
+unzip main.zip
+cd main/
 ```
 
 ### 编译
@@ -36,8 +36,8 @@ make && make install
 ### 下载并解压 PHP Imagick
 ```shell
 wget https://github.com/Imagick/imagick/archive/refs/heads/master.zip
-tar -xzvf imagick-master.zip
-cd imagick-master/
+unzip master.zip
+cd master/
 ```
 
 ### 编译并安装
