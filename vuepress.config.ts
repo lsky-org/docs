@@ -161,7 +161,6 @@ export default defineUserConfig({
         commentPlugin({
             provider: "Giscus",
             comment: true,
-            mapping: "title",
             repo: "lsky-org/lsky",
             repoId: "R_kgDOG8eCww",
             category: "Comments",
