@@ -9,6 +9,7 @@
     "docs:build": "vuepress build ."
   },
   "devDependencies": {
+    "@vuepress/plugin-search": "next",
     "vuepress": "vuepress@next"
   },
   "dependencies": {}

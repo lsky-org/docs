@@ -1,6 +1,8 @@
 import { defineUserConfig } from 'vuepress'
 import type { DefaultThemeOptions } from 'vuepress'
 
+const { searchPlugin } = require('@vuepress/plugin-search')
+
 export default defineUserConfig<DefaultThemeOptions>({
     lang: 'zh-CN',
     title: 'Lsky Pro',
@@ -142,4 +144,7 @@ export default defineUserConfig<DefaultThemeOptions>({
             ]
         },
     },
+    plugins: [
+        searchPlugin()
+    ]
 })
