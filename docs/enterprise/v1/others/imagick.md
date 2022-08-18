@@ -6,7 +6,7 @@ description: PHP Imagick 拓展安装教程
 ::: tip
 兰空图床使用 [Imagick 拓展](https://www.php.net/manual/zh/book.imagick.php) 对图片进行处理，它并非 PHP 预装，而是需要自己手动安装的。  
 
-imagick 分为两个部分，第一个是 [ImageImagick](http://www.imagemagick.org)，然后才是 [PHP Imagick](https://www.php.net/manual/zh/book.imagick.php)，如果您安装完程序后，发现个别拓展名(例如webp)无法上传，很有可能是因为 imagick 安装时未支持 webp，需要重新编译安装。
+imagick 分为两个部分，第一个是 [ImageImagick](http://www.imagemagick.org)，然后才是 [PHP Imagick](https://www.php.net/manual/zh/book.imagick.php)，PHP Imagick 支持哪些图片取决于 ImageImagick 库，如果您安装完程序后，发现个别拓展名(例如webp)无法上传，很有可能是因为 imagick 安装时未支持 webp，需要重新编译安装。
 :::
 
 ## 编译安装 ImageImagick
@@ -17,6 +17,11 @@ wget https://github.com/ImageMagick/ImageMagick/archive/refs/heads/main.zip -O I
 unzip ImageMagick.zip
 cd ImageMagick-main/
 ```
+
+::: tip 检查支持的格式
+- 使用 `identify -list format` 命令查看所有支持的图片格式
+- 使用 `identify -list format | grep webp` 命令查看指定的图片格式是否支持
+:::
 
 ### 编译
 ```shell
