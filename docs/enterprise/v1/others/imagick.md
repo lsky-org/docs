@@ -41,15 +41,13 @@ make && make install
 ### 下载并解压 PHP Imagick
 ```shell
 wget https://github.com/Imagick/imagick/archive/refs/heads/master.zip -O php-imagick.zip
-unzip php-imagick.zip
-cd imagick-master/
+unzip php-imagick.zip && cd imagick-master/
 ```
 
 ### 编译并安装
 ```shell
 phpize && ./configure
-make
-make install
+make && make install
 ```
 
 安装完成后，执行命令 `php --ri imagick`，会出现下图中的信息，即为安装完成。
