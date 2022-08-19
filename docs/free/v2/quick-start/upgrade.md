@@ -19,10 +19,7 @@ description: 升级兰空图床
 5. 修改版本号，进入数据库找到 `configs` 表，修改 `name` 为 `app_version` 的 `value` 值，例如 `V 2.0`，字符串必须完全一致。
 6. 进入程序根目录执行依次执行以下命令(需要PHP 8+)
    - `php artisan migrate --seed`
-   - `php artisan route:clear`
-   - `php artisan cache:clear`
-   - `php artisan view:clear`
-   - `php artisan clear`
+   - `php artisan optimize:clear`
 
 ::: danger 本地储存以及使用 sqlite 需要注意的事情
 - 使用 sqlite 默认情况下会将数据库文件放置 `database` 文件夹下，请在升级之前备份该数据库文件，并在上述第三步操作以后将数据库文件放置原位。
