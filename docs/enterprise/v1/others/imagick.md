@@ -18,7 +18,8 @@ unzip ImageMagick.zip
 cd ImageMagick-main/
 ```
 
-::: tip 检查支持的格式
+::: warning 注意
+- ImageImagick 支持的图片类型受系统影响，例如如果希望支持 webp，需要 `libwebp` 库的支持，且需要达到指定版本要求
 - 使用 `identify -list format` 命令查看所有支持的图片格式
 - 使用 `identify -list format | grep webp` 命令查看指定的图片格式是否支持
 :::
