@@ -19,3 +19,7 @@ features:
   details: 得益于强大的 Laravel 框架，我们无需在安全这方面考虑过多，它几乎已经帮我们做好了一切。
 footer: GPL-3.0 Licensed | Copyright © 2018-present Lsky Pro
 ---
+
+<div style="border-radius: 10px; overflow: hidden">
+  <img src="https://www.lsky.pro/assets/banner.png" />
+</div>

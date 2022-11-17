@@ -16,11 +16,16 @@ export default defineUserConfig({
 
     theme: customTheme({
         logo: '/logo.png',
+        editLinkText: '在 GitHub 上编辑此页',
+        lastUpdatedText: '最后更新',
+        contributorsText: '贡献者',
+        tip: '提示',
+        warning: '警告',
+        danger: '危险',
         navbar: [
-            { text: '首页', link: '/' },
-            { text: '官网', link: 'https://www.lsky.pro' },
+            { text: '🌏 首页', link: '/' },
             {
-                text: '选择版本',
+                text: '📌 ️选择版本',
                 children: [
                     {
                         text: 'Lsky Pro 开源版',
@@ -36,7 +41,9 @@ export default defineUserConfig({
                         ]
                     },
                 ]
-            }
+            },
+            { text: '🚀 官网', link: 'https://www.lsky.pro' },
+            { text: '💰 购买', link: 'https://www.lsky.pro/buy' },
         ],
         repo: 'https://github.com/lsky-org/lsky-pro',
         docsRepo: 'https://github.com/lsky-org/docs',
