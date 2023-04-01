@@ -18,7 +18,7 @@ description: 安装 Lsky Pro 2.x
 ## 运行环境配置
 
 1. 需要关闭 `open_basedir`，否则会有意想不到的错误。简单来说，open_basedir 是用来限制 PHP 读取目录。
-2. 安装 nginx 或 apache，PHP 8.0.2+，然后为 php 安装上必须的拓展。详见：[安装要求](/docs/v2/#安装要求) 章节
+2. 安装 nginx 或 apache，PHP 8.0.2+，然后为 php 安装上必须的拓展。详见：[安装要求](/docs/free/v2/#安装要求) 章节
 
 ## 准备安装
 
