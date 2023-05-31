@@ -70,8 +70,11 @@ proxy_set_header X-Forwarded-Proto $scheme;
 可以，编辑 `.env` 文件，增加一项配置：
 `ENABLE_THUMBNAIL=false`
 
-### 缩略图文件夹、文件被我删掉了怎么办
+### 缩略图文件夹、文件被我删掉了怎么办？
 你可以通过执行命令 `php artisan lsky:thumbnails` 来重新生成所有图片的缩略图，但是注意，这个操作等待时间可能会比较漫长，取决于图片数量。
 
 ### 如何增加统计代码？
 在 `public/js` 目录下新建 `custom.js` 文件，程序会自动加载该 js 文件，如果单个js文件不满足需求，还可以在 `resources/views/layouts` 目录新建 `custom.blade.php` 文件，在里面可以添加任何代码。
+
+### 如何修改 Redis 库？
+你可以通过在 `.env` 文件中增加配置 `REDIS_DB=0` 和 `REDIS_CACHE_DB=1` 来指定库。

@@ -71,8 +71,11 @@ proxy_set_header X-Forwarded-Proto $scheme;
 `THUMBNAIL_PATH=your folder`  
 但是请注意，此操作影响所以图片的缩略图地址，包括已上传的图片。
 
-### 缩略图文件夹、文件被我删掉了怎么办
+### 缩略图文件夹、文件被我删掉了怎么办？
 你可以通过执行命令 `php artisan lsky:thumbnails` 来重新生成所有图片的缩略图，但是注意，这个操作等待时间可能会比较漫长，取决于图片数量。
 
 ### 如何增加统计代码？
 在 `public/js` 目录下新建 `custom.js` 文件，程序会自动加载该 js 文件
+
+### 如何修改 Redis 库？
+你可以通过在 `.env` 文件中增加配置 `REDIS_DB=0` 和 `REDIS_CACHE_DB=1` 来指定库。
