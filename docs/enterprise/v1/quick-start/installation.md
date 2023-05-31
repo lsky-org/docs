@@ -66,6 +66,11 @@ php artisan key:generate
 
 #### 1. 配置队列处理进程
 
+命令行：
+```shell
+php artisan queue:work --queue=emails,images,thumbnails
+```
+
 在站点根目录下执行命令 `php artisan queue:work` 来启动队列处理进程，但是注意，手动停止或关闭终端后此命令会停止，所以我们需要通过其他命令(nohup、screen)来使该命令在后台运行。  
 ::: warning 注意
 由于兰空图床会在每次升级后安全退出队列进程，如果您使用上述的方式运行队列，请不要忘了在程序更新后手动重启队列。
@@ -80,7 +85,7 @@ process_name=%(program_name)s_%(process_num)02d
 command=php artisan queue:work --queue=emails,images,thumbnails
 directory=/www/wwwroot/lsky-pro/
 user=root
-numprocs=8
+numprocs=1
 autorestart=true
 startsecs=3
 startretries=3
