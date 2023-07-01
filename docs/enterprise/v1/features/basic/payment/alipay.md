@@ -8,7 +8,7 @@ description: 支付宝网站支付功能
 :::
 
 ## 创建支付应用
-前往开发者中心，点击 https://open.alipay.com/develop/pm/create 创建网页移动应用。
+前往开发者中心，点击 [https://open.alipay.com/develop/pm/create](https://open.alipay.com/develop/pm/create) 创建网页移动应用。
 
 ![创建应用](/payment/alipay/1.png)
 
