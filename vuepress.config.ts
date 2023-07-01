@@ -1,9 +1,9 @@
 import {defaultTheme, defineUserConfig} from 'vuepress'
-import { customTheme } from "./theme";
+import {customTheme} from "./theme";
 
-const { searchPlugin } = require('@vuepress/plugin-search')
-const { nprogressPlugin } = require('@vuepress/plugin-nprogress')
-const { commentPlugin } = require('vuepress-plugin-comment2')
+const {searchPlugin} = require('@vuepress/plugin-search')
+const {nprogressPlugin} = require('@vuepress/plugin-nprogress')
+const {commentPlugin} = require('vuepress-plugin-comment2')
 
 export default defineUserConfig({
     locales: {
@@ -23,27 +23,27 @@ export default defineUserConfig({
         warning: '警告',
         danger: '危险',
         navbar: [
-            { text: '🌏 首页', link: '/' },
+            {text: '🌏 首页', link: '/'},
             {
                 text: '📌 ️选择版本',
                 children: [
                     {
                         text: 'Lsky Pro 开源版',
                         children: [
-                            { text: 'V 1.x', link: '/docs/free/v1/', activeMatch: '^/docs/free/v1/' },
-                            { text: 'V 2.x', link: '/docs/free/v2/', activeMatch: '^/docs/free/v2/' }
+                            {text: 'V 1.x', link: '/docs/free/v1/', activeMatch: '^/docs/free/v1/'},
+                            {text: 'V 2.x', link: '/docs/free/v2/', activeMatch: '^/docs/free/v2/'}
                         ]
                     },
                     {
                         text: 'Lsky Pro 企业版',
                         children: [
-                            { text: 'V 1.x', link: '/docs/enterprise/v1/', activeMatch: '^/docs/enterprise/v1/' },
+                            {text: 'V 1.x', link: '/docs/enterprise/v1/', activeMatch: '^/docs/enterprise/v1/'},
                         ]
                     },
                 ]
             },
-            { text: '🚀 官网', link: 'https://www.lsky.pro' },
-            { text: '💰 购买', link: 'https://www.lsky.pro/buy' },
+            {text: '🚀 官网', link: 'https://www.lsky.pro'},
+            {text: '💰 购买', link: 'https://www.lsky.pro/buy'},
         ],
         repo: 'https://github.com/lsky-org/lsky-pro',
         docsRepo: 'https://github.com/lsky-org/docs',
@@ -56,21 +56,21 @@ export default defineUserConfig({
                     text: 'V1.x手册',
                     link: '/docs/free/v1/',
                     children: [
-                        '/docs/free/v1/Install.md','/docs/free/v1/env.md',
+                        '/docs/free/v1/Install.md', '/docs/free/v1/env.md',
                         {
                             text: '存储策略',
                             link: '/docs/free/v1/StorageStrategy.md',
                             children: [
-                                '/docs/free/v1/SS/Local.md','/docs/free/v1/SS/AliyunOSS.md','/docs/free/v1/SS/TencentCloudCOS.md','/docs/free/v1/SS/UpyunUSS.md','/docs/free/v1/SS/KODO.md','/docs/free/v1/SS/FTP.md'
+                                '/docs/free/v1/SS/Local.md', '/docs/free/v1/SS/AliyunOSS.md', '/docs/free/v1/SS/TencentCloudCOS.md', '/docs/free/v1/SS/UpyunUSS.md', '/docs/free/v1/SS/KODO.md', '/docs/free/v1/SS/FTP.md'
                             ]
                         },
                         {
                             text: '系统参数配置',
                             link: '/docs/free/v1/SystemParameters',
                             children: [
-                                '/docs/free/v1/SP/BasicConf','/docs/free/v1/SP/UploadConf','/docs/free/v1/SP/UserConf','/docs/free/v1/SP/MailConf','/docs/free/v1/SP/OtherConf','/docs/free/v1/SP/ImgSex'
+                                '/docs/free/v1/SP/BasicConf', '/docs/free/v1/SP/UploadConf', '/docs/free/v1/SP/UserConf', '/docs/free/v1/SP/MailConf', '/docs/free/v1/SP/OtherConf', '/docs/free/v1/SP/ImgSex'
                             ]
-                        }, '/docs/free/v1/Watermark','/docs/free/v1/SystemUpdate','/docs/free/v1/CommonQ','/docs/free/v1/UpdateLog'
+                        }, '/docs/free/v1/Watermark', '/docs/free/v1/SystemUpdate', '/docs/free/v1/CommonQ', '/docs/free/v1/UpdateLog'
                     ]
                 },
             ],
@@ -134,7 +134,12 @@ export default defineUserConfig({
                         '/docs/enterprise/v1/features/basic/page.md',
                         '/docs/enterprise/v1/features/basic/plan.md',
                         '/docs/enterprise/v1/features/basic/coupon.md',
-                        '/docs/enterprise/v1/features/basic/payment.md',
+                        {
+                            text: '支付功能',
+                            children: [
+                                '/docs/enterprise/v1/features/basic/payment/alipay.md',
+                            ]
+                        }
                     ]
                 },
                 {
