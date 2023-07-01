@@ -138,6 +138,8 @@ export default defineUserConfig({
                             text: '支付功能',
                             children: [
                                 '/docs/enterprise/v1/features/basic/payment/alipay.md',
+                                '/docs/enterprise/v1/features/basic/payment/wechat.md',
+                                '/docs/enterprise/v1/features/basic/payment/paypal.md',
                             ]
                         }
                     ]
