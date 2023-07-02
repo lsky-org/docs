@@ -21,5 +21,5 @@ footer: GPL-3.0 Licensed | Copyright © 2018-present Lsky Pro
 ---
 
 <div style="border-radius: 10px; overflow: hidden">
-  <img src="https://www.lsky.pro/assets/banner.png" />
+  <img src="https://www.lsky.pro/assets/banners/1.png" />
 </div>
