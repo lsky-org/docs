@@ -23,7 +23,7 @@ description: Lsky Pro 企业版 V 1.x｜使用文档
 - 支持在线增量更新、跨版本更新
 
 ## 安装要求
-- PHP >= 8.0.2
+- PHP >= 8.1
 - BCMath PHP 扩展
 - Ctype PHP 扩展
 - DOM PHP 拓展

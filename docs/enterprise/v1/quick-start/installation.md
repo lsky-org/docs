@@ -10,18 +10,34 @@ description: 安装 Lsky Pro 企业版本
 ## 推荐运行环境
 - Nginx 1.21+
 - Mysql 5.7+
-- PHP 8.0+
+- PHP 8.2+
 - Redis 7.0+
 - Supervisor
 
 ## 第一步，准备安装
-1. 使用 `php -v` 命令查看并确认 cli php 命令行版本是否符合要求，最低需要 8.0.2。
+1. 使用 `php -v` 命令查看并确认 cli php 命令行版本是否符合要求，最低需要 8.1。
 
 ![php version](/installation/php-version.png)
 
-2. 使用 `php -m`，确保已经安装必要的拓展。
+2. 使用命令确保已经安装必要的拓展：
+```shell
+php -m | grep -E 'fileinfo|mysqli|curl|mbstring|imagick|openssl|PDO|redis|session'
+```
 
 ![php modules](/installation/php-modules.png)
+
+然后打开 `php.ini` 文件，搜索查找 `disable_functions`，将该值清空，例如：
+
+```
+...
+; This directive allows you to disable certain functions.
+; It receives a comma-delimited list of function names.
+; https://php.net/disable-functions
+disable_functions = 
+...
+```
+
+清空后重启 PHP 服务。
 
 ::: tip 提示
 - 通常情况下大部分拓展都是预装的，如果没有需要自行编译安装。
@@ -137,5 +153,6 @@ service crond restart
 至此，完成安装。
 
 ::: tip 提示
+- 队列和计划任务未配置成功会导致上传图片后无法生成缩略图、邮件无法发送、水印无法处理等异常情况。
 - 验证队列处理进程有没有正确配置，可以通过查看上传的图片是否生成了缩略图进行判断。
 :::
