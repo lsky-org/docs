@@ -1,0 +1,1 @@
+const t=JSON.parse('{"key":"v-39ab502a","path":"/docs/free/v1/Install.html","title":"\u5B89\u88C5","lang":"zh-CN","frontmatter":{"title":"\u5B89\u88C5"},"excerpt":"","headers":[],"git":{"updatedTime":1658468690000,"contributors":[{"name":"Wisp X","email":"1591788658@qq.com","commits":1}]},"filePathRelative":"docs/free/v1/Install.md"}');export{t as data};

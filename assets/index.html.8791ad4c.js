@@ -1,0 +1,1 @@
+import{_ as s,o as t,c as r,a as e}from"./app.6f703a2f.js";const o={},n=e("div",{style:{"border-radius":"10px",overflow:"hidden"}},[e("img",{src:"https://www.lsky.pro/assets/banners/1.png"})],-1),a=[n];function c(_,d){return t(),r("div",null,a)}var l=s(o,[["render",c],["__file","index.html.vue"]]);export{l as default};
