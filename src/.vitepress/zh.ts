@@ -22,7 +22,6 @@ export const zh = defineConfig({
     },
 
     footer: {
-      message: '-',
       copyright: `版权所有 © 2019-${new Date().getFullYear()} 火花网络科技`
     },
 
@@ -55,14 +54,13 @@ export const zh = defineConfig({
 function nav(): DefaultTheme.NavItem[] {
   return [
     {
-      text: '指南',
+      text: '文档',
       link: '/guide/getting-started',
       activeMatch: '/guide/'
     },
     {
-      text: '参考',
-      link: '/reference/site-config',
-      activeMatch: '/reference/'
+      text: '官网',
+      link: 'https://www.lsky.pro',
     },
   ]
 }
