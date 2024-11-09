@@ -10,7 +10,7 @@ export const zh = defineConfig({
 
     sidebar: {
       '/guide/': { base: '/guide/', items: sidebarGuide() },
-      '/reference/': { base: '/reference/', items: sidebarReference() }
+      '/advanced/': { base: '/advanced/', items: sidebarAdvanced() }
     },
 
     socialLinks: [
@@ -56,12 +56,12 @@ function nav(): DefaultTheme.NavItem[] {
   return [
     {
       text: '指南',
-      link: '/guide/getting-started',
+      link: '/guide/introduce',
       activeMatch: '/guide/'
     },
     {
       text: '进阶',
-      link: '/advanced/getting-started',
+      link: '/advanced/theme',
       activeMatch: '/advanced/'
     },
     {
@@ -79,72 +79,62 @@ function sidebarGuide(): DefaultTheme.SidebarItem[] {
       items: [
         { text: '介绍', link: 'introduce' },
         { text: '快速开始', link: 'getting-started' },
-        { text: '路由', link: 'routing' },
-        { text: '部署', link: 'deploy' }
+        { text: '环境要求', link: 'requirement' },
       ]
     },
     {
-      text: '写作',
+      text: '入门',
       collapsed: false,
       items: [
-        { text: 'Markdown 扩展', link: 'markdown' },
-        { text: '资源处理', link: 'asset-handling' },
-        { text: 'frontmatter', link: 'frontmatter' },
-        { text: '在 Markdown 使用 Vue', link: 'using-vue' },
-        { text: '国际化', link: 'i18n' }
+        { text: '安装', link: 'install' },
+        { text: '部署', link: 'deploy' },
+        { text: '升级', link: 'upgrade' },
+        { text: '迁移', link: 'migrate' },
+        { text: '常见问题', link: 'faq' },
       ]
     },
     {
-      text: '自定义',
+      text: '基础功能',
       collapsed: false,
       items: [
-        { text: '自定义主题', link: 'custom-theme' },
-        { text: '扩展默认主题', link: 'extending-default-theme' },
-        { text: '构建时数据加载', link: 'data-loading' },
-        { text: 'SSR 兼容性', link: 'ssr-compat' },
-        { text: '连接 CMS', link: 'cms' }
+        { text: '相册管理', link: 'album' },
+        { text: '图片管理', link: 'photo' },
+        { text: '用户管理', link: 'user' },
+        { text: '分享管理', link: 'share' },
+        { text: '违规记录', link: 'violation' },
+        { text: '工单管理', link: 'ticket' },
+        { text: '举报管理', link: 'report' },
+        { text: '订单管理', link: 'order' },
+        { text: '意见与反馈', link: 'feedback' },
+        { text: '公告管理', link: 'notice' },
+        { text: '页面管理', link: 'page' },
       ]
     },
     {
-      text: '实验性功能',
+      text: '核心功能',
       collapsed: false,
       items: [
-        { text: 'MPA 模式', link: 'mpa-mode' },
-        { text: 'sitemap 生成', link: 'sitemap-generation' }
+        { text: '角色组', link: 'group' },
+        { text: '驱动器', link: 'driver' },
+        { text: '储存驱动', link: 'storage' },
+        { text: '云处理', link: 'photo-handle' },
+        { text: '支付驱动', link: 'payment' },
+        { text: '套餐管理', link: 'plan' },
+        { text: '优惠券管理', link: 'coupon' },
       ]
     },
-    { text: '配置和 API 参考', base: '/reference/', link: 'site-config' }
   ]
 }
 
-function sidebarReference(): DefaultTheme.SidebarItem[] {
+function sidebarAdvanced(): DefaultTheme.SidebarItem[] {
   return [
     {
-      text: '参考',
+      text: '进阶',
       items: [
-        { text: '站点配置', link: 'site-config' },
-        { text: 'frontmatter 配置', link: 'frontmatter-config' },
-        { text: '运行时 API', link: 'runtime-api' },
-        { text: 'CLI', link: 'cli' },
-        {
-          text: '默认主题',
-          base: '/reference/default-theme-',
-          items: [
-            { text: '概览', link: 'config' },
-            { text: '导航栏', link: 'nav' },
-            { text: '侧边栏', link: 'sidebar' },
-            { text: '主页', link: 'home-page' },
-            { text: '页脚', link: 'footer' },
-            { text: '布局', link: 'layout' },
-            { text: '徽章', link: 'badge' },
-            { text: '团队页', link: 'team-page' },
-            { text: '上下页链接', link: 'prev-next-links' },
-            { text: '编辑链接', link: 'edit-link' },
-            { text: '最后更新时间戳', link: 'last-updated' },
-            { text: '搜索', link: 'search' },
-            { text: 'Carbon Ads', link: 'carbon-ads' }
-          ]
-        }
+        { text: '主题', link: 'theme' },
+        { text: '分离部署', link: 'separate-deploy' },
+        { text: '缓存', link: 'cache' },
+        { text: '自定义储存', link: 'storage' },
       ]
     }
   ]
