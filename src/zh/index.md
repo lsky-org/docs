@@ -5,7 +5,10 @@ layout: home
 hero:
   name: "Lsky Pro+"
   text: "你的云端相册系统"
-  tagline: 全新版本，全新架构
+  tagline: 全新版本，全新架构，全新 UI，全新体验
+  image:
+    src: /logo.png
+    alt: logo
   actions:
     - theme: brand
       text: 快速开始 ->
@@ -38,3 +41,24 @@ features:
     details: 为了防止他人上传违规图片，程序集成了阿里云、腾讯云、Nsfw.js 图片审核功能，可以选择发现违规图片后删除还是标记为不健康的图片。
 ---
 
+<style>
+:root {
+  --vp-home-hero-name-color: transparent;
+  --vp-home-hero-name-background: -webkit-linear-gradient(120deg, #bd34fe 30%, #41d1ff);
+
+  --vp-home-hero-image-background-image: linear-gradient(-45deg, #bd34fe 50%, #47caff 50%);
+  --vp-home-hero-image-filter: blur(90px);
+}
+
+@media (min-width: 640px) {
+  :root {
+    --vp-home-hero-image-filter: blur(100px);
+  }
+}
+
+@media (min-width: 960px) {
+  :root {
+    --vp-home-hero-image-filter: blur(120px);
+  }
+}
+</style>
