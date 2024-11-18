@@ -53,4 +53,4 @@ make && make install
 
 安装完成后，执行命令 `php --ri imagick`，会出现下图中的信息，即为安装完成。
 
-![php-imagick](/php-imagick.png)
+![php-imagick](/archive/php-imagick.png)

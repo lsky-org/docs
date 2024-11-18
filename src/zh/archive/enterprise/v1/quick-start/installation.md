@@ -17,14 +17,14 @@ description: 安装 Lsky Pro 企业版本
 ## 第一步，准备安装
 1. 使用 `php -v` 命令查看并确认 cli php 命令行版本是否符合要求，最低需要 8.1。
 
-![php version](/installation/php-version.png)
+![php version](/archive/installation/php-version.png)
 
 2. 使用命令确保已经安装必要的拓展：
 ```shell
 php -m | grep -E 'fileinfo|mysqli|curl|mbstring|imagick|openssl|PDO|redis|session'
 ```
 
-![php modules](/installation/php-modules.png)
+![php modules](/archive/installation/php-modules.png)
 
 然后打开 `php.ini` 文件，搜索查找 `disable_functions`，将该值清空，例如：
 
@@ -119,7 +119,7 @@ stderr_logfile_maxbytes=2MB
 宝塔面板集成了 Supervisor 软件，安装后可以直接使用，无需配置，如下图所示：
 :::
 
-![supervisor-config](/bt-supervisor-config.png)
+![supervisor-config](/archive/bt-supervisor-config.png)
 
 ::: warning 注意
 如果进程无法启动，请尝试解禁 PHP 的 `pcntl_signal`、`pcntl_alarm` 函数。
@@ -148,7 +148,7 @@ service crond restart
 ::: tip
 宝塔面板集成了可视化计划任务配置页面，可以直接使用，无需配置，如下图所示：
 :::
-![crontab-config](/bt-crontab-config.png)
+![crontab-config](/archive/bt-crontab-config.png)
 
 至此，完成安装。
 
