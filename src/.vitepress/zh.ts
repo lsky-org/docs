@@ -13,17 +13,13 @@ export const zh = defineConfig({
       '/advanced/': { base: '/advanced/', items: sidebarAdvanced() }
     },
 
-    socialLinks: [
-      { icon: 'github', link: 'https://github.com/vuejs/vitepress' }
-    ],
-
     editLink: {
-      pattern: 'https://github.com/vuejs/vitepress/edit/main/docs/:path',
+      pattern: 'https://github.com/lsky-org/docs/edit/master/docs/:path',
       text: '在 GitHub 上编辑此页面'
     },
 
     footer: {
-      copyright: `版权所有 © 2019-${new Date().getFullYear()} 火花网络科技`
+      copyright: `版权所有 © 2018-${new Date().getFullYear()} 火花网络科技`
     },
 
     docFooter: {
@@ -117,7 +113,8 @@ function sidebarGuide(): DefaultTheme.SidebarItem[] {
         { text: '角色组', link: 'group' },
         { text: '驱动器', link: 'driver' },
         { text: '储存驱动', link: 'storage' },
-        { text: '云处理', link: 'photo-handle' },
+        { text: '云处理', link: 'handle' },
+        { text: '图片处理', link: 'process' },
         { text: '支付驱动', link: 'payment' },
         { text: '套餐管理', link: 'plan' },
         { text: '优惠券管理', link: 'coupon' },
