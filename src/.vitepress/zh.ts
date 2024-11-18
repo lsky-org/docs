@@ -10,11 +10,12 @@ export const zh = defineConfig({
 
     sidebar: {
       '/guide/': { base: '/guide/', items: sidebarGuide() },
-      '/advanced/': { base: '/advanced/', items: sidebarAdvanced() }
+      '/advanced/': { base: '/advanced/', items: sidebarAdvanced() },
+      '/archive/': { base: '/archive/', items: sidebarArchive()},
     },
 
     editLink: {
-      pattern: 'https://github.com/lsky-org/docs/edit/master/docs/:path',
+      pattern: 'https://github.com/lsky-org/archive/edit/master/archive/:path',
       text: '在 GitHub 上编辑此页面'
     },
 
@@ -145,6 +146,7 @@ function sidebarAdvanced(): DefaultTheme.SidebarItem[] {
   return [
     {
       text: '进阶',
+      collapsed: false,
       items: [
         { text: '主题', link: 'theme' },
         { text: '分离部署', link: 'separate-deploy' },
@@ -152,6 +154,297 @@ function sidebarAdvanced(): DefaultTheme.SidebarItem[] {
         { text: '自定义储存', link: 'storage' },
       ]
     }
+  ]
+}
+
+// 旧版本文档归档
+function sidebarArchive(): DefaultTheme.SidebarItem[] {
+  return [
+    {
+      text: '开源版 V1.x 手册',
+      link: 'free/v1/',
+      collapsed: false,
+      items: [
+        {
+          text: '安装',
+          link: 'free/v1/Install',
+        },
+        {
+          text: '环境变量',
+          link: 'free/v1/env',
+        },
+        {
+          text: '存储策略',
+          link: 'free/v1/StorageStrategy',
+          collapsed: false,
+          items: [
+            {
+              text: '本地',
+              link: 'free/v1/SS/Local',
+            },
+            {
+              text: '阿里云OSS',
+              link: 'free/v1/SS/AliyunOSS',
+            },
+            {
+              text: '腾讯云COS',
+              link: 'free/v1/SS/TencentCloudCOS',
+            },
+            {
+              text: '又拍云USS',
+              link: 'free/v1/SS/UpyunUSS',
+            },
+            {
+              text: '七牛云KODO',
+              link: 'free/v1/SS/KODO',
+            },
+            {
+              text: 'FTP',
+              link: 'free/v1/FTP',
+            }
+          ]
+        },
+        {
+          text: '系统参数配置',
+          link: 'free/v1/SystemParameters',
+          collapsed: false,
+          items: [
+            {
+              text: '基础配置',
+              link: 'free/v1/SP/BasicConf',
+            },
+            {
+              text: '上传配置',
+              link: 'free/v1/SP/UploadConf',
+            },
+            {
+              text: '用户配置',
+              link: 'free/v1/SP/UserConf',
+            },
+            {
+              text: '邮件配置',
+              link: 'free/v1/SP/MailConf',
+            },
+            {
+              text: '其他配置',
+              link: 'free/v1/SP/OtherConf',
+            },
+            {
+              text: '图片鉴黄',
+              link: 'free/v1/SP/ImgSex',
+            },
+          ]
+        },
+        {
+          text: '水印功能',
+          link: 'free/v1/Watermark',
+        },
+        {
+          text: '系统升级',
+          link: 'free/v1/SystemUpdate',
+        },
+        {
+          text: '系统升级',
+          link: 'free/v1/SystemUpdate',
+        },
+        {
+          text: '常见问题',
+          link: 'free/v1/CommonQ'
+        },
+        {
+          text: '更新日志',
+          link: 'free/v1/UpdateLog',
+        }
+      ]
+    },
+    {
+      text: '开源版 V2.x 手册',
+      link: 'free/v2/',
+      collapsed: false,
+      items: [
+        {
+          text: '概述',
+          link: 'free/v2',
+        },
+        {
+          text: '快速入门',
+          collapsed: false,
+          items: [
+            {
+              text: '安装',
+              link: 'free/v2/quick-start/installation',
+            },
+            {
+              text: '升级',
+              link: 'free/v2/quick-start/upgrade',
+            },
+            {
+              text: '迁移',
+              link: 'free/v2/quick-start/migration',
+            },
+            {
+              text: '常见问题',
+              link: 'free/v2/quick-start/questions',
+            },
+          ],
+        },
+        {
+          text: '角色组',
+          collapsed: false,
+          items: [
+            {
+              text: '基础设置',
+              link: 'free/v2/group/basic',
+            },
+            {
+              text: '图片审核',
+              link: 'free/v2/group/picture-review',
+            },
+            {
+              text: '原图保护',
+              link: 'free/v2/group/original-protection',
+            },
+            {
+              text: '水印配置',
+              link: 'free/v2/group/watermark',
+            },
+          ],
+        },
+        {
+          text: '储存策略',
+          collapsed: false,
+          items: [
+            {
+              text: '简介',
+              link: 'free/v2/storage/intro',
+            },
+            {
+              text: '储存的特殊说明',
+              link: 'free/v2/storage/faq',
+            }
+          ],
+        },
+        {
+          text: '进阶教程',
+          collapsed: false,
+          items: [
+            {
+              text: '缓存',
+              link: 'free/v2/advanced/cache',
+            },
+            {
+              text: 'Laravel Octane',
+              link: 'free/v2/advanced/octane',
+            }
+          ],
+        }
+      ]
+    },
+    {
+      text: '付费版 V1.x 手册',
+      link: 'enterprise/v1/',
+      collapsed: false,
+      items: [
+        {
+          text: '快速入门',
+          collapsed: false,
+          items: [
+            {
+              text: '安装',
+              link: 'enterprise/v1/quick-start/installation',
+            },
+            {
+              text: '升级',
+              link: 'enterprise/v1/quick-start/upgrade',
+            },
+            {
+              text: '迁移',
+              link: 'enterprise/v1/quick-start/migration',
+            },
+            {
+              text: '常见问题',
+              link: 'enterprise/v1/quick-start/questions',
+            },
+            {
+              text: '基础功能',
+              link: 'enterprise/v1/quick-start/basic',
+            },
+          ],
+        },
+        {
+          text: '基础功能',
+          collapsed: false,
+          items: [
+            {
+              text: '页面管理',
+              link: 'enterprise/v1/features/basic/page',
+            },
+            {
+              text: '套餐管理',
+              link: 'enterprise/v1/features/basic/plan',
+            },
+            {
+              text: '优惠券管理',
+              link: 'enterprise/v1/features/basic/coupon',
+            },
+            {
+              text: '支付功能',
+              collapsed: false,
+              items: [
+                {
+                  text: '支付宝',
+                  link: 'enterprise/v1/features/basic/payment/alipay',
+                },
+                {
+                  text: '微信',
+                  link: 'enterprise/v1/features/basic/payment/wechat',
+                },
+                {
+                  text: 'PayPal',
+                  link: 'enterprise/v1/features/basic/payment/paypal',
+                }
+              ]
+            }
+          ],
+        },
+        {
+          text: '核心功能',
+          collapsed: false,
+          items: [
+            {
+              text: '角色组',
+              link: 'enterprise/v1/features/core/group',
+            },
+            {
+              text: '储存策略',
+              link: 'enterprise/v1/features/core/strategy',
+            }
+          ],
+        },
+        {
+          text: '其他',
+          collapsed: false,
+          items: [
+            {
+              text: 'Imagick 拓展',
+              link: 'enterprise/v1/others/imagick',
+            },
+            {
+              text: '优化加载速度',
+              link: 'enterprise/v1/others/optimization',
+            },
+            {
+              text: '常用辅助命令',
+              link: 'enterprise/v1/others/commands',
+            },
+            {
+              text: '从开源版本升级',
+              link: 'enterprise/v1/others/free-upgrade',
+            }
+          ],
+        }
+      ]
+    },
   ]
 }
 
