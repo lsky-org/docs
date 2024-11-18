@@ -61,6 +61,24 @@ function nav(): DefaultTheme.NavItem[] {
       activeMatch: '/advanced/'
     },
     {
+      text: '旧版本',
+      items: [
+        {
+          text: 'Lsky Pro 开源版',
+          items: [
+            {text: 'V 1.x', link: '/archive/free/v1/', activeMatch: '^/archive/free/v1/'},
+            {text: 'V 2.x', link: '/archive/free/v2/', activeMatch: '^/archive/free/v2/'}
+          ]
+        },
+        {
+          text: 'Lsky Pro 付费版',
+          items: [
+            {text: 'V 1.x', link: '/archive/enterprise/v1/', activeMatch: '^/archive/enterprise/v1/'},
+          ]
+        },
+      ]
+    },
+    {
       text: '官网',
       link: 'https://www.lsky.pro',
     },
