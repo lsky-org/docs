@@ -1,7 +1,3 @@
----
-outline: deep
----
-
 # Lsky Pro+ 介绍
 
 Lsky Pro+ 是一个由 [Laravel](https://laravel.com) 作为底层开发的一款 Web 图片管理程序，中文名：兰空图床。程序的设计初衷是为了使用户的图片在互联网中可以更方便的被储存、管理、处理。
