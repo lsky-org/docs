@@ -116,40 +116,41 @@ sudo supervisorctl start "lsky-pro-worker:*"
 
 ImageMagick 是一个独立的软件工具，用于在命令行操作图像（如转换格式、调整大小、添加效果等），而 php imagick 拓展是 PHP 的一个扩展库，它提供了 ImageMagick 的 PHP 接口，用于在 PHP 程序中调用 ImageMagick 的功能。
 
-::: details ImageMagick 安装教程(示例)
+:::: details ImageMagick 安装教程(示例)
 
 #### 检查系统是否安装 imageMagick
-```shell
-convert --version
+
+::: code-group
+
+```shell [Ubuntu/Debian]
+dpkg -l | grep imagemagick
 ```
 
-> [!NOTE]
-> ImageMagick 7 或以上版本，请使用 `magick --version`
-
-执行后输出类似以下内容则表示系统已安装：
-
-```shell
-➜ magick --version
-Version: ImageMagick 7.1.1-39 Q16-HDRI aarch64 22428 https://imagemagick.org
-Copyright: (C) 1999 ImageMagick Studio LLC
-License: https://imagemagick.org/script/license.php
-Features: Cipher DPC HDRI Modules OpenMP
-Delegates (built-in): bzlib fontconfig freetype gslib heic jng jp2 jpeg jxl lcms lqr ltdl lzma openexr png ps raw tiff webp xml zlib zstd
-Compiler: gcc (4.2)
+```shell [CentOS/RHEL]
+rpm -qa | grep ImageMagick
 ```
 
-#### Ubuntu/Debian 安装
-```shell
+:::
+
+如果没有任何输出则表示没有安装。
+
+#### 安装
+
+::: code-group
+
+```shell [Ubuntu/Debian]
 sudo apt install imagemagick
 ```
 
-#### CentOS/RHEL 安装
-```shell
+```shell [CentOS/RHEL]
 sudo yum install ImageMagick
 ```
 
-有关 imageMagick 的更多信息，请查阅 [imageMagick 文档](https://imagemagick.org)。
 :::
+
+有关 imageMagick 的更多信息，请查阅 [imageMagick 文档](https://imagemagick.org)。
+
+::::
 
 > [!IMPORTANT]
 > 综上所述，搭建兰空图片的必要条件为：
