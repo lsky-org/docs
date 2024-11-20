@@ -59,7 +59,7 @@
 
 因此，您需要配置一个进程监视器，可以检测您的 `queue:work` 进程何时退出并自动重启它们。此外，进程监视器可以让您指定希望同时运行多少个 `queue:work` 进程。
 
-Supervisor 是 Linux 环境中常用的进程监视器，我们将在以下文档中讨论如何配置它。在正式安装之前，我们建议你先浏览一遍该示例文档。
+Supervisor 是 Linux 环境中常用的进程监视器，我们将在以下文档中讨论如何配置它，或者你也可以选择其他任务你熟悉的进程管理软件。在正式安装之前，我们建议你先浏览一遍该示例文档。
 
 ::: details Supervisor 安装以及配置教程(示例)
 #### 安装 Supervisor
@@ -109,3 +109,49 @@ sudo supervisorctl start "lsky-pro-worker:*"
 ### ImageMagick
 
 [ImageMagick](https://github.com/ImageMagick/ImageMagick) 是一款免费的开源软件套件，用于编辑和处理数字图像。它可用于创建、编辑、合成或转换位图图像，并支持多种文件格式，包括 JPEG、PNG、GIF、TIFF 和 PDF。
+
+兰空图床依赖 php imagick 拓展，调用操作系统的 ImageMagick 软件实现图片编辑能力。注意，php imagick 拓展和 ImageMagick 软件是两个东西，这两个都是必须要安装的。
+
+ImageMagick 是一个独立的软件工具，用于在命令行操作图像（如转换格式、调整大小、添加效果等），而 php imagick 拓展是 PHP 的一个扩展库，它提供了 ImageMagick 的 PHP 接口，用于在 PHP 程序中调用 ImageMagick 的功能。
+
+::: details ImageMagick 安装教程(示例)
+
+#### 检查系统是否安装 imageMagick
+```shell
+convert --version
+```
+
+> [!NOTE]
+> ImageMagick 7 或以上版本，请使用 `magick --version`
+
+执行后输出类似以下内容则表示系统已安装：
+
+```shell
+➜ magick --version
+Version: ImageMagick 7.1.1-39 Q16-HDRI aarch64 22428 https://imagemagick.org
+Copyright: (C) 1999 ImageMagick Studio LLC
+License: https://imagemagick.org/script/license.php
+Features: Cipher DPC HDRI Modules OpenMP
+Delegates (built-in): bzlib fontconfig freetype gslib heic jng jp2 jpeg jxl lcms lqr ltdl lzma openexr png ps raw tiff webp xml zlib zstd
+Compiler: gcc (4.2)
+```
+
+#### Ubuntu/Debian 安装
+```shell
+sudo apt install imagemagick
+```
+
+#### CentOS/RHEL 安装
+```shell
+sudo yum install ImageMagick
+```
+
+有关 imageMagick 的更多信息，请查阅 [imageMagick 文档](https://imagemagick.org)。
+:::
+
+> [!IMPORTANT]
+> 综上所述，搭建兰空图片的必要条件为：
+> - 使用 Nginx 或 Apache 作为 Web 服务器
+> - PHP 的版本和拓展必须达到要求
+> - 数据库版本必须达到要求
+> - 服务器需要安装 ImageMagick 和进程管理软件
