@@ -32,12 +32,12 @@ $ sudo yum install sqlite sqlite-devel
 
 ::::
 
-站点配置完毕以后，将安装包文件上传至站点根目录下，现在我们假设我们的站点根目录为 `/www/wwwroot/lsky`，我们的安装包文件名为 `lsky-pro.zip`，上传后安装包路径应该为 `/www/wwwroot/lsky/lsky-pro.zip`。
+站点配置完毕以后，将安装包文件上传至站点根目录下，现在我们假设我们的站点根目录为 `/www/wwwroot/app.com`，我们的安装包文件名为 `lsky-pro.zip`，上传后安装包路径应该为 `/www/wwwroot/app.com/lsky-pro.zip`。
 
 接下来我们登录 SSH 终端，使用 `cd` 命令进入站点根目录：
 
 ```shell
-$ cd /www/wwwroot/lsky
+$ cd /www/wwwroot/app.com
 ```
 
 然后使用 `unzip` 命令解压安装包：
