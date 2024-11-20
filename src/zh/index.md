@@ -11,8 +11,8 @@ hero:
     alt: logo
   actions:
     - theme: brand
-      text: 快速开始 ->
-      link: /guide/getting-started
+      text: Lsky Pro+ 是什么？ ->
+      link: /guide/introduce
     - theme: alt
       text: 💻 查看演示
       link: https://wmimg.com
