@@ -110,7 +110,9 @@ sudo supervisorctl start "lsky-pro-worker:*"
 
 [ImageMagick](https://github.com/ImageMagick/ImageMagick) 是一款免费的开源软件套件，用于编辑和处理数字图像。它可用于创建、编辑、合成或转换位图图像，并支持多种文件格式，包括 JPEG、PNG、GIF、TIFF 和 PDF。
 
-兰空图床依赖 php imagick 拓展，调用操作系统的 ImageMagick 软件实现图片编辑能力。注意，php imagick 拓展和 ImageMagick 软件是两个东西，这两个都是必须要安装的。
+兰空图床依赖 php imagick 拓展，调用操作系统的 ImageMagick 软件实现图片编辑能力。
+
+注意，php imagick 拓展和 ImageMagick 软件是两个东西，这两个都是必须要安装的。
 
 ImageMagick 是一个独立的软件工具，用于在命令行操作图像（如转换格式、调整大小、添加效果等），而 php imagick 拓展是 PHP 的一个扩展库，它提供了 ImageMagick 的 PHP 接口，用于在 PHP 程序中调用 ImageMagick 的功能。
 
