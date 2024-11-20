@@ -136,7 +136,7 @@ $ sudo supervisorctl reread && sudo supervisorctl update && sudo supervisorctl s
 server {
     listen 80;
     listen [::]:80;
-    server_name example.com;
+    server_name app.com;
     root /www/wwwroot/app.com/public; # [!code focus]
 
     # more ...
