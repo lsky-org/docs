@@ -52,7 +52,7 @@ $ unzip lsky-pro.zip
 
 要获取 Web 环境的执行用户，我们可以找到 Nginx 或 Apache 的主配置文件。
 
-通常是 `/etc/nginx/nginx.conf` 或 `/etc/nginx/conf.d/default.conf`，而 Apache 通常是在 通常是 `/etc/httpd/conf/httpd.conf` 或 `/etc/apache2/apache2.conf`。
+通常是 `/etc/nginx/nginx.conf` 或 `/etc/nginx/conf.d/default.conf`，而 Apache 通常是在 `/etc/httpd/conf/httpd.conf` 或 `/etc/apache2/apache2.conf` 中。
 
 执行以下命令查看用户：
 
