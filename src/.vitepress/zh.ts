@@ -103,7 +103,6 @@ function sidebarGuide(): DefaultTheme.SidebarItem[] {
       collapsed: false,
       items: [
         { text: '安装', link: 'install' },
-        { text: '部署', link: 'deploy' },
         { text: '升级', link: 'upgrade' },
         { text: '迁移', link: 'migrate' },
         { text: '常见问题', link: 'faq' },
