@@ -24,7 +24,8 @@
 ## 使用反向代理并且域名使用了 https 的情况下，程序请求静态资源、生成的链接却是 http ？
 这种情况通常是因为你的程序正在从 80 端口进行转发流量，详细解释和解决方法：[https://laravel.com/docs/9.x/requests#configuring-trusted-proxies](https://laravel.com/docs/9.x/requests#configuring-trusted-proxies)
 请尝试增加反向代理配置：
-```
+
+```nginx configuration
 proxy_http_version 1.1;
 proxy_set_header Host $http_host;
 proxy_set_header Scheme $scheme;
