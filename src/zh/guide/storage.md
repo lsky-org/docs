@@ -2,6 +2,10 @@
 
 储存是兰空图床中重要的组成部分之一，目前支持 `本地`、`AWS S3`、`阿里云 OSS`、`腾讯云 COS`、`七牛云 Kodo`、`又拍云 USS`、`Sftp`、`Ftp`、`Webdav`。
 
+::: tip 需要 Minio 或 Backblaze b2 支持？
+任何使用标准的[S3 API](https://docs.aws.amazon.com/AmazonS3/latest/API/Welcome.html)接口协议的储存，都可以使用 `AWS S3` 来实现上传，包括 Minio 和 Backblaze b2。
+:::
+
 ## 储存是如何运作的
 
 系统中可以创建多个储存，每一个储存可以选择一个驱动，即本地、S3、阿里云 OSS 等，选择不同的驱动类型则需要填写不同的配置信息。
