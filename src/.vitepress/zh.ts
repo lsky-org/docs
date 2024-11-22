@@ -163,7 +163,7 @@ function sidebarArchive(): DefaultTheme.SidebarItem[] {
     {
       text: '开源版 V1.x 手册',
       link: 'free/v1/',
-      collapsed: false,
+      collapsed: true,
       items: [
         {
           text: '安装',
@@ -176,7 +176,7 @@ function sidebarArchive(): DefaultTheme.SidebarItem[] {
         {
           text: '存储策略',
           link: 'free/v1/StorageStrategy',
-          collapsed: false,
+          collapsed: true,
           items: [
             {
               text: '本地',
@@ -207,7 +207,7 @@ function sidebarArchive(): DefaultTheme.SidebarItem[] {
         {
           text: '系统参数配置',
           link: 'free/v1/SystemParameters',
-          collapsed: false,
+          collapsed: true,
           items: [
             {
               text: '基础配置',
@@ -260,7 +260,7 @@ function sidebarArchive(): DefaultTheme.SidebarItem[] {
     {
       text: '开源版 V2.x 手册',
       link: 'free/v2/',
-      collapsed: false,
+      collapsed: true,
       items: [
         {
           text: '概述',
@@ -268,7 +268,7 @@ function sidebarArchive(): DefaultTheme.SidebarItem[] {
         },
         {
           text: '快速入门',
-          collapsed: false,
+          collapsed: true,
           items: [
             {
               text: '安装',
@@ -290,7 +290,7 @@ function sidebarArchive(): DefaultTheme.SidebarItem[] {
         },
         {
           text: '角色组',
-          collapsed: false,
+          collapsed: true,
           items: [
             {
               text: '基础设置',
@@ -312,7 +312,7 @@ function sidebarArchive(): DefaultTheme.SidebarItem[] {
         },
         {
           text: '储存策略',
-          collapsed: false,
+          collapsed: true,
           items: [
             {
               text: '简介',
@@ -326,7 +326,7 @@ function sidebarArchive(): DefaultTheme.SidebarItem[] {
         },
         {
           text: '进阶教程',
-          collapsed: false,
+          collapsed: true,
           items: [
             {
               text: '缓存',
@@ -343,11 +343,11 @@ function sidebarArchive(): DefaultTheme.SidebarItem[] {
     {
       text: '付费版 V1.x 手册',
       link: 'enterprise/v1/',
-      collapsed: false,
+      collapsed: true,
       items: [
         {
           text: '快速入门',
-          collapsed: false,
+          collapsed: true,
           items: [
             {
               text: '安装',
@@ -373,7 +373,7 @@ function sidebarArchive(): DefaultTheme.SidebarItem[] {
         },
         {
           text: '基础功能',
-          collapsed: false,
+          collapsed: true,
           items: [
             {
               text: '页面管理',
@@ -389,7 +389,7 @@ function sidebarArchive(): DefaultTheme.SidebarItem[] {
             },
             {
               text: '支付功能',
-              collapsed: false,
+              collapsed: true,
               items: [
                 {
                   text: '支付宝',
@@ -409,7 +409,7 @@ function sidebarArchive(): DefaultTheme.SidebarItem[] {
         },
         {
           text: '核心功能',
-          collapsed: false,
+          collapsed: true,
           items: [
             {
               text: '角色组',
@@ -423,7 +423,7 @@ function sidebarArchive(): DefaultTheme.SidebarItem[] {
         },
         {
           text: '其他',
-          collapsed: false,
+          collapsed: true,
           items: [
             {
               text: 'Imagick 拓展',
