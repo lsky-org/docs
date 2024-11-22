@@ -65,6 +65,10 @@ server {
 }
 ```
 
+::: tip 为什么运行目录需要设置为 `public` ？
+您的 Web 服务器应该将所有请求定向到您的应用程序的 `public/index.php` 文件。您永远不应该尝试将 index.php 文件移动到项目的根目录，因为从项目根目录提供应用程序将会将许多敏感的配置文件暴露给公共互联网。
+:::
+
 然后继续设置伪静态，程序的 Nginx 伪静态配置示例文件位置在 `public/nginx.conf` 中。
 
 ```nginx configuration
