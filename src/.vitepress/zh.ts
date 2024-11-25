@@ -129,6 +129,7 @@ function sidebarAdvanced(): DefaultTheme.SidebarItem[] {
     { text: '分离部署', link: 'separate-deploy' },
     { text: '缓存', link: 'cache' },
     { text: '自定义储存', link: 'storage' },
+    { text: '接口文档', link: 'openapi' },
   ]
 }
 
