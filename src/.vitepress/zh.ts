@@ -114,8 +114,7 @@ function sidebarGuide(): DefaultTheme.SidebarItem[] {
       items: [
         { text: '储存', link: 'storage' },
         { text: '角色组', link: 'group' },
-        { text: '驱动器', link: 'driver' },
-        { text: '支付驱动', link: 'payment' },
+        { text: '支付', link: 'payment' },
         { text: '云处理', link: 'process' },
         { text: '图片处理', link: 'handle' },
       ]
