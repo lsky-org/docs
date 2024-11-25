@@ -106,6 +106,7 @@ function sidebarGuide(): DefaultTheme.SidebarItem[] {
         { text: '升级', link: 'upgrade' },
         { text: '迁移', link: 'migrate' },
         { text: '常见问题', link: 'faq' },
+        { text: '从旧版本导入', link: 'import' },
       ]
     },
     {

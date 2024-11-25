@@ -5,3 +5,7 @@
 .medium-zoom-image--opened {
     z-index: 31;
 }
+
+img {
+    border-radius: 5px;
+}
