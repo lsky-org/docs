@@ -58,6 +58,8 @@
 
 ![上传证书](/payment/alipay/11.png)
 
+上传完成后点击保存即可。
+
 ## 微信
 
 todo
@@ -78,7 +80,15 @@ Type 选择 Merchant
 
 ### 配置
 
-![完成](/payment/paypal/3.png)
+![配置](/payment/paypal/3.png)
 
-将应用的 Client ID 和 Secret key 填入兰空图片后台支付配置中既可。
+### Webhook
+
+同样的，PayPal 我们也需要配置回调，即 Webhook。我们点击进应用详情，滚动到最底部，找到 Webhook 那一栏，创建一个 Webhook。
+
+![Webhook](/payment/paypal/4.png)
+
+创建成功后我们会在列表看到 Webhook ID。
+
+将应用的 Client ID 和 Secret key 以及 WebHook ID 填入兰空图片后台支付配置中既可。
 
