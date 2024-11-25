@@ -48,7 +48,7 @@
 
 ### 设置回调地址
 
-回调地址固定为 域名+payment/callback，即：`http://example.com/payment/callback` 将其填入支付宝的授权回调地址中。
+回调地址固定为 站点域名 + `payment/callback`，假设站点域名为 `http://example.com`，即：`http://example.com/payment/callback` 将其填入支付宝的授权回调地址中。
 
 ![填写授权回调地址](/payment/alipay/10.png)
 
