@@ -67,7 +67,7 @@ Supervisor 是 Linux 环境中常用的进程监视器，我们将在以下文�
 Supervisor 是 Linux 操作系统的进程监视器，如果 `queue:work` 进程失败，它将自动重启它们。要在 Ubuntu 上安装 Supervisor，您可以使用以下命令：
 
 ```shell
-$ sudo apt-get install supervisor
+sudo apt-get install supervisor
 ```
 
 #### 配置 Supervisor
@@ -96,11 +96,11 @@ stopwaitsecs=3600
 创建配置文件后，您可以使用以下命令更新 Supervisor 配置并启动进程：
 
 ```shell
-$ sudo supervisorctl reread
+sudo supervisorctl reread
 
-$ sudo supervisorctl update
+sudo supervisorctl update
 
-$ sudo supervisorctl start "lsky-pro-worker:*"
+sudo supervisorctl start "lsky-pro-worker:*"
 ```
 
 有关 Supervisor 的更多信息，请查阅 [Supervisor 文档](http://supervisord.org/index.html)。
@@ -123,11 +123,11 @@ ImageMagick 是一个独立的软件工具，用于在命令行操作图像（�
 ::: code-group
 
 ```shell [Ubuntu/Debian]
-$ dpkg -l | grep imagemagick
+dpkg -l | grep imagemagick
 ```
 
 ```shell [CentOS/RHEL]
-$ rpm -qa | grep ImageMagick
+rpm -qa | grep ImageMagick
 ```
 
 :::
@@ -139,11 +139,11 @@ $ rpm -qa | grep ImageMagick
 ::: code-group
 
 ```shell [Ubuntu/Debian]
-$ sudo apt install imagemagick
+sudo apt install imagemagick
 ```
 
 ```shell [CentOS/RHEL]
-$ sudo yum install ImageMagick
+sudo yum install ImageMagick
 ```
 
 :::

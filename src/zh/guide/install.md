@@ -17,7 +17,7 @@
 检查是否安装：
 
 ```shell
-$ sqlite3 --version
+sqlite3 --version
 ```
 
 如果没有安装，请执行安装命令安装 sqlite3：
@@ -25,11 +25,11 @@ $ sqlite3 --version
 ::: code-group
 
 ```shell [Debian/Ubuntu]
-$ sudo apt install sqlite3 libsqlite3-dev
+sudo apt install sqlite3 libsqlite3-dev
 ```
 
 ```shell [CentOS/RHEL]
-$ sudo yum install sqlite sqlite-devel
+sudo yum install sqlite sqlite-devel
 ```
 
 :::
@@ -41,13 +41,13 @@ $ sudo yum install sqlite sqlite-devel
 接下来我们登录 SSH 终端，使用 `cd` 命令进入站点根目录：
 
 ```shell
-$ cd /www/wwwroot/app.com
+cd /www/wwwroot/app.com
 ```
 
 然后使用 `unzip` 命令解压安装包：
 
 ```shell
-$ unzip lsky-pro.zip
+unzip lsky-pro.zip
 ```
 
 ## 第二步，配置伪静态
@@ -140,11 +140,11 @@ stopwaitsecs=3600
 ::: code-group
 
 ```shell [Nginx]
-$ grep "user" /etc/nginx/nginx.conf
+grep "user" /etc/nginx/nginx.conf
 ```
 
 ```shell [Apache]
-$ grep -E "^User|^Group" /etc/httpd/conf/httpd.conf
+grep -E "^User|^Group" /etc/httpd/conf/httpd.conf
 ```
 
 :::
@@ -152,7 +152,7 @@ $ grep -E "^User|^Group" /etc/httpd/conf/httpd.conf
 配置文件创建完毕以后，我们重启 Supervisor：
 
 ```shell
-$ sudo supervisorctl reread && sudo supervisorctl update && sudo supervisorctl start "lsky-pro-worker:*"
+sudo supervisorctl reread && sudo supervisorctl update && sudo supervisorctl start "lsky-pro-worker:*"
 ```
 
 至此，程序安装完成。

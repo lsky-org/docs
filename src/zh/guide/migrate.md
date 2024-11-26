@@ -17,13 +17,13 @@
 执行命令查看符号链接：
 
 ```shell
-$ find public -type l
+find public -type l
 ```
 
 执行后会输出所有符号链接，将符号链接删除：
 
 ```shell
-$ find public -type l -exec rm -f {} +
+find public -type l -exec rm -f {} +
 ```
 
 ::: tip 为什么需要删除符号链接？
@@ -40,7 +40,7 @@ $ find public -type l -exec rm -f {} +
 执行打包命令，压缩根目录中所有文件，并命名为 `lsky-pro.tar.gz`：
 
 ```shell
-$ tar -czvf lsky-pro.tar.gz ./
+tar -czvf lsky-pro.tar.gz ./
 ```
 
 打包完成后，将 `lsky-pro.tar.gz` 文件以任何方式上传到目标服务器的站点根目录。
@@ -72,7 +72,7 @@ DB_DATABASE=laravel # 将 laravel 替换成您的 sqlite 文件所在路径，�
 确保数据库、相关文件都转移到目标服务器后，我们需要使用终端进入目标服务器的站点根目录，执行解压命令：
 
 ```shell
-$ tar -xzvf lsky-pro.tar.gz
+tar -xzvf lsky-pro.tar.gz
 ```
 
 如果您使用的是 sqlite3，并且没有更改 sqlite3 数据库的文件位置。那么您可以不做任何改动。
@@ -80,7 +80,7 @@ $ tar -xzvf lsky-pro.tar.gz
 如果您使用的是 sqlite3 以外的数据库，您需要解压后，使用 `vi` 或 `vim` 命令打开 `.env` 文件：
 
 ```shell
-$ vim ./.env
+vim ./.env
 ```
 
 执行后按下键盘 `i` 键进入编辑模式，将数据配置更新为您的新站点需要的数据库(需提前导入)：
@@ -107,7 +107,7 @@ DB_PASSWORD=root # 数据库连接密码 // [!code focus]
 接下来执行命令生成符号链接：
 
 ```shell
-$ php artisan storage:link
+php artisan storage:link
 ```
 
 别急，还没完，我们还需要像教程[安装](./install)章节中那样，[配置站点运行目录以及伪静态](./install#第二步-配置伪静态)。
