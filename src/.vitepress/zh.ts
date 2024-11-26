@@ -81,6 +81,10 @@ function nav(): DefaultTheme.NavItem[] {
       ]
     },
     {
+      text: '接口文档',
+      link: 'https://openapi.lsky.pro',
+    },
+    {
       text: '官网',
       link: 'https://www.lsky.pro',
     },
