@@ -100,6 +100,7 @@ function sidebarGuide(): DefaultTheme.SidebarItem[] {
         { text: '介绍', link: 'introduce' },
         { text: '快速开始', link: 'getting-started' },
         { text: '环境要求', link: 'requirement' },
+        { text: '免责声明', link: 'declaration' },
       ]
     },
     {
