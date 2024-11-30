@@ -17,7 +17,10 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v1
         with:
-          node-version: '14'
+          node-version: '18'
+
+      - name: Clear Yarn Cache
+        run: yarn cache clean
 
       - name: Cache dependencies
         uses: actions/cache@v2
@@ -37,13 +40,12 @@ jobs:
         run: yarn docs:build
 
       - name: Set custom domain
-        run: echo 'docs.lsky.pro' > .vuepress/dist/CNAME
+        run: echo 'docs.lsky.pro' > src/.vuepress/dist/CNAME
 
       - name: Deploy to GitHub Pages
         uses: crazy-max/ghaction-github-pages@v2
         with:
           target_branch: gh-pages
-          build_dir: .vuepress/dist
+          build_dir: src/.vuepress/dist
         env:
-          # @see https://docs.github.com/cn/actions/reference/authentication-in-a-workflow#about-the-github_token-secret
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
