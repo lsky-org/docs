@@ -40,10 +40,26 @@ provide('toggle-appearance', async ({ clientX: x, clientY: y }: MouseEvent) => {
 </script>
 
 <template>
-  <DefaultTheme.Layout />
+  <DefaultTheme.Layout>
+    <template #home-hero-before>
+      <div id="notice">
+        当前显示的是付费版最新版本(2.x)的文档。该版本正在内测中，旧版本文档请点击<a href="/archive/enterprise/v1/">这里</a>。
+      </div>
+    </template>
+  </DefaultTheme.Layout>
 </template>
 
 <style>
+#notice {
+  position: sticky;
+  width: 100%;
+  text-align: center;
+  padding: 4px;
+  font-size: 14px;
+  background: cornflowerblue;
+  color: white;
+}
+
 ::view-transition-old(root),
 ::view-transition-new(root) {
   animation: none;
