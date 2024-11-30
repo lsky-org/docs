@@ -4,7 +4,7 @@ layout: home
 
 hero:
   name: "Lsky Pro+"
-  text: "你的云端相册系统"
+  text: 您的云端相册系统
   tagline: 全新版本，全新架构，全新 UI，全新体验
   image:
     src: /logo.png
@@ -32,7 +32,7 @@ features:
     details: 得益于强大的 Laravel 框架，我们无需在安全这方面考虑过多，它几乎已经帮我们做好了一切。
   - title: 储存支持
     icon: 💾
-    details: 支持多种第三方储存，分别有 AWS S3、阿里云 OSS、腾讯云 COS、七牛云、又拍云、SFTP、FTP、WebDav、Minio。
+    details: 支持多种第三方储存，包括但不限于 AWS S3、阿里云 OSS、腾讯云 COS、七牛云、又拍云、SFTP、FTP、WebDav、Minio。
   - title: 商业化
     icon: 🪩
     details: 程序集成了付费套餐、工单系统、订单管理、意见收集、站内公告、优惠码等等，适配了支付宝、微信官方支付功能。
