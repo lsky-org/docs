@@ -4,9 +4,12 @@ import { useRoute } from 'vitepress'
 import mediumZoom from 'medium-zoom'
 
 import './index.css'
+import Layout from './Layout.vue'
 
 export default {
   ...DefaultTheme,
+
+  Layout: Layout,
 
   setup() {
     const route = useRoute()
