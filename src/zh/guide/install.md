@@ -210,7 +210,7 @@ docker-compose up -d
 ```
 
 ::: warning
-请务必正确填写配置后执行，否则会导致安装失败，如果安装失败，可能需要删除容器后重启执行运行。
+请务必正确填写配置后执行，否则会导致安装失败，如果安装失败，可能需要删除容器后重启执行运行步骤。
 ```shell
 docker stop lsky-pro-plus
 docker rm lsky-pro-plus
