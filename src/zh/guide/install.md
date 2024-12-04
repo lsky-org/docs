@@ -169,6 +169,10 @@ sudo supervisorctl reread && sudo supervisorctl update && sudo supervisorctl sta
 
 我们需要下载源码，然后把源码上传至安装了 docker 的服务器中，然后使用终端登录服务器，进入源码根目录。
 
+::: warning 注意
+以下命令都需要在目标服务器站点的根目录执行。
+:::
+
 ### 构建本地镜像
 
 ```shell
@@ -177,7 +181,9 @@ docker build -t lsky-pro-plus -f docker/Dockerfile .
 
 ### 创建数据目录
 
-为了方便查看上传文件、缓存、日志、数据库等，这些通常需要映射到宿主机。执行以下命令快速创建程序运行时需要的文件夹和数据库文件(您也可以手动创建，但是不能不创建)：
+为了方便查看上传文件、缓存、日志、数据库等，这些通常需要映射到宿主机。
+
+执行以下命令快速创建程序运行时需要的文件夹和数据库文件(您也可以手动创建，但是不能不创建)：
 
 ```shell
 mkdir -vp data/{cache,logs,private,public,uploads} \
