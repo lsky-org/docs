@@ -163,7 +163,9 @@ sudo supervisorctl reread && sudo supervisorctl update && sudo supervisorctl sta
 
 ## Docker 安装
 
-### 下载源码
+### 准备工作
+
+#### 下载源码
 
 因 PHP 源码的特殊性，兰空图床不提供构建好的镜像，需要通过本地构建镜像，然后运行。
 
@@ -173,13 +175,13 @@ sudo supervisorctl reread && sudo supervisorctl update && sudo supervisorctl sta
 以下命令都需要在目标服务器站点的根目录执行。
 :::
 
-### 构建本地镜像
+#### 构建本地镜像
 
 ```shell
 docker build -t lsky-pro-plus -f docker/Dockerfile .
 ```
 
-### 创建数据目录
+#### 创建数据目录
 
 为了方便查看上传文件、缓存、日志、数据库等，这些通常需要映射到宿主机。
 
@@ -200,7 +202,45 @@ mkdir -vp data/{cache,logs,private,public,uploads} \
 - `data/uploads` 自定义储存上传的图片
 - `data/database.sqlite` 数据库文件
 
-### 启动并运行
+### docker
+
+#### 创建网络
+
+```shell
+docker network create app-network
+```
+
+#### 运行
+
+将以下命令中的配置替换正确后执行。
+
+```shell
+docker run -d \
+  --name lsky-pro-plus \
+  --env APP_NAME="Lsky Pro+" \
+  --env APP_URL="http://localhost" \
+  --env APP_SERIAL_NO="your_serial_no" \
+  --env APP_SECRET="your_secret" \
+  --env ADMIN_USERNAME="admin" \
+  --env ADMIN_EMAIL="admin@example.com" \
+  --env ADMIN_PASSWORD="password" \
+  -p 8080:80 \
+  -v app-code:/var/www \
+  -v ./data/logs:/var/www/storage/logs \
+  -v ./data/cache:/var/www/storage/app/cache \
+  -v ./data/public:/var/www/storage/app/public \
+  -v ./data/uploads:/var/www/storage/app/uploads \
+  -v ./data/database.sqlite:/var/www/database/database.sqlite \
+  --network app-network \
+  --restart unless-stopped \
+  lsky-pro-plus
+```
+
+### docker-compose
+
+#### 运行
+
+将以下命令中的配置替换正确后执行。
 
 ```shell{4-6}
 APP_DATA="./data" \
@@ -215,20 +255,7 @@ ADMIN_PASSWORD="123456" \
 docker-compose up -d
 ```
 
-::: warning
-请务必正确填写配置后执行，否则会导致安装失败，如果安装失败，可能需要删除容器后重启执行运行步骤。
-```shell
-docker stop lsky-pro-plus
-docker rm lsky-pro-plus
-```
-
-有时候你还可能需要删除镜像和储存卷：
-```shell
-docker rmi -f lsky-pro-plus
-```
-:::
-
-参数解释：
+### 参数解释：
 
 - `APP_DATA` 持久化数据储存位置，可以是绝对路径或相对路径
 - `APP_PORT` 宿主机运行端口，默认为 8080
@@ -240,7 +267,21 @@ docker rmi -f lsky-pro-plus
 - `ADMIN_EMAIL` 管理员邮箱
 - `ADMIN_PASSWORD` 管理员密码
 
-请务必填写正确后执行。执行以下命令查看服务运行日志，便于排查问题：
+::: warning
+请务必正确填写配置后执行，否则会导致安装失败，如果安装失败，可能需要删除容器后重启执行运行步骤。
+
+```shell
+docker stop lsky-pro-plus
+docker rm lsky-pro-plus
+```
+
+有时候你还可能需要删除镜像和储存卷：
+```shell
+docker rmi -f lsky-pro-plus
+```
+:::
+
+您还可以执行以下命令查看服务运行日志，便于排查问题：
 
 ```shell
 docker logs -f lsky-pro-plus
