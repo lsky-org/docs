@@ -204,12 +204,6 @@ mkdir -vp data/{cache,logs,private,public,uploads} \
 
 ### docker
 
-#### 创建网络
-
-```shell
-docker network create app-network
-```
-
 #### 运行
 
 将以下命令中的配置替换正确后执行。
@@ -231,7 +225,7 @@ docker run -d \
   -v ./data/public:/var/www/storage/app/public \
   -v ./data/uploads:/var/www/storage/app/uploads \
   -v ./data/database.sqlite:/var/www/database/database.sqlite \
-  --network app-network \
+  --network bridge \
   --restart unless-stopped \
   lsky-pro-plus
 ```
