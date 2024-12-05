@@ -20,7 +20,7 @@ export const zh = defineConfig({
     },
 
     footer: {
-      copyright: `版权所有 © 2018-${new Date().getFullYear()} 火花网络科技`
+      copyright: `版权所有 © 2018-${new Date().getFullYear()} <a href="https://huohuastudio.com">火花网络科技</a>`
     },
 
     docFooter: {
