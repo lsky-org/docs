@@ -2,12 +2,6 @@
 
 兰空图床当前仅支持官方[支付宝电脑网站支付](https://open.alipay.com/api/detail?code=I1080300001000041203&index=0)、[微信 Native 支付](https://pay.wechatpay.cn/wiki/doc/apiv3_partner/open/pay/chapter2_7_0.shtml)，[PayPal](https://paypal.com)，并且支付宝仅支持证书模式、微信仅支持 V3 版本。
 
-::: warning 为什么不适配易支付等支付接口聚合平台？
-- 易支付属于无支付资质、非官方认证的机构。
-- 资金由易支付托管，可能会涉及到非法集资、资金截留等问题。
-- 若管理不当，会有泄露风险(用户信息、交易记录等)。
-:::
-
 ## 支付宝
 
 ### 创建支付应用
