@@ -43,7 +43,7 @@ provide('toggle-appearance', async ({ clientX: x, clientY: y }: MouseEvent) => {
   <DefaultTheme.Layout>
     <template #home-hero-before>
       <div id="notice">
-        当前显示的是付费版最新版本(2.x)的文档。该版本正在内测中，旧版本文档请点击<a style="border-bottom: 1px dashed #505050" href="/archive/enterprise/v1/">这里</a>。
+        当前显示的是付费版最新版本(2.x)的文档。该版本正在公测中，旧版本文档请点击<a style="border-bottom: 1px dashed #505050" href="/archive/enterprise/v1/">这里</a>。
       </div>
     </template>
   </DefaultTheme.Layout>
