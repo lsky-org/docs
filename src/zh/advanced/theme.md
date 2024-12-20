@@ -28,7 +28,7 @@
       "name": "默认主题",
       "version": "2.0",
       "author": "Wisp X",
-      "url": "https://github.com/wisp-x"
+      "url": "https://github.com/0xxb"
     }
     ```
 完成上述操作后，主题会以模板引擎渲染的方式实现混合部署，首次加载通过 laravel 的 [Blade 模板](https://laravel.com/docs/11.x/blade) 渲染页面，然后后续请求都由前端工程以 [SPA 单页应用](https://developer.mozilla.org/zh-CN/docs/Glossary/SPA) 的方式显示页面交互。

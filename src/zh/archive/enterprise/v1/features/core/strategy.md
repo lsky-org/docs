@@ -14,7 +14,7 @@ description: 企业版储存策略功能介绍
 ## 如何自定义一个储存？
 ::: warning
 - 首先你需要有一定的 PHP 的编程基础，并对 Laravel 有一定的了解。
-- 兰空图床的储存是由 [flysystem](https://flysystem.thephpleague.com/) 实现，flysystem 提供了一个接口来与不同类型的文件系统进行交互(增删改查等)，你只需要按照 flysystem 提供的接口实现你的储存即可。此教程不会详细的指导你如何实现该接口。这里有一份兰空图床实现的又拍云适配器 [https://github.com/wisp-x/flysystem-upyun](https://github.com/wisp-x/flysystem-upyun) 供你参考。
+- 兰空图床的储存是由 [flysystem](https://flysystem.thephpleague.com/) 实现，flysystem 提供了一个接口来与不同类型的文件系统进行交互(增删改查等)，你只需要按照 flysystem 提供的接口实现你的储存即可。此教程不会详细的指导你如何实现该接口。这里有一份兰空图床实现的又拍云适配器 [https://github.com/0xxb/flysystem-upyun](https://github.com/0xxb/flysystem-upyun) 供你参考。
   :::
 
 储存驱动适配好以后，接下来要做的就是集成到兰空图床当中。

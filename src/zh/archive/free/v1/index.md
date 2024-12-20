@@ -1,10 +1,10 @@
 # Lsky Pro v1.x
 
-![Lsky Pro Logo](https://raw.githubusercontent.com/wisp-x/lsky-pro/master/public/static/app/images/logo.png)
+![Lsky Pro Logo](https://raw.githubusercontent.com/0xxb/lsky-pro/master/public/static/app/images/logo.png)
 
 项目主页：[https://www.lsky.pro](https://www.lsky.pro)
 
-项目仓库地址：[https://github.com/wisp-x/lsky-pro](https://github.com/wisp-x/lsky-pro)
+项目仓库地址：[https://github.com/0xxb/lsky-pro](https://github.com/0xxb/lsky-pro)
 
 ## 主要特性
 ✅ 支持第三方云储存，本地、阿里云 OSS、腾讯云 COS、七牛云、又拍云、FTP
@@ -44,7 +44,7 @@
 
 
 ## 版权声明
-详见 [https://github.com/wisp-x/lsky-pro/blob/master/LICENSE](https://github.com/wisp-x/lsky-pro/blob/master/LICENSE)
+详见 [https://github.com/0xxb/lsky-pro/blob/master/LICENSE](https://github.com/0xxb/lsky-pro/blob/master/LICENSE)
 
 ## 捐赠
 Lsky Pro的开发和更新等，都是作者在空余时间独立开发，并免费开源使用，如果您认可我的作品，并且觉得对你有所帮助我愿意接受来自各方面的捐赠😃。

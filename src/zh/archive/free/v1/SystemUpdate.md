@@ -19,6 +19,6 @@ title: 系统升级
 4. 将新版本 `application/sql/update.sql` 导入到数据库，或直接复制文件内容执行
 5. 替换旧版本 (删除旧版本，粘贴新版本)
 
-如果在更新时出现 `更新失败, 请稍后重试` 的提示, 大概率是因为超时被中断, 如果出现这样的情况, 请手动通过 `https://github.com/wisp-x/lsky-pro/releases` 下载 zip 格式的完整包, 并重命名为 `upgrade.zip` 移动至系统 `runtime` 目录中, 然后在执行更新, 这时候兰空图床会跳过下载安装包的步骤, 直接通过解压 `upgrade.zip` 的方式进行安装.
+如果在更新时出现 `更新失败, 请稍后重试` 的提示, 大概率是因为超时被中断, 如果出现这样的情况, 请手动通过 `https://github.com/0xxb/lsky-pro/releases` 下载 zip 格式的完整包, 并重命名为 `upgrade.zip` 移动至系统 `runtime` 目录中, 然后在执行更新, 这时候兰空图床会跳过下载安装包的步骤, 直接通过解压 `upgrade.zip` 的方式进行安装.
 
 宝塔php7.3版本默认没有开启 `ZipArchive` ，更新时会出现错误，切换其他版本即可。
