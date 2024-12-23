@@ -12,7 +12,7 @@
 
 购买后您将获得未加密的完整源码(后端以及前端源码)。禁止传播或二次售卖源码，否则我们有权删除许可证或加入黑名单。
 
-购买前请详细调研兰空图床生态([官网](https://www.lsky.pro)、[Github](https://github.com/lsky-org/lsky-pro)、[论坛](https://bbs.lskypro.com)、[演示站](https://wmimg.com))，在了解后确认兰空图床大概率是一款可以令您愉悦的产品后再考虑下单。
+购买前请详细调研兰空图床生态([官网](https://www.lsky.pro)、[Github](https://github.com/lsky-org/lsky-pro)、[论坛](https://bbs.lskypro.com)、[演示站](https://v2.lskypro.com))，在了解后确认兰空图床大概率是一款可以令您愉悦的产品后再考虑下单。
 
 ::: warning 注意
 由于程序的特殊性、买断制规则，**<span style="color: red">购买后不支持退款</span>**，敬请谅解。

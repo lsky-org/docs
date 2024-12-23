@@ -15,7 +15,7 @@ hero:
       link: /guide/getting-started
     - theme: alt
       text: 💻 查看演示
-      link: https://wmimg.com
+      link: https://v2.lskypro.com
     - theme: alt
       text: 🎁 购买源码
       link: https://www.lsky.pro/buy
