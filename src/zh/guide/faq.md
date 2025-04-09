@@ -39,3 +39,6 @@ proxy_set_header Connection $connection_upgrade;
 
 ## 能不能支持 xxxx 、xxxx 储存？
 市面上各种厂家的产品层出不穷，兰空图床只会对主流的、具备相应接口的产品作适配，兰空图床的储存是由 [flysystem](https://flysystem.thephpleague.com/) 实现，欢迎你提交 PR！
+
+## 激活邮件中的激活链接，访问显示 403 INVALID SIGNATURE？
+请检查 nginx 伪静态是否配置正确。
