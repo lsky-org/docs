@@ -163,133 +163,20 @@ sudo supervisorctl reread && sudo supervisorctl update && sudo supervisorctl sta
 
 ## Docker 安装
 
-### 准备工作
+```bash
+# 进入docker目录
+cd docker
 
-#### 下载源码
+# 赋予脚本执行权限
+chmod +x deploy.sh
 
-因 PHP 源码的特殊性，兰空图床不提供构建好的镜像，需要通过本地构建镜像，然后运行。
-
-我们需要下载源码，然后把源码上传至安装了 docker 的服务器中，然后使用终端登录服务器，进入源码根目录。
-
-::: warning 注意
-以下命令都需要在目标服务器站点的根目录执行。
-:::
-
-#### 构建本地镜像
-
-```shell
-docker build -t lsky-pro-plus -f docker/Dockerfile .
+# 运行部署脚本
+./deploy.sh
 ```
 
-#### 创建数据目录
+运行脚本后，按照提示输入必要的配置信息，系统将自动完成部署。
 
-为了方便查看上传文件、缓存、日志、数据库等，这些通常需要映射到宿主机。
-
-执行以下命令快速创建程序运行时需要的文件夹和数据库文件(您也可以手动创建，但是不能不创建)：
-
-```shell
-mkdir -vp data/{cache,logs,private,public,uploads} \
-&& touch data/database.sqlite \
-&& chmod -R 777 data/{public,uploads}
-```
-
-目录和文件解释：
-
-- `data/cache` 缓存目录
-- `data/logs` 日志文件存放目录
-- `data/private` 上传的私有文件目录，例如支付证书文件等
-- `data/public` 上传的公开文件目录，例如头像等
-- `data/uploads` 自定义储存上传的图片
-- `data/database.sqlite` 数据库文件
-
-### docker
-
-#### 运行
-
-将以下命令中的配置替换正确后执行。
-
-```shell
-docker run -d \
-  --name lsky-pro-plus \
-  --env APP_NAME="Lsky Pro+" \
-  --env APP_URL="http://localhost" \
-  --env APP_SERIAL_NO="your_serial_no" \
-  --env APP_SECRET="your_secret" \
-  --env ADMIN_USERNAME="admin" \
-  --env ADMIN_EMAIL="admin@example.com" \
-  --env ADMIN_PASSWORD="password" \
-  -p 8080:80 \
-  -v app-code:/var/www \
-  -v ./data/logs:/var/www/storage/logs \
-  -v ./data/cache:/var/www/storage/app/cache \
-  -v ./data/public:/var/www/storage/app/public \
-  -v ./data/uploads:/var/www/storage/app/uploads \
-  -v ./data/database.sqlite:/var/www/database/database.sqlite \
-  --network bridge \
-  --restart unless-stopped \
-  lsky-pro-plus
-```
-
-### docker-compose
-
-#### 运行
-
-将以下命令中的配置替换正确后执行。
-
-```shell{4-6}
-APP_DATA="./data" \
-APP_PORT="8080" \
-APP_NAME="Lsky Pro+" \
-APP_URL="http://localhost" \
-APP_SERIAL_NO="test" \
-APP_SECRET="test" \
-ADMIN_USERNAME="admin" \
-ADMIN_EMAIL="admin@qq.com" \
-ADMIN_PASSWORD="123456" \
-docker-compose up -d
-```
-
-### 参数解释：
-
-- `APP_DATA` 持久化数据储存位置，可以是绝对路径或相对路径
-- `APP_PORT` 宿主机运行端口，默认为 8080
-- `APP_NAME` 应用名称
-- `APP_URL` 站点 url
-- `APP_SERIAL_NO` 许可证编号
-- `APP_SECRET` 许可证密钥
-- `ADMIN_USERNAME` 管理员用户名，只能包含英文字母、数字、中横线(-)或下划线(_)
-- `ADMIN_EMAIL` 管理员邮箱
-- `ADMIN_PASSWORD` 管理员密码
-
-::: warning
-请务必正确填写配置后执行，否则会导致安装失败，如果安装失败，可能需要删除容器后重启执行运行步骤。
-
-```shell
-docker stop lsky-pro-plus
-docker rm lsky-pro-plus
-```
-
-有时候你还可能需要删除镜像和储存卷：
-```shell
-docker rmi -f lsky-pro-plus
-```
-:::
-
-您还可以执行以下命令查看服务运行日志，便于排查问题：
-
-```shell
-docker logs -f lsky-pro-plus
-```
-
--f 参数用于实时跟踪日志输出。
-
-然后可以访问 http://localhost:8080 预览站点。通过反向代理提供对外服务。
-
-::: tip
-成功运行后当前目录的程序文件会持久化储存在 [Docker Volume](https://docs.docker.com/engine/storage/volumes/#create-and-manage-volumes) 中，然后映射必要的文件到宿主机(APP_DATA 定义的位置)。
-
-这意味着，若后续不需要重新构建容器了，除了您设置的 `APP_DATA` 的目录，则其他程序文件都可以删除，节省服务器储存。后续的源代码或其他文件，都通过 [Docker Volume](https://docs.docker.com/engine/storage/volumes/#create-and-manage-volumes) 管理。
-:::
+查阅 `docker/docs/DOCKER.md` 文件阅读更详细的部署文档。
 
 ::: danger 警告
 请不要将本地镜像上传至 docker hub 或打包后分发，否则可能会泄漏许可证编号或密钥等隐私数据。
