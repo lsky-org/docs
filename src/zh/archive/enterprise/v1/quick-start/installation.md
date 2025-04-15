@@ -68,8 +68,7 @@ php artisan key:generate
 
 2. 编辑根目录中的 `.env` 文件，如果没有该文件可以将 `.env.example` 复制一份并重命名为 `.env` ，然后修改对应的配置值：
    - `APP_URL`=站点域名(需要 http(s): //，例如 https://pic.iqy.ink)
-   - `APP_SERIAL_NO`=购买后得到的序列号
-   - `APP_SECRET`=许可证的密钥
+   - `APP_LICENSE_KEY`=购买后得到的许可证密钥
    - `REDIS_HOST`=Redis 连接地址(默认为 127.0.0.1)
    - `REDIS_PASSWORD`=Redis 连接密码(默认为 null，表示没有密码)
    - `REDIS_PORT`=Redis 连接端口(默认为 6379)
