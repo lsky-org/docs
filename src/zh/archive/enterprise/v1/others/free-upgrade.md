@@ -47,7 +47,7 @@ www 站点根目录
 ## 修改配置
 在企业版本根目录，将 `.env.example` 复制一份并重命名为 `.env`，然后编辑这个文件，下列内容都是必填项：
   - `APP_URL`=站点域名(需要 http(s): //，例如 https://pic.iqy.ink)
-  - `APP_SERIAL_NO`=购买后得到的密钥
+  - `APP_SERIAL_NO`=购买后得到的授权密钥
   - `APP_SECRET`=许可证的密钥，固定为：LskyPro
   - `DB_CONNECTION`=(数据库驱动名称 mysql、sqlite、pgsql、sqlsrv)
   - `DB_HOST`=数据库连接地址(默认为 127.0.0.1)
