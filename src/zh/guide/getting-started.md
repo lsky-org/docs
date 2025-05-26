@@ -15,7 +15,7 @@
 购买前请详细调研兰空图床生态([官网](https://www.lsky.pro)、[Github](https://github.com/lsky-org/lsky-pro)、[论坛](https://bbs.lskypro.com)、[演示站](https://v2.lskypro.com))，在了解后确认兰空图床大概率是一款可以令您愉悦的产品后再考虑下单。
 
 ::: warning 注意
-由于程序的特殊性、买断制规则，**<span style="color: red">购买后不支持退款</span>**，敬请谅解。
+由于程序为一次性付费、永久使用授权的数字商品，**<span style="color: red">购买后不支持退款</span>**，敬请谅解。
 :::
 
 ## 准备
