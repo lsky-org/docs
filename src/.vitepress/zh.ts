@@ -15,7 +15,7 @@ export const zh = defineConfig({
     },
 
     editLink: {
-      pattern: 'https://github.com/lsky-org/archive/edit/master/archive/:path',
+      pattern: 'https://github.com/lsky-org/docs/edit/master/src/:path',
       text: '在 GitHub 上编辑此页面'
     },
 
