@@ -163,6 +163,20 @@ grep -E "^User|^Group" /etc/httpd/conf/httpd.conf
 sudo supervisorctl reread && sudo supervisorctl update && sudo supervisorctl start "lsky-pro-worker:*"
 ```
 
+### 第五步，配置计划任务
+
+兰空图床部分功能需要定时去运行处理，我们需要通过服务器的计划任务一分钟执行一次 `schedule:run` 命令来维持任务调度。有关计划任务的更多信息请[点击这里](https://www.runoob.com/w3cnote/linux-crontab-tasks.html)了解更多。
+
+计划任务命令为：
+
+```shell
+* * * * * cd /www/wwwroot/app.com && php artisan schedule:run >> /dev/null 2>&1
+```
+
+::: tip 温馨提示
+若使用宝塔面板，可以在宝塔的「计划任务」页面中可视化设置计划任务。但是需要注意，执行用户建议使用 www。
+:::
+
 至此，程序安装完成。
 
 ## Docker 安装
