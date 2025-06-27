@@ -245,6 +245,7 @@ docker-compose -p lsky-pro up -d
 ### 反向代理配置示例
 
 ```nginx configuration
+client_max_body_size 0;
 location ~ ^/ {
     proxy_pass http://localhost:8080;
     proxy_http_version 1.1;
