@@ -253,13 +253,13 @@ docker-compose -p lsky-pro up -d
 有时候您可能希望将 `storage` 或其他目录挂载到宿主机中的文件夹，例如 `data` 文件夹：
 
 ```bash
-  ...
+  // ...
 
-    volumes:
-      - ./data:/var/www/html/storage
-    restart: unless-stopped
+  volumes:
+    - ./data:/var/www/html/storage
+  restart: unless-stopped
 
-  ...
+  // ...
 ```
 
 从宿主机挂载此 data 文件夹，data 文件夹会覆盖 docker 容器内 `/var/www/html/storage` 文件夹，而 `storage` 文件夹还存在子目录和文件。
