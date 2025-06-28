@@ -335,6 +335,8 @@ sudo apt install sqlite3 libsqlite3-dev
 sudo yum install sqlite sqlite-devel
 ```
 
+::::
+
 站点配置完毕以后，将安装包文件上传至站点根目录下，现在我们假设我们的站点根目录为 `/www/wwwroot/app.com`，我们的安装包文件名为
 `lsky-pro.zip`，上传后安装包路径应该为 `/www/wwwroot/app.com/lsky-pro.zip`。
 
