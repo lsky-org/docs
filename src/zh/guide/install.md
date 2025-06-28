@@ -220,7 +220,7 @@ services:
     depends_on:
       - mysql
     ports:
-      - "8800:80"
+      - "8080:80"
     environment:
       - APP_NAME=兰空图床
       - APP_URL=https://lsky.pro
