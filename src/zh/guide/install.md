@@ -248,6 +248,10 @@ volumes:
 docker-compose -p lsky-pro up -d
 ```
 
+::: danger 警告
+如若修改了 `docker-compose.yml` 文件，请不要重复运行 `docker-compose up -d` 命令。否则重建镜像，会让程序重新安装，造成数据被覆盖。
+:::
+
 ### 挂载宿主机目录？
 
 有时候您可能希望将 `storage` 或其他目录挂载到宿主机中的文件夹，例如 `data` 文件夹：
@@ -262,9 +266,29 @@ docker-compose -p lsky-pro up -d
   # ...
 ```
 
-从宿主机挂载此 data 文件夹，data 文件夹会覆盖 docker 容器内 `/var/www/html/storage` 文件夹，而 `storage` 文件夹还存在子目录和文件。
+从宿主机挂载此 data 文件夹，data 文件夹会替换 docker 容器内 `/var/www/html/storage` 文件夹，而 `storage` 文件夹还存在子目录和文件。
 
-所以我们在挂载的时候一定要注意，若将文件夹覆盖后导致容器内部的文件夹缺失，可能会导致程序无法正常运行！
+所以我们在挂载的时候一定要注意，若将文件夹替换后导致容器内部的文件夹缺失，可能会导致程序无法正常运行！
+
+解决方法是将程序中的 `storage` 目录中的子文件夹都复制到 `data` 目录中。复制后目录结构类似：
+
+```
+data/
+├── app/
+│   ├── cache/
+│   └── ...
+├── debugger/
+│   └── ...
+├── framework/
+│   ├── cache/
+│   │   └── data/
+│   ├── sessions/
+│   ├── views/
+│   └── testing/
+├── logs/
+├── pail/
+│
+```
 
 ### 反向代理配置示例
 
