@@ -14,7 +14,7 @@ gunzip -c lsky-pro-docker-latest.tar.gz | docker load
 
 未来会提供授权中心直接下载的方式获取。
 
-### 构建镜像(已获得镜像请跳过)
+:::: details 构建镜像(已获得镜像请跳过)
 
 #### 构建镜像
 
@@ -29,6 +29,8 @@ docker build -t lsky-pro:latest -f docker/Dockerfile .
 ```bash
 docker buildx build --platform linux/amd64,linux/arm64 -t lsky-pro:latest -f docker/Dockerfile .
 ```
+
+::::
 
 ### 运行
 
