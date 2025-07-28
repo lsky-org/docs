@@ -374,9 +374,9 @@ services:
       - APP_NAME=兰空图床
       - APP_URL=https://lsky.pro
       - APP_LICENSE_KEY=xxxx-xxxx-xxxx-xxxx
-      - ADMIN_USERNAME=admin
-      - ADMIN_EMAIL=admin@qq.com
-      - ADMIN_PASSWORD=secure-password
+      - ADMIN_USERNAME=admin # 不设置则默认为 admin
+      - ADMIN_EMAIL=admin@qq.com # 不设置则默认为 admin@example.com
+      - ADMIN_PASSWORD=secure-password # 不设置则默认为 admin123
     volumes:
       - lsky-storage:/var/www/html/storage
       - lsky-database:/var/www/html/database
@@ -412,9 +412,9 @@ services:
       - APP_NAME=兰空图床
       - APP_URL=https://lsky.pro
       - APP_LICENSE_KEY=xxxx-xxxx-xxxx-xxxx
-      - ADMIN_USERNAME=admin
-      - ADMIN_EMAIL=admin@qq.com
-      - ADMIN_PASSWORD=secure-password
+      - ADMIN_USERNAME=admin # 不设置则默认为 admin
+      - ADMIN_EMAIL=admin@qq.com # 不设置则默认为 admin@example.com
+      - ADMIN_PASSWORD=secure-password # 不设置则默认为 admin123
       - DB_CONNECTION=mysql
       - DB_HOST=mysql
       - DB_DATABASE=lsky
