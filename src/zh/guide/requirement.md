@@ -49,7 +49,7 @@
 
 ### Nginx
 
-我们推荐您使用 Nginx + Sqlite3 作为组合来搭建兰空图床，以实现最小化安装。当然，数据库您也可以选择市场主流的 Mysql，但最低版本要求必须为 5.7+。
+我们推荐您使用 Nginx + PostgreSQL 作为组合来搭建兰空图床，PostgreSQL 可以更好的承受高并发上传请求。您也可以使用 Sqlite，以实现最小化安装。
 
 ### Supervisor
 

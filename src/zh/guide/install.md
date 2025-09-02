@@ -8,19 +8,12 @@
 
 注意，本次安装教程是在**没有安装**服务器控制面板的情况下进行的，仅供参考，如果您使用控制面板进行操作，实际情况可能有所不同。
 
-::: tip 为什么没有可视化安装页面？
-由于 PHP 存在两种运行方式：FPM 和 CLI，通常情况下服务器这两种环境中的 PHP 版本是一致的，但是由于集成环境软件存在多个不同版本的
-PHP，这就会导致两种环境 PHP 版本不一致，这种情况下就可能会造成很多小伙伴在[配置消息队列](./install#第四步-配置队列)时非常困惑。
-:::
-
 ### 第一步，创建站点
 
-首先我们必须创建一个新的站点，用来搭建兰空图床，如果您需要使用 mysql，您可能还需要创建一个 mysql
-数据库。在本次教程中，为了减少不必要的配置步骤，我们使用推荐的 sqlite3 数据库。
+首先我们必须创建一个新的符合兰空图床运行环境的站点，用来搭建兰空图床，如果您需要使用 PostgreSQL，您可能还需要创建一个 PostgreSQL 数据库。在本次教程中，为了减少不必要的配置步骤，我们使用推荐的 sqlite3 数据库。
 
 ::: tip 我应该使用哪个数据库 ？
-一般情况下，如果您的站点使用频率较高或上传时有高并发的需求（比如在上传图片的时候会一次性上传大量的图片），此时如果使用
-sqlite 可能会因为并发问题导致 sqlite 锁表后上传失败。若要解决这个问题，推荐使用 mysql。
+一般情况下，如果您的站点使用频率较高或上传时有高并发的需求（比如在上传图片的时候会一次性上传大量的图片），我们更推荐使用 PostgreSQL 或 MySQL。
 :::
 
 :::: details 安装 sqlite3 (使用其他数据库请跳过)
@@ -102,24 +95,14 @@ location ~ .*\.(jpg|jpeg|webp|avif|bmp|gif|png|tif|tiff|jp2|j2k|jpf|jpm|jpg2|j2c
 
 ### 第三步，开始安装
 
-解压后的站点根目录存在一个安装脚本文件 `install.sh`，我们给该脚本赋予可执行权限：
+兰空图床从 V 2.3.0 版本后开始提供可视化安装页面，只要完成以上配置后，站点绑定域名访问，程序会重定向至安装页面。
 
-```shell
-chmod +x install.sh
-```
-
-然后执行安装脚本：
-
-```shell
-./install.sh
-```
-
-然后根据脚本提示安装即可。
+然后根据安装指引进行安装即可。
 
 ### 第四步，配置消息队列
 
 兰空图床在生成缩略图、图片处理以及发送邮件等等功能中，这些耗时任务都需要使用消息队列来执行，我们可以使用
-`php artisan queue:work` 命令来运行消息队列。
+`php artisan queue:work` 命令来运行消息队列。（程序安装成功后也会显示运行消息队列的命令，请以程序显示的为准。）
 
 但是这个命令在我们关闭 SSH 终端窗口后就会停止运行，所以我们需要用到 `Supervisor` 这样的进程管理工具，来保证消息队列进程能一直常驻运行。
 
@@ -182,210 +165,40 @@ sudo supervisorctl reread && sudo supervisorctl update && sudo supervisorctl sta
 ```
 
 ::: tip 温馨提示
-若使用宝塔面板，可以在宝塔的「计划任务」页面中可视化设置计划任务。但是需要注意，执行用户建议使用 www。
+- 程序安装成功后也会显示运行计划任务的命令，请以程序显示的为准。
+- 若使用宝塔面板，可以在宝塔的「计划任务」页面中可视化设置计划任务。但是需要注意，执行用户建议使用 www。
 :::
 
 至此，程序安装完成。
 
 ## Docker 安装
 
-兰空图床的 docker 由已构建好的镜像包（lsky-docker-latest.tar.gz）提供，而非通过 docker hub 仓库拉取。
+docker 版本与普通安装包安装的版本会有一些区别，在 docker 镜像中，我们集成了一个完整的高性能 Web 服务器（[Frankenphp](https://frankenphp.dev)）来提供服务，并且默认使用更强的 `libvips` 库来处理图片（普通安装默认使用 `imagick`）。
+不仅如此，docker 版本还针对 PHP 进行了一些优化，也内置了消息队列和计划任务，无需手动配置，开箱即用。
 
-获取镜像包的方式目前只能本地构建，若需要构建好的镜像包，可通过授权中心->我的授权->管理->产品信息中找到入群链接，通过加入 QQ 群聊获取 docker 镜像文件。获得镜像文件后，使用命令导入：
+### Docker 容器启动
 
-```bash
-gunzip -c lsky-pro-docker-latest.tar.gz | docker load
+```shell
+docker run -d --name lsky-pro -p 8000:8000 \
+    -v ~/data:/app/storage \
+    0xxb/lsky-pro:latest
 ```
 
-未来会提供授权中心直接下载的方式获取。
+在上述命令中，由 docker 启动一个单容器的服务，并将宿主机的 8000 端口转发到容器内部的 8000 端口，启动成功后在宿主机浏览器访问 `http://宿主机IP:8000` 时，即可访问图形化安装页面，按照页面指引进行操作，配置程序基本信息和数据库。
 
-:::: details 构建镜像(已获得镜像请跳过)
+- `-p 8000:8000` 参数解释：
+  - 前面的 8000 是宿主机端口。
+  - 后面的 8000 是容器内部端口。
+  - 容器内 8000 端口是提供 web 服务的默认端口，此命令将宿主机 8000 端口转发到容器内容 8000 端口提供 web 服务。
 
-#### 构建镜像
+- `-v ~/data:/app/storage` 参数解释：
+  - ~/data 是宿主机目录。
+  - /app/storage 是容器内目录。
+  - 容器在 /app/storage 中产生或修改的文件会同步保存在宿主机的 ~/data。持久化数据（防止容器删除时数据丢失），同时方便宿主机直接管理文件。
 
-进入程序根目录，执行：
+### Docker Compose 编排启动
 
-```bash
-docker build -t lsky-pro:latest -f docker/Dockerfile .
-```
-
-#### 多平台构建
-
-```bash
-docker buildx build --platform linux/amd64,linux/arm64 -t lsky-pro:latest -f docker/Dockerfile .
-```
-
-::::
-
-### 运行
-
-#### SQLite 版本
-
-```bash
-docker run -d \
-  --name lsky-pro \
-  -p 8080:80 \
-  -e APP_NAME=兰空图床 \
-  -e APP_URL=your-domain \
-  -e APP_LICENSE_KEY=your-license-key \
-  -e ADMIN_USERNAME=admin \
-  -e ADMIN_EMAIL=admin@qq.com \
-  -e ADMIN_PASSWORD=123456 \
-  -v lsky-storage:/var/www/html/storage \
-  -v lsky-database:/var/www/html/database \
-  lsky-pro:latest
-```
-
-#### MySQL 版本
-
-::: warning 注意
-- 连接独立的数据库，需要提前安装并启动后创建数据库，或连接宿主机中的 mysql。
-- 容器内 MySQL，DB_HOST 对应 docker-compose 中的服务名
-- 宿主机 MySQL，DB_HOST 通常为 host.docker.internal（如果在 Linux 系统中无法使用 host.docker.internal，可通过设置 --add-host 或将宿主机 IP 显式写入 /etc/hosts）  
-:::
-
-```bash
-docker run -d \
-  --name lsky-pro \
-  -p 8080:80 \
-  -e APP_NAME=兰空图床 \
-  -e APP_URL=your-domain \
-  -e APP_LICENSE_KEY=your-license-key \
-  -e ADMIN_USERNAME=admin \
-  -e ADMIN_EMAIL=admin@qq.com \
-  -e ADMIN_PASSWORD=123456 \
-  -e APP_LICENSE_KEY=your-license-key \
-  -e DB_CONNECTION=mysql \
-  -e DB_HOST=mysql-server \
-  -e DB_PORT=3306 \
-  -e DB_DATABASE=lsky \
-  -e DB_USERNAME=lsky \
-  -e DB_PASSWORD=your-password \
-  -v lsky-storage:/var/www/html/storage \
-  lsky-pro:latest
-```
-
-示例：
-
-```bash
-docker run -d \
-  --name lsky-pro \
-  -p 8080:80 \
-  -e APP_NAME=兰空图床 \
-  -e APP_URL=https://lsky.pro \
-  -e APP_LICENSE_KEY=xxxx-xxxx-xxxx \
-  -e ADMIN_USERNAME=admin \
-  -e ADMIN_EMAIL=admin@qq.com \
-  -e ADMIN_PASSWORD=123456 \
-  -v lsky-storage:/var/www/html/storage \
-  -v lsky-database:/var/www/html/database \
-  lsky-pro:latest
-```
-
-启动后则安装成功，浏览器输入 http://localhost:8080 访问。后台通过 http://localhost:8080/admin 访问。
-
-容器内部会自动处理并添加队列、计划任务等配置、优化，无需手动操作。
-
-#### 完整配置示例
-
-```bash
-docker run -d \
-  --name lsky-pro \
-  -p 8080:80 \
-  -e APP_NAME="兰空图床" \
-  -e APP_URL=https://img.example.com \
-  -e APP_LICENSE_KEY=your-license-key \
-  -e DB_CONNECTION=mysql \
-  -e DB_HOST=mysql-server \
-  -e DB_DATABASE=lsky \
-  -e DB_USERNAME=lsky \
-  -e DB_PASSWORD=your-password \
-  -e ADMIN_USERNAME=admin \
-  -e ADMIN_EMAIL=admin@example.com \
-  -e ADMIN_PASSWORD=secure-password \
-  -e CACHE_STORE=redis \
-  -e REDIS_HOST=redis-server \
-  -v lsky-storage:/var/www/html/storage \
-  lsky-pro:latest
-```
-
-### 环境变量配置
-
-#### 应用基础配置
-
-| 变量名               | 是否必须 | 默认值                 | 说明      |
-|-------------------|------|---------------------|---------|
-| `APP_LICENSE_KEY` | 是    | -                   | 许可证密钥   |
-| `APP_URL`         | 是    | `http://localhost`  | 应用URL   |
-| `ADMIN_USERNAME`  | 是    | `admin`             | 管理员用户名  |
-| `ADMIN_EMAIL`     | 是    | `admin@example.com` | 管理员邮箱   |
-| `ADMIN_PASSWORD`  | 是    | `admin123`          | 管理员密码   |
-| `APP_NAME`        | 否    | `兰空图床`              | 应用名称    |
-| `DB_CONNECTION`   | 否    | `sqlite`            | 数据库类型   |
-| `DB_HOST`         | 否    | `127.0.0.1`         | 数据库主机   |
-| `DB_PORT`         | 否    | `3306`              | 数据库主机   |
-| `DB_DATABASE`     | 否    | -                   | 数据库名/路径 |
-| `DB_USERNAME`     | 否    | -                   | 数据库用户名  |
-| `DB_PASSWORD`     | 否    | -                   | 数据库密码   |
-
-::: warning 注意
-务必检查 `APP_LICENSE_KEY` 与 `APP_URL` 是否正确，`APP_URL` 必须是完整的协议+域名，例如：https://lsky.pro，`APP_URL` 所填写的域名必须在授权中心添加（使用子域名需要保证主域名已被添加），否则授权验证失败会导致程序安装失败。
-:::
-
-### 故障排除
-
-#### 查看日志
-
-```bash
-docker logs lsky-pro
-```
-
-#### 进入容器
-
-```bash
-docker exec -it lsky-pro bash
-```
-
-#### 重新安装
-
-```bash
-docker exec -it lsky-pro rm /var/www/html/installed.lock /var/www/html/.env
-docker restart lsky-pro
-```
-
-#### 清除缓存
-
-```bash
-docker exec -it lsky-pro php artisan optimize:clear
-```
-
-### Docker Compose 示例
-
-#### SQLite 版本
-
-```yaml
-services:
-  lsky-pro:
-    image: lsky-pro:latest
-    container_name: lsky-pro
-    ports:
-      - "8080:80"
-    environment:
-      - APP_NAME=兰空图床
-      - APP_URL=https://lsky.pro
-      - APP_LICENSE_KEY=xxxx-xxxx-xxxx-xxxx
-      - ADMIN_USERNAME=admin # 不设置则默认为 admin
-      - ADMIN_EMAIL=admin@qq.com # 不设置则默认为 admin@example.com
-      - ADMIN_PASSWORD=secure-password # 不设置则默认为 admin123
-    volumes:
-      - lsky-storage:/var/www/html/storage
-      - lsky-database:/var/www/html/database
-    restart: unless-stopped
-
-volumes:
-  lsky-storage:
-  lsky-database:
-```
+有时候你可能希望程序连接 docker 版本的数据库，并配合图床程序一起启动运行，你可以使用一下 docker-compose 配置示例进行编排启动。
 
 #### MySQL 版本
 
@@ -407,25 +220,42 @@ services:
     depends_on:
       - mysql
     ports:
-      - "8080:80"
-    environment:
-      - APP_NAME=兰空图床
-      - APP_URL=https://lsky.pro
-      - APP_LICENSE_KEY=xxxx-xxxx-xxxx-xxxx
-      - ADMIN_USERNAME=admin # 不设置则默认为 admin
-      - ADMIN_EMAIL=admin@qq.com # 不设置则默认为 admin@example.com
-      - ADMIN_PASSWORD=secure-password # 不设置则默认为 admin123
-      - DB_CONNECTION=mysql
-      - DB_HOST=mysql
-      - DB_DATABASE=lsky
-      - DB_USERNAME=lsky
-      - DB_PASSWORD=lsky-password
+      - "8000:8000"
     volumes:
-      - lsky-storage:/var/www/html/storage
+      - lsky-storage:/app/storage
     restart: unless-stopped
 
 volumes:
   mysql-data:
+  lsky-storage:
+```
+
+#### PostgreSQL 版本
+
+```yaml
+services:
+  postgres:
+    image: postgres:15
+    environment:
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=password
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    restart: unless-stopped
+
+  lsky-pro:
+    image: lsky-pro:latest
+    depends_on:
+      - postgres
+    ports:
+      - "8000:8000"
+    volumes:
+      - lsky-storage:/app/storage
+    restart: unless-stopped
+
+volumes:
+  postgres-data:
   lsky-storage:
 ```
 
@@ -447,17 +277,17 @@ docker-compose -p lsky-pro up -d
   # ...
 
   volumes:
-    - ./data:/var/www/html/storage
+    - ~/data:/app/storage
   restart: unless-stopped
 
   # ...
 ```
 
-从宿主机挂载此 data 文件夹，data 文件夹会替换 docker 容器内 `/var/www/html/storage` 文件夹，而 `storage` 文件夹还存在子目录和文件。
+从宿主机挂载此 `~/data` 文件夹，`~/data` 文件夹会替换 docker 容器内 `/app/storage` 文件夹，而 `/app/storage` 文件夹还存在子目录和文件。
 
 所以我们在挂载的时候一定要注意，若将文件夹替换后导致容器内部的文件夹缺失，可能会导致程序无法正常运行！
 
-解决方法是将程序中的 `storage` 目录中的子文件夹都复制到 `data` 目录中。复制后目录结构类似：
+解决方法是将程序中的 `storage` 目录中的子文件夹都复制到 `~/data` 目录中。复制后目录结构类似：
 
 ```
 data/
@@ -477,11 +307,17 @@ data/
 │
 ```
 
+或者您也可以使用以下命令快速在宿主机上创建此文件夹：
+
+```shell
+mkdir -p data/{app/cache,debugger,framework/{cache/data,sessions,views,testing},logs,pail}
+```
+
 ### 反向代理配置示例
 
 ```nginx configuration
 location ~ ^/ {
-    proxy_pass http://localhost:8080;
+    proxy_pass http://localhost:8000;
     proxy_http_version 1.1;
 
     proxy_set_header Host $host;
@@ -496,11 +332,3 @@ location ~ ^/ {
     add_header Cache-Control no-cache;
 }
 ```
-
-### 其他
-
-更多信息查阅程序中的 `docker/DOCKER.md` 文件阅读更详细的部署文档。
-
-::: danger 警告
-请不要将镜像上传至 docker hub 或打包后分发，否则可能会泄漏密钥等隐私数据。
-:::
