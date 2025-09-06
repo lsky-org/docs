@@ -1,4 +1,4 @@
-# 云处理
+# 云处理 {#process}
 
 云处理功能是一个通过 url 参数实时修改图片样式并输出的功能，支持任何已适配的储存。处理后的图片会自动缓存在本地服务器中，并支持两种输出响应方式(流输出、X-Sendfile)。
 
@@ -6,11 +6,11 @@
 
 X-Sendfile 是通过输出特定的 Header 告诉 Web 服务器文件所在位置，然后通过服务器内部重定向，将文件直接输出给客户端，推荐使用该方式(当前仅支持 Nginx，需配置伪静态使用)。
 
-## 如何使用云处理
+## 如何使用云处理 {#usage}
 
 要使用云处理，需要先创建云处理驱动器，设置一个文件缓存目录后，将任意一个储存关联该云处理驱动器即可，该储存中的图片都可以使用云处理。
 
-## 使用 X-Sendfile
+## 使用 X-Sendfile {#x-sendfile}
 
 使用 X-Sendfile 能够极大的提高图片访问速度，当前仅支持 Nginx，并且 nginx 需要安装 `ngx_http_sendfile_module` 模块。
 
@@ -25,15 +25,15 @@ location ~ .*\.(gif|jpg|jpeg|png|bmp|swf)$
 }
 ```
 
-## 预设版本和支持参数
+## 预设版本和支持参数 {#preset-and-parameters}
 
-### 预设版本
+### 预设版本 {#preset}
 
 通过预设一个或多个不同的版本，通过预设来处理不同的图片样式。例如我们预设一个名称为 `small` 的版本，其中自定义参数设置了 `w` 为 200，`h` 为 400，即图片的宽高设置为 200x400。然后我们就可以通过图片的 url 参数定义 `kayaks.jpg?p=small` 使这个图片应用这个预设。
 
 我们还可以通过逗号分隔，来按顺序应用多个预设，例如：`kayaks.jpg?p=small,rotate,zoom`。
 
-### 支持参数
+### 支持参数 {#parameters}
 
 支持参数是自定义程序更高的一种配置，提供更细粒度的样式控制，用户可以通过选择的支持参数自由的控制图片样式，例如我们在「支持参数」功能中允许了 `w` 参数，任何访客或用户都可以在 url 上追加 `w` 参数来控制图片宽度：`kayaks.jpg?w=1000`
 
@@ -41,7 +41,7 @@ location ~ .*\.(gif|jpg|jpeg|png|bmp|swf)$
 配置云处理时推荐仅使用「预设版本」，而「支持参数」中默认都是未选择的，如果选择了，容易受到大规模图像调整大小攻击，比如使用随机参数请求图片，会造成系统频繁的处理图片，占用系统资源。
 :::
 
-## 处理规则
+## 处理规则 {#rules}
 
 | 名称     | 功能          | 描述            |                  |
 |--------|-------------|---------------|------------------|
@@ -90,7 +90,7 @@ location ~ .*\.(gif|jpg|jpeg|png|bmp|swf)$
 <img src="kayaks.jpg?w=300&h=300&fit=crop">
 ~~~
 
-#### 裁剪位置
+#### 裁剪位置 {#crop-position}
 
 您还可以通过添加裁剪位置来设置图像的裁剪位置。接受 `crop-top-left`、`crop-top`、`crop-top-right`、`crop-left`、`crop-center`、`crop-right`、`crop-bottom-left`、`crop-bottom` 或 `crop-bottom-right`。默认值为 `crop-center`，与 `crop` 相同。
 
@@ -98,7 +98,7 @@ location ~ .*\.(gif|jpg|jpeg|png|bmp|swf)$
 <img src="kayaks.jpg?w=300&h=300&fit=crop-left">
 ```
 
-#### 裁剪焦点
+#### 裁剪焦点 {#crop-focus}
 
 除了裁剪位置，您还可以更具体地指定确切的裁剪位置，使用焦点。这是使用两个偏移百分比定义的：`crop-x%-y%`。
 
@@ -112,7 +112,7 @@ location ~ .*\.(gif|jpg|jpeg|png|bmp|swf)$
 <img src="kayaks.jpg?w=300&h=300&fit=crop-25-75-2">
 ```
 
-#### 裁剪 `crop`
+#### 裁剪 `crop` {#crop-crop}
 
 在任何其他调整大小操作之前，将图像裁剪到特定尺寸。所需格式：`width,height,x,y`。
 
@@ -140,7 +140,7 @@ location ~ .*\.(gif|jpg|jpeg|png|bmp|swf)$
 
 设置图像如何适配目标尺寸。
 
-#### 接受：
+#### 接受： {#fit-accepts}
 
 - `contain`：默认值。调整图像大小以适应宽度和高度边界，而不会裁剪、扭曲或改变纵横比。
 - `max`：调整图像大小以适应宽度和高度边界，而不会裁剪、扭曲或改变纵横比，并且如果图像小于输出尺寸，也不会增加图像大小。
@@ -233,15 +233,15 @@ location ~ .*\.(gif|jpg|jpeg|png|bmp|swf)$
 <img src="kayaks.jpg?w=500&border=10,5000,overlay">
 ```
 
-#### 宽度
+#### 宽度 {#border-width}
 
 设置边框宽度，单位为像素，也可使用[相对尺寸](#relative-dimensions)。
 
-#### 颜色
+#### 颜色 {#border-color}
 
 设置边框颜色。更多颜色格式信息请参阅[颜色](#colors)。
 
-#### 方式
+#### 方式 {#border-modes}
 
 设置边框的显示方式。可用选项包括：
 
@@ -283,14 +283,14 @@ location ~ .*\.(gif|jpg|jpeg|png|bmp|swf)$
 
 支持多种颜色格式。除了所有现代浏览器支持的 140 种颜色名称（如下所列）之外，还接受十六进制 RGB 和 RBG alpha 格式。
 
-### 十六进制
+### 十六进制 {#color-hexadecimal}
 
 - 3 digit RGB: `CCC`
 - 4 digit ARGB (alpha): `5CCC`
 - 6 digit RGB: `CCCCCC`
 - 8 digit ARGB (alpha): `55CCCCCC`
 
-### 颜色名称
+### 颜色名称 {#color-names}
 
 - aliceblue
 - antiquewhite

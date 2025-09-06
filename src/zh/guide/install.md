@@ -1,16 +1,16 @@
-# 安装 Lsky Pro+
+# 安装 Lsky Pro+ {#install}
 
-兰空图床提供了两种安装方式，普通安装和 docker 安装，推荐使用 [普通安装](#普通安装)。
+兰空图床提供了两种安装方式，普通安装和 docker 安装，推荐使用 [普通安装](#normal-installation)。
 
-## 普通安装
+## 普通安装 {#normal-installation}
 
 在开始安装之前，请确保您已经阅读过前面的[环境要求](./requirement)章节，将必要的环境配置好。
 
 注意，本次安装教程是在**没有安装**服务器控制面板的情况下进行的，仅供参考，如果您使用控制面板进行操作，实际情况可能有所不同。
 
-### 第一步，创建站点
+### 第一步，创建站点 {#create-website}
 
-首先我们必须创建一个新的符合兰空图床运行环境的站点，用来搭建兰空图床，如果您需要使用 PostgreSQL，您可能还需要创建一个 PostgreSQL 数据库。在本次教程中，为了减少不必要的配置步骤，我们使用推荐的 sqlite3 数据库。
+首先我们必须创建一个新的符合兰空图床运行环境的站点，用来搭建兰空图床，如果您需要使用 PostgreSQL，您可能还需要创建一个 PostgreSQL 数据库。在本次教程中，为了减少不必要的配置步骤，我们使用 sqlite3 数据库。
 
 ::: tip 我应该使用哪个数据库 ？
 一般情况下，如果您的站点使用频率较高或上传时有高并发的需求（比如在上传图片的时候会一次性上传大量的图片），我们更推荐使用 PostgreSQL 或 MySQL。
@@ -53,7 +53,7 @@ cd /www/wwwroot/app.com
 unzip lsky-pro.zip
 ```
 
-### 第二步，配置伪静态
+### 第二步，配置伪静态 {#configure-rewrite}
 
 我们需要将程序的运行目录配置为 `public`，即站点的 Nginx 配置文件的站点根目录应该设置为 `/www/wwwroot/app.com/public`
 ，配置示例：
@@ -93,13 +93,13 @@ location ~ .*\.(jpg|jpeg|webp|avif|bmp|gif|png|tif|tiff|jp2|j2k|jpf|jpm|jpg2|j2c
 
 将内容复制后，添加到站点的 nginx 伪静态配置文件中。
 
-### 第三步，开始安装
+### 第三步，开始安装 {#start-installation}
 
 兰空图床从 V 2.3.0 版本后开始提供可视化安装页面，只要完成以上配置后，站点绑定域名访问，程序会重定向至安装页面。
 
 然后根据安装指引进行安装即可。
 
-### 第四步，配置消息队列
+### 第四步，配置消息队列 {#configure-queue}
 
 兰空图床在生成缩略图、图片处理以及发送邮件等等功能中，这些耗时任务都需要使用消息队列来执行，我们可以使用
 `php artisan queue:work` 命令来运行消息队列。（程序安装成功后也会显示运行消息队列的命令，请以程序显示的为准。）
@@ -153,7 +153,7 @@ grep -E "^User|^Group" /etc/httpd/conf/httpd.conf
 sudo supervisorctl reread && sudo supervisorctl update && sudo supervisorctl start "lsky-pro-worker:*"
 ```
 
-### 第五步，配置计划任务
+### 第五步，配置计划任务 {#configure-schedule}
 
 兰空图床部分功能需要定时去运行处理，我们需要通过服务器的计划任务一分钟执行一次 `schedule:run`
 命令来维持任务调度。有关计划任务的更多信息请[点击这里](https://www.runoob.com/w3cnote/linux-crontab-tasks.html)了解更多。
@@ -171,16 +171,16 @@ sudo supervisorctl reread && sudo supervisorctl update && sudo supervisorctl sta
 
 至此，程序安装完成。
 
-## Docker 安装
+## Docker 安装 {#docker-installation}
 
-docker 版本与普通安装包安装的版本会有一些区别，在 docker 镜像中，我们集成了一个完整的高性能 Web 服务器（[Frankenphp](https://frankenphp.dev)）来提供服务，并且默认使用更强的 `libvips` 库来处理图片（普通安装默认使用 `imagick`）。
+docker 版本与普通安装包安装的版本会有一些区别，在 docker 镜像中，我们集成了一个完整的高性能 Web 服务器（[FrankenPHP](https://frankenphp.dev)）来提供服务，并且默认使用更强的 `libvips` 库来处理图片（普通安装默认使用 `imagick`）。
 不仅如此，docker 版本还针对 PHP 进行了一些优化，也内置了消息队列和计划任务，无需手动配置，开箱即用。
 
-### Docker 容器启动
+### Docker 容器启动 {#docker-container}
 
 ```shell
 docker run -d --name lsky-pro -p 8000:8000 \
-    -v ~/data:/app/storage \
+    -v ~/data:/app/storage/app \
     0xxb/lsky-pro:latest
 ```
 
@@ -191,16 +191,16 @@ docker run -d --name lsky-pro -p 8000:8000 \
   - 后面的 8000 是容器内部端口。
   - 容器内 8000 端口是提供 web 服务的默认端口，此命令将宿主机 8000 端口转发到容器内容 8000 端口提供 web 服务。
 
-- `-v ~/data:/app/storage` 参数解释：
-  - ~/data 是宿主机目录。
-  - /app/storage 是容器内目录。
-  - 容器在 /app/storage 中产生或修改的文件会同步保存在宿主机的 ~/data。持久化数据（防止容器删除时数据丢失），同时方便宿主机直接管理文件。
+- `-v ~/data:/app/storage/app` 参数解释：
+  - `~/data` 是宿主机目录。
+  - `/app/storage/app` 是容器内目录。
+  - 容器在 `/app/storage/app` 中产生或修改的文件会同步保存在宿主机的 `~/data`。持久化数据（防止容器删除时数据丢失），同时方便宿主机直接管理文件。
 
-### Docker Compose 编排启动
+### Docker Compose 编排启动 {#docker-compose}
 
 有时候你可能希望程序连接 docker 版本的数据库，并配合图床程序一起启动运行，你可以使用一下 docker-compose 配置示例进行编排启动。
 
-#### MySQL 版本
+#### MySQL 版本 {#docker-compose-mysql}
 
 ```yaml
 services:
@@ -222,7 +222,7 @@ services:
     ports:
       - "8000:8000"
     volumes:
-      - lsky-storage:/app/storage
+      - lsky-storage:/app/storage/app
     restart: unless-stopped
 
 volumes:
@@ -230,7 +230,7 @@ volumes:
   lsky-storage:
 ```
 
-#### PostgreSQL 版本
+#### PostgreSQL 版本 {#docker-compose-pgsql}
 
 ```yaml
 services:
@@ -251,7 +251,7 @@ services:
     ports:
       - "8000:8000"
     volumes:
-      - lsky-storage:/app/storage
+      - lsky-storage:/app/storage/app
     restart: unless-stopped
 
 volumes:
@@ -259,7 +259,7 @@ volumes:
   lsky-storage:
 ```
 
-#### 编排启动
+#### 编排启动 {#docker-compose-up}
 
 ```bash
 docker-compose -p lsky-pro up -d
@@ -269,51 +269,7 @@ docker-compose -p lsky-pro up -d
 如若修改了 `docker-compose.yml` 文件，请不要重复运行 `docker-compose up -d` 命令。否则重建镜像，会让程序重新安装，造成数据被覆盖。
 :::
 
-### 挂载宿主机目录？
-
-有时候您可能希望将 `storage` 或其他目录挂载到宿主机中的文件夹，例如 `data` 文件夹：
-
-```bash
-  # ...
-
-  volumes:
-    - ~/data:/app/storage
-  restart: unless-stopped
-
-  # ...
-```
-
-从宿主机挂载此 `~/data` 文件夹，`~/data` 文件夹会替换 docker 容器内 `/app/storage` 文件夹，而 `/app/storage` 文件夹还存在子目录和文件。
-
-所以我们在挂载的时候一定要注意，若将文件夹替换后导致容器内部的文件夹缺失，可能会导致程序无法正常运行！
-
-解决方法是将程序中的 `storage` 目录中的子文件夹都复制到 `~/data` 目录中。复制后目录结构类似：
-
-```
-data/
-├── app/
-│   ├── cache/
-│   └── ...
-├── debugger/
-│   └── ...
-├── framework/
-│   ├── cache/
-│   │   └── data/
-│   ├── sessions/
-│   ├── views/
-│   └── testing/
-├── logs/
-├── pail/
-│
-```
-
-或者您也可以使用以下命令快速在宿主机上创建此文件夹：
-
-```shell
-mkdir -p data/{app/cache,debugger,framework/{cache/data,sessions,views,testing},logs,pail}
-```
-
-### 反向代理配置示例
+### 反向代理配置示例 {#proxy-configuration-example}
 
 ```nginx configuration
 location ~ ^/ {
