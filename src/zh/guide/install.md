@@ -178,11 +178,7 @@ docker 版本与普通安装包安装的版本会有一些区别，在 docker �
 
 ### Docker 容器启动 {#docker-container}
 
-```shell
-docker run -d --name lsky-pro -p 8000:8000 \
-    -v ~/data:/app/storage/app \
-    0xxb/lsky-pro:latest
-```
+todo 正在加紧完善中...
 
 在上述命令中，由 docker 启动一个单容器的服务，并将宿主机的 8000 端口转发到容器内部的 8000 端口，启动成功后在宿主机浏览器访问 `http://宿主机IP:8000` 时，即可访问图形化安装页面，按照页面指引进行操作，配置程序基本信息和数据库。
 

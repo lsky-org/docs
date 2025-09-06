@@ -1,4 +1,4 @@
-# 主题
+# 主题 {#theme}
 
 兰空图床 2.x 是一个全新的前后端分离架构，后端使用 [Laravel](https://laravel.com)，前端使用 [Vue3](https://cn.vuejs.org)、[Pinia](https://pinia.vuejs.org/zh)、[Native UI](https://www.naiveui.com)。
 
@@ -14,32 +14,42 @@
 - [Vue Router](https://router.vuejs.org)
 - [Tailwind CSS](https://tailwindcss.com)
 
-## 主题是如何运作的？
+若想要开发新的主题，您需要熟悉以下技能和框架
+- [Laravel](https://laravel.com)
+- [Laravel Blade](https://laravel.com/docs/12.x/blade)
+- [Filamentphp](https://filamentphp.com)
 
-在我们的程序根目录，存在一个 `web` 文件夹，此文件夹是完整的前端工程文件，在执行构建后会触发打包脚本。
+## 主题是如何运作的？ {#theme-works}
 
-脚本的主要目的是（您也可以不使用脚本，全程手动按以下步骤操作）：
+系统存在两个不同的主题存放位置：
 
-1. 将入口文件 `index.html` 移动至根目录 `resources/views/themes/default` 文件夹中，并重命名为 `index.blade.php`。
-2. 将打包后的所有静态文件，移动至根目录 `public/themes/default` 文件夹。（注意，前端工程请求静态资源的路径需要修改，例如 vite 中可以配置 `build.assetsDir` 来修改静态资源目录）
-3. 然后在根目录 `resources/views/themes/default` 创建主题配置文件 `config.json`，文件内容类似：
-    ```json
-    {
-      "name": "默认主题",
-      "version": "2.0",
-      "author": "Wisp X",
-      "url": "https://github.com/0xxb"
-    }
-    ```
-完成上述操作后，主题会以模板引擎渲染的方式实现混合部署，首次加载通过 laravel 的 [Blade 模板](https://laravel.com/docs/11.x/blade) 渲染页面，然后后续请求都由前端工程以 [SPA 单页应用](https://developer.mozilla.org/zh-CN/docs/Glossary/SPA) 的方式显示页面交互。
+- `app/Themes/` 系统内置主题
+- `themes/` 第三方主题
 
-其中 `default` 文件夹表示的是默认主题的唯一标识，如果您想开发自己的主题，您也需要为您的主题设置一个唯一标识。
+我们添加新开发的主题，需要将主题存放到程序根目录中的 `themes/` 文件夹。
 
-要切换主题，可以前往后台管理->系统设置->网站设置中切换。
+主题系统可以使用标准的 PHP 8.2+ 的语法，使用 Laravel 框架进行开发。一个完整的插件的基本目录结构如下：
+
+```
+my-test/              # 主题文件夹名称，需要与主题 id 保持一致
+ ├─ assets/           # 静态资产目录
+ ├─ controllers/      # PHP 控制器目录
+ ├─ views/            # 视图层，需要以 *.blade.php 结尾
+ ├─ README.md         # 主题说明文档
+ └─ MyTestTheme.php   # 主题入口类
+```
+
+系统会通过扫描主题文件夹，并实例化主题入口类获取主题基本配置与表单配置，`MyTestTheme.php` 示例：
+
+TODO
+
+## 创建新的主题 {#create-theme}
+
+TODO
 
 ## 修改默认主题
 
-要修改主题，您需要在您的电脑上安装 [Nodejs](https://nodejs.org)。
+要修改主题，您需要在您的设备上安装 [Nodejs](https://nodejs.org)。
 
 使用终端进入根目录中的 `web` 文件夹，运行调试命令启动开发服务器：
 
@@ -75,11 +85,6 @@ npm run build
 
 :::
 
-构建后不要忘记将以下目录重新上传到您的服务器站点中：
-
-- `public/themes`
-- `resources/views/themes`
-
 ## 自定义主题
 
-同样的，无论您是使用 React 或 Vue，只需理解 [主题是如何运作的](#主题是如何运作的)，按步骤将打包后的静态文件、文件夹复制到指定位置即可。
+同样的，无论您是使用 React 或 Vue，只需理解 [主题是如何运作的](#theme-works)，按步骤将打包后的静态文件、文件夹复制到指定位置即可。
