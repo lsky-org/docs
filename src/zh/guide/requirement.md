@@ -5,6 +5,7 @@
 
 ::: warning 注意
 兰空图床不支持虚拟主机搭建，您必须拥有 Web 服务器的最高控制权，而虚拟主机没有这样的条件。
+兰空图床自 v2.3.0 版本后(含)，必须在安装了 `SourceGuardian` PHP 拓展（名称可能为 sg16）的 PHP 环境中运行。
 :::
 
 ### PHP 要求 {#php-requires}
@@ -12,6 +13,7 @@
 您应该确保您的 Web 服务器具有以下最低 PHP 版本和扩展：
 
 - PHP 版本 >= 8.2
+- SourceGuardian PHP 拓展（在宝塔面板中名称为 sg16）
 - Ctype PHP 扩展
 - cURL PHP 扩展
 - DOM PHP 扩展
