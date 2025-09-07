@@ -1,14 +1,14 @@
-# 常用命令
+# 常用命令 {#command}
 
 此页面列出一些常用的辅助命令，您也可以通过终端进入程序根目录运行 `php artisan` 来查看所有命令。
 
-## 重置用户密码（包括管理员）
+## 重置用户密码（包括管理员） {#reset-user-password}
 
 ```bash
 php artisan app:reset-user-password
 ```
 
-## 为所有系统中所有图片生成缩略图
+## 为所有系统中所有图片生成缩略图 {#gen-thumbnails}
 
 ```bash
 php artisan app:thumbnail
@@ -18,19 +18,19 @@ php artisan app:thumbnail
 图片所属的角色组未开启缩略图功能的图片会被跳过。
 :::
 
-## 缓存后台管理图标资源，优化后台访问速度
+## 缓存后台管理图标资源，优化后台访问速度 {#cache-admin-icon}
 
 ```bash
 php artisan filament:optimize
 ```
 
-## 查看系统所有执行失败的队列消息
+## 查看系统所有执行失败的队列消息 {#query-queue-failed}
 
 ```bash
 php artisan queue:failed
 ```
 
-## 清除系统所有执行失败的队列消息
+## 清除系统所有执行失败的队列消息 {#clean-queue}
 
 ```bash
 php artisan queue:flush
@@ -41,19 +41,19 @@ php artisan queue:flush
 若物理图片删除失败，**不会**回滚恢复图片记录，这意味着若队列被清除，则未被成功删除的物理图片，需要人工手动去对应储存中删除。
 :::
 
-## 重试所有执行失败的队列消息
+## 重试所有执行失败的队列消息 {#retry-queue}
 
 ```bash
 php artisan queue:retry 队列ID
 ```
 
-## 生成系统内置储存的符号链接
+## 生成系统内置储存的符号链接 {#gen-symlink}
 
 ```bash
 php artisan storage:link
 ```
 
-## 取消系统内置储存的符号链接
+## 取消系统内置储存的符号链接 {#remove-symlink}
 
 ```bash
 php artisan storage:unlink
