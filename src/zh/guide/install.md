@@ -176,12 +176,32 @@ sudo supervisorctl reread && sudo supervisorctl update && sudo supervisorctl sta
 docker 版本与普通安装包安装的版本会有一些区别，在 docker 镜像中，我们集成了一个完整的高性能 Web 服务器（[FrankenPHP](https://frankenphp.dev)）来提供服务，并且默认使用更强的 `libvips` 库来处理图片（普通安装默认使用 `imagick`）。
 不仅如此，docker 版本还针对 PHP 进行了一些优化，也内置了消息队列和计划任务，无需手动配置，开箱即用。
 
+现在我们假设需要将相关配置文件、静态文件存放在宿主机的 `~/data` 目录。
+
+### 创建环境变量文件 .env
+
+```shell
+mkdir -p ~/data && touch ~/data/.env
+```
+
+::: warning
+首次安装生成的 `.env` 请保持为空文件，启动成功后初次访问安装页面，系统检测到是空的文件才会写入正确的内容。这意味着你可以完全可以通过 `~/data/.env` 文件自定义环境变量。
+:::
+
 ### Docker 容器启动 {#docker-container}
 
-todo 正在加紧完善中...
+::: tip
+你可以在 [https://hub.docker.com/r/0xxb/lsky-pro](https://hub.docker.com/r/0xxb/lsky-pro) 仓库页面找到所有可用的版本标签。
+:::
 
-在上述命令中，由 docker 启动一个单容器的服务，并将宿主机的 8000 端口转发到容器内部的 8000 端口，启动成功后在宿主机浏览器访问 `http://宿主机IP:8000` 时，即可访问图形化安装页面，按照页面指引进行操作，配置程序基本信息和数据库。
+```shell
+docker run -d --name lsky-pro -p 8000:8000 \
+    -v ~/data:/app/storage/app \
+    -v ~/data/.env:/app/.env \
+    0xxb/lsky-pro:latest
+```
 
+::: details 相关参数解释
 - `-p 8000:8000` 参数解释：
   - 前面的 8000 是宿主机端口。
   - 后面的 8000 是容器内部端口。
@@ -189,8 +209,16 @@ todo 正在加紧完善中...
 
 - `-v ~/data:/app/storage/app` 参数解释：
   - `~/data` 是宿主机目录。
-  - `/app/storage/app` 是容器内目录。
+  - `/app/storage/app` 是容器内目录。此目录保存了程序运行过程中生成的缩略图文件、上传的文件以及缓存文件。
   - 容器在 `/app/storage/app` 中产生或修改的文件会同步保存在宿主机的 `~/data`。持久化数据（防止容器删除时数据丢失），同时方便宿主机直接管理文件。
+
+- `-v ~/data:/.env:/app/.env` 参数解释：
+  - `~/data/.env` 是刚刚创建的 `.env` 文件。
+  - `/app/.env` 是容器内程序的 `.env` 文件位置。
+  - `.env` 环境变量文件储存着系统的各项配置，将此文件映射到宿主机，防止在升级镜像时导致配置丢失，同时方便修改相关配置（例如数据库连接方式）。
+:::
+
+在上述命令中，由 docker 启动一个单容器的服务，并将宿主机的 8000 端口转发到容器内部的 8000 端口，启动成功后在宿主机浏览器访问 `http://宿主机IP:8000` 时，即可访问图形化安装页面，按照页面指引进行操作，配置程序基本信息和数据库。
 
 ### Docker Compose 编排启动 {#docker-compose}
 
@@ -219,11 +247,13 @@ services:
       - "8000:8000"
     volumes:
       - lsky-storage:/app/storage/app
+      - lsky-env:/app/.env # 单独一个卷挂载 .env 文件
     restart: unless-stopped
 
 volumes:
   mysql-data:
   lsky-storage:
+  lsky-env:
 ```
 
 #### PostgreSQL 版本 {#docker-compose-pgsql}
@@ -248,11 +278,13 @@ services:
       - "8000:8000"
     volumes:
       - lsky-storage:/app/storage/app
+      - lsky-env:/app/.env # 单独一个卷挂载 .env 文件
     restart: unless-stopped
 
 volumes:
   postgres-data:
   lsky-storage:
+  lsky-env:
 ```
 
 #### 编排启动 {#docker-compose-up}
@@ -260,10 +292,6 @@ volumes:
 ```bash
 docker-compose -p lsky-pro up -d
 ```
-
-::: danger 警告
-如若修改了 `docker-compose.yml` 文件，请不要重复运行 `docker-compose up -d` 命令。否则重建镜像，会让程序重新安装，造成数据被覆盖。
-:::
 
 ### 反向代理配置示例 {#proxy-configuration-example}
 
