@@ -14,10 +14,10 @@ hero:
       text: 快速开始 ->
       link: /guide/getting-started
     - theme: alt
-      text: 💻 查看演示
+      text: 💻 演示
       link: https://v2.lskypro.com
     - theme: alt
-      text: 🎁 购买源码
+      text: 🎁 购买
       link: https://huohuastudio.com/products/lsky-pro
 
 features:
