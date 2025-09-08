@@ -174,7 +174,7 @@ sudo supervisorctl reread && sudo supervisorctl update && sudo supervisorctl sta
 ## Docker 安装 {#docker-installation}
 
 ::: tip
-兰空图床现已支持在[宝塔](https://www.bt.cn) Docker 环境中一键安装。打开宝塔 Docker 应用商店，搜索 `lsky-pro`。
+兰空图床现已支持在[宝塔](https://www.bt.cn) Docker 环境中一键安装。打开宝塔 Docker 应用商店，搜索 `lsky pro`。
 :::
 
 docker 版本与普通安装包安装的版本会有一些区别，在 docker 镜像中，我们集成了一个完整的高性能 Web 服务器（[FrankenPHP](https://frankenphp.dev)）来提供服务，并且默认使用更强的 `libvips` 库来处理图片（普通安装默认使用 `imagick`）。
