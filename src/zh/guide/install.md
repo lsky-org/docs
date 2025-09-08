@@ -290,6 +290,53 @@ volumes:
   lsky-storage:
   lsky-env:
 ```
+### 1panel安装
+
+#### Dokcer Compose 编排
+
+##### 1panel 外部Mysql 挂载卷版本 {#docker-compose-mysql}
+
+```yaml
+services:
+  lsky-pro:
+    image: 0xxb/lsky-pro:latest
+    ports:
+      - "8000:8000"
+    volumes:
+      - lsky-storage:/app/storage/app
+      - lsky-env:/app/.env # 单独一个卷挂载 .env 文件
+      - lsky-themes:/app/themes  
+    restart: unless-stopped
+
+networks:
+  default:
+    external: true
+    name: 1panel-network
+volumes:
+  lsky-storage:
+  lsky-env:
+  lsky-themes:
+```
+
+##### 1panel 外部Mysql 本机目录版本 {#docker-compose-mysql}
+
+```yaml
+services:
+  lsky-pro:
+    image: 0xxb/lsky-pro:latest
+    ports:
+      - "8000:8000"
+    volumes:
+      - /www/lsky:/app/storage/app
+      - /www/lsky/.env:/app/.env   
+      - /www/lsky/themes:/app/themes   
+    restart: unless-stopped
+
+networks:
+  default:
+    external: true
+    name: 1panel-network
+```
 
 #### 编排启动 {#docker-compose-up}
 
