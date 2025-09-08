@@ -18,7 +18,7 @@ hero:
       link: https://v2.lskypro.com
     - theme: alt
       text: 🎁 购买源码
-      link: https://www.lsky.pro/buy
+      link: https://huohuastudio.com/products/lsky-pro
 
 features:
   - title: 稳定
