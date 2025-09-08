@@ -244,7 +244,7 @@ services:
     restart: unless-stopped
 
   lsky-pro:
-    image: lsky-pro:latest
+    image: 0xxb/lsky-pro:latest
     depends_on:
       - mysql
     ports:
@@ -275,7 +275,7 @@ services:
     restart: unless-stopped
 
   lsky-pro:
-    image: lsky-pro:latest
+    image: 0xxb/lsky-pro:latest
     depends_on:
       - postgres
     ports:
@@ -290,11 +290,8 @@ volumes:
   lsky-storage:
   lsky-env:
 ```
-### 1panel安装
 
-#### Dokcer Compose 编排
-
-##### 1panel 外部Mysql 挂载卷版本 {#docker-compose-mysql}
+#### 1Panel 外部 MySQL 挂载卷版本 {#docker-compose-mysql-with-volume}
 
 ```yaml
 services:
@@ -318,7 +315,7 @@ volumes:
   lsky-themes:
 ```
 
-##### 1panel 外部Mysql 本机目录版本 {#docker-compose-mysql}
+#### 1Panel 外部 MySQL 本机目录版本 {#docker-compose-mysql-with-local}
 
 ```yaml
 services:
