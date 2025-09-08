@@ -7,7 +7,7 @@
 ### 购买须知
 
 #### 1. 授权模式及退款政策
-本产品为一次性付费、永久使用授权的数字商品。付款后系统将提供完整源码及授权信息，因其为可复制数字内容，**一经交付概不退款**。
+本产品为一次性付费、永久使用授权的数字商品。付款后系统将提供后端已加密源码、前端完整源码及授权信息，因其为可复制数字内容，**一经交付概不退款**。
 
 #### 2. 授权限制
 本授权仅限购买者本人或其所属公司使用，**不得转售、转让、出租、再授权**，亦不得以任何方式**将源码或程序文件提供给第三方**。
@@ -65,7 +65,7 @@ Welcome to use Lsky Pro+ (兰空图床) (hereinafter referred to as "the Softwar
 ### Purchase Notice
 
 #### 1. License Model and Refund Policy
-This product is a one-time paid, perpetual use license digital good. Upon payment, the complete source code and license information will be provided. Due to the reproducible nature of digital content, **no refunds will be issued once the product is delivered**.
+This product is a one-time paid and authorized digital product for permanent use. After payment, the system will provide the backend encrypted source code, the front-end complete source code and authorized information. Because it is replicable digital content, **no refund will be made once delivered.**
 
 #### 2. License Restrictions
 The license is granted solely to the purchaser or their affiliated company. **Resale, transfer, rental, or sublicensing is strictly prohibited**, and the source code or program files **must not be shared with any third party** in any form.
