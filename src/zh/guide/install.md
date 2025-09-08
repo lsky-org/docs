@@ -1,6 +1,198 @@
 # 安装 Lsky Pro+ {#install}
 
-兰空图床提供了两种安装方式，普通安装和 docker 安装，推荐使用 [普通安装](#normal-installation)。
+兰空图床提供了两种安装方式，普通安装和 docker 安装，如果您更熟悉 docker，那么我们更推荐您使用 [Docker 安装](#docker-installation)，docker 安装后**不需要**配置消息队列和计划任务。
+
+不熟悉 docker 的情况下建议使用传统的 [普通安装](#normal-installation)。
+
+## Docker 安装 <Badge type="tip" text="推荐" /> {#docker-installation}
+
+::: tip
+兰空图床现已支持在[宝塔](https://www.bt.cn) Docker 环境中一键安装。打开宝塔 Docker 应用商店，搜索 `lsky pro`。名称为 Lsky Pro V2 的是付费版本。
+:::
+
+docker 版本与普通安装包安装的版本会有一些区别，在 docker 镜像中，我们集成了一个完整的高性能 Web 服务器（[FrankenPHP](https://frankenphp.dev)）来提供服务，并且默认使用更强的 `libvips` 库来处理图片（普通安装默认使用 `imagick`）。
+不仅如此，docker 版本还针对 PHP 进行了一些优化，也内置了消息队列和计划任务，无需手动配置，开箱即用。
+
+现在我们假设需要将相关配置文件、静态文件存放在宿主机的 `~/data` 目录。
+
+### 创建环境变量文件 .env
+
+```shell
+mkdir -p ~/data && touch ~/data/.env
+```
+
+::: warning
+首次安装生成的 `.env` 请保持为空文件，启动成功后初次访问安装页面，系统检测到是空的文件才会写入正确的内容。这意味着你可以完全可以通过 `~/data/.env` 文件自定义环境变量。
+:::
+
+### Docker 容器启动 {#docker-container}
+
+::: tip
+你可以在 [https://hub.docker.com/r/0xxb/lsky-pro](https://hub.docker.com/r/0xxb/lsky-pro) 仓库页面找到所有可用的版本标签。
+:::
+
+```shell
+docker run -d --name lsky-pro -p 8000:8000 \
+    -v ~/data:/app/storage/app \
+    -v ~/data/.env:/app/.env \
+    0xxb/lsky-pro:latest
+```
+
+::: details 相关参数解释
+- `-p 8000:8000` 参数解释：
+  - 前面的 8000 是宿主机端口。
+  - 后面的 8000 是容器内部端口。
+  - 容器内 8000 端口是提供 web 服务的默认端口，此命令将宿主机 8000 端口转发到容器内容 8000 端口提供 web 服务。
+
+- `-v ~/data:/app/storage/app` 参数解释：
+  - `~/data` 是宿主机目录。
+  - `/app/storage/app` 是容器内目录。此目录保存了程序运行过程中生成的缩略图文件、上传的文件以及缓存文件。
+  - 容器在 `/app/storage/app` 中产生或修改的文件会同步保存在宿主机的 `~/data`。持久化数据（防止容器删除时数据丢失），同时方便宿主机直接管理文件。
+
+- `-v ~/data:/.env:/app/.env` 参数解释：
+  - `~/data/.env` 是刚刚创建的 `.env` 文件。
+  - `/app/.env` 是容器内程序的 `.env` 文件位置。
+  - `.env` 环境变量文件储存着系统的各项配置，将此文件映射到宿主机，防止在升级镜像时导致配置丢失，同时方便修改相关配置（例如数据库连接方式）。
+    :::
+
+在上述命令中，由 docker 启动一个单容器的服务，并将宿主机的 8000 端口转发到容器内部的 8000 端口，启动成功后在宿主机浏览器访问 `http://宿主机IP:8000` 时，即可访问图形化安装页面，按照页面指引进行操作，配置程序基本信息和数据库。
+
+### Docker Compose 编排启动 {#docker-compose}
+
+有时候你可能希望程序连接 docker 版本的数据库，并配合图床程序一起启动运行，你可以使用一下 docker-compose 配置示例进行编排启动。
+
+#### MySQL 版本 {#docker-compose-mysql}
+
+```yaml
+services:
+  mysql:
+    image: mysql:8.0
+    environment:
+      - MYSQL_ROOT_PASSWORD=root-password
+      - MYSQL_DATABASE=lsky
+      - MYSQL_USER=lsky
+      - MYSQL_PASSWORD=lsky-password
+    volumes:
+      - mysql-data:/var/lib/mysql
+    restart: unless-stopped
+
+  lsky-pro:
+    image: 0xxb/lsky-pro:latest
+    depends_on:
+      - mysql
+    ports:
+      - "8000:8000"
+    volumes:
+      - lsky-storage:/app/storage/app
+      - lsky-env:/app/.env # 单独一个卷挂载 .env 文件
+    restart: unless-stopped
+
+volumes:
+  mysql-data:
+  lsky-storage:
+  lsky-env:
+```
+
+#### PostgreSQL 版本 {#docker-compose-pgsql}
+
+```yaml
+services:
+  postgres:
+    image: postgres:15
+    environment:
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=password
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    restart: unless-stopped
+
+  lsky-pro:
+    image: 0xxb/lsky-pro:latest
+    depends_on:
+      - postgres
+    ports:
+      - "8000:8000"
+    volumes:
+      - lsky-storage:/app/storage/app
+      - lsky-env:/app/.env # 单独一个卷挂载 .env 文件
+    restart: unless-stopped
+
+volumes:
+  postgres-data:
+  lsky-storage:
+  lsky-env:
+```
+
+#### 1Panel 外部 MySQL 挂载卷版本 {#docker-compose-mysql-with-volume}
+
+```yaml
+services:
+  lsky-pro:
+    image: 0xxb/lsky-pro:latest
+    ports:
+      - "8000:8000"
+    volumes:
+      - lsky-storage:/app/storage/app
+      - lsky-env:/app/.env # 单独一个卷挂载 .env 文件
+      - lsky-themes:/app/themes  
+    restart: unless-stopped
+
+networks:
+  default:
+    external: true
+    name: 1panel-network
+volumes:
+  lsky-storage:
+  lsky-env:
+  lsky-themes:
+```
+
+#### 1Panel 外部 MySQL 本机目录版本 {#docker-compose-mysql-with-local}
+
+```yaml
+services:
+  lsky-pro:
+    image: 0xxb/lsky-pro:latest
+    ports:
+      - "8000:8000"
+    volumes:
+      - /www/lsky:/app/storage/app
+      - /www/lsky/.env:/app/.env   
+      - /www/lsky/themes:/app/themes   
+    restart: unless-stopped
+
+networks:
+  default:
+    external: true
+    name: 1panel-network
+```
+
+#### 编排启动 {#docker-compose-up}
+
+```bash
+docker-compose -p lsky-pro up -d
+```
+
+### 反向代理配置示例 {#proxy-configuration-example}
+
+```nginx configuration
+location ~ ^/ {
+    proxy_pass http://localhost:8000;
+    proxy_http_version 1.1;
+
+    proxy_set_header Host $host;
+    proxy_set_header Scheme $scheme;
+    proxy_set_header Upgrade $http_upgrade;
+    proxy_set_header Connection $http_connection;
+    proxy_set_header X-Real-IP $remote_addr;
+    proxy_set_header X-Forwarded-Proto $scheme;
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+
+    add_header X-Cache $upstream_cache_status;
+    add_header Cache-Control no-cache;
+}
+```
 
 ## 普通安装 {#normal-installation}
 
@@ -171,192 +363,3 @@ sudo supervisorctl reread && sudo supervisorctl update && sudo supervisorctl sta
 
 至此，程序安装完成。
 
-## Docker 安装 {#docker-installation}
-
-::: tip
-兰空图床现已支持在[宝塔](https://www.bt.cn) Docker 环境中一键安装。打开宝塔 Docker 应用商店，搜索 `lsky pro`。
-:::
-
-docker 版本与普通安装包安装的版本会有一些区别，在 docker 镜像中，我们集成了一个完整的高性能 Web 服务器（[FrankenPHP](https://frankenphp.dev)）来提供服务，并且默认使用更强的 `libvips` 库来处理图片（普通安装默认使用 `imagick`）。
-不仅如此，docker 版本还针对 PHP 进行了一些优化，也内置了消息队列和计划任务，无需手动配置，开箱即用。
-
-现在我们假设需要将相关配置文件、静态文件存放在宿主机的 `~/data` 目录。
-
-### 创建环境变量文件 .env
-
-```shell
-mkdir -p ~/data && touch ~/data/.env
-```
-
-::: warning
-首次安装生成的 `.env` 请保持为空文件，启动成功后初次访问安装页面，系统检测到是空的文件才会写入正确的内容。这意味着你可以完全可以通过 `~/data/.env` 文件自定义环境变量。
-:::
-
-### Docker 容器启动 {#docker-container}
-
-::: tip
-你可以在 [https://hub.docker.com/r/0xxb/lsky-pro](https://hub.docker.com/r/0xxb/lsky-pro) 仓库页面找到所有可用的版本标签。
-:::
-
-```shell
-docker run -d --name lsky-pro -p 8000:8000 \
-    -v ~/data:/app/storage/app \
-    -v ~/data/.env:/app/.env \
-    0xxb/lsky-pro:latest
-```
-
-::: details 相关参数解释
-- `-p 8000:8000` 参数解释：
-  - 前面的 8000 是宿主机端口。
-  - 后面的 8000 是容器内部端口。
-  - 容器内 8000 端口是提供 web 服务的默认端口，此命令将宿主机 8000 端口转发到容器内容 8000 端口提供 web 服务。
-
-- `-v ~/data:/app/storage/app` 参数解释：
-  - `~/data` 是宿主机目录。
-  - `/app/storage/app` 是容器内目录。此目录保存了程序运行过程中生成的缩略图文件、上传的文件以及缓存文件。
-  - 容器在 `/app/storage/app` 中产生或修改的文件会同步保存在宿主机的 `~/data`。持久化数据（防止容器删除时数据丢失），同时方便宿主机直接管理文件。
-
-- `-v ~/data:/.env:/app/.env` 参数解释：
-  - `~/data/.env` 是刚刚创建的 `.env` 文件。
-  - `/app/.env` 是容器内程序的 `.env` 文件位置。
-  - `.env` 环境变量文件储存着系统的各项配置，将此文件映射到宿主机，防止在升级镜像时导致配置丢失，同时方便修改相关配置（例如数据库连接方式）。
-:::
-
-在上述命令中，由 docker 启动一个单容器的服务，并将宿主机的 8000 端口转发到容器内部的 8000 端口，启动成功后在宿主机浏览器访问 `http://宿主机IP:8000` 时，即可访问图形化安装页面，按照页面指引进行操作，配置程序基本信息和数据库。
-
-### Docker Compose 编排启动 {#docker-compose}
-
-有时候你可能希望程序连接 docker 版本的数据库，并配合图床程序一起启动运行，你可以使用一下 docker-compose 配置示例进行编排启动。
-
-#### MySQL 版本 {#docker-compose-mysql}
-
-```yaml
-services:
-  mysql:
-    image: mysql:8.0
-    environment:
-      - MYSQL_ROOT_PASSWORD=root-password
-      - MYSQL_DATABASE=lsky
-      - MYSQL_USER=lsky
-      - MYSQL_PASSWORD=lsky-password
-    volumes:
-      - mysql-data:/var/lib/mysql
-    restart: unless-stopped
-
-  lsky-pro:
-    image: 0xxb/lsky-pro:latest
-    depends_on:
-      - mysql
-    ports:
-      - "8000:8000"
-    volumes:
-      - lsky-storage:/app/storage/app
-      - lsky-env:/app/.env # 单独一个卷挂载 .env 文件
-    restart: unless-stopped
-
-volumes:
-  mysql-data:
-  lsky-storage:
-  lsky-env:
-```
-
-#### PostgreSQL 版本 {#docker-compose-pgsql}
-
-```yaml
-services:
-  postgres:
-    image: postgres:15
-    environment:
-      - POSTGRES_DB=postgres
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=password
-    volumes:
-      - postgres-data:/var/lib/postgresql/data
-    restart: unless-stopped
-
-  lsky-pro:
-    image: 0xxb/lsky-pro:latest
-    depends_on:
-      - postgres
-    ports:
-      - "8000:8000"
-    volumes:
-      - lsky-storage:/app/storage/app
-      - lsky-env:/app/.env # 单独一个卷挂载 .env 文件
-    restart: unless-stopped
-
-volumes:
-  postgres-data:
-  lsky-storage:
-  lsky-env:
-```
-
-#### 1Panel 外部 MySQL 挂载卷版本 {#docker-compose-mysql-with-volume}
-
-```yaml
-services:
-  lsky-pro:
-    image: 0xxb/lsky-pro:latest
-    ports:
-      - "8000:8000"
-    volumes:
-      - lsky-storage:/app/storage/app
-      - lsky-env:/app/.env # 单独一个卷挂载 .env 文件
-      - lsky-themes:/app/themes  
-    restart: unless-stopped
-
-networks:
-  default:
-    external: true
-    name: 1panel-network
-volumes:
-  lsky-storage:
-  lsky-env:
-  lsky-themes:
-```
-
-#### 1Panel 外部 MySQL 本机目录版本 {#docker-compose-mysql-with-local}
-
-```yaml
-services:
-  lsky-pro:
-    image: 0xxb/lsky-pro:latest
-    ports:
-      - "8000:8000"
-    volumes:
-      - /www/lsky:/app/storage/app
-      - /www/lsky/.env:/app/.env   
-      - /www/lsky/themes:/app/themes   
-    restart: unless-stopped
-
-networks:
-  default:
-    external: true
-    name: 1panel-network
-```
-
-#### 编排启动 {#docker-compose-up}
-
-```bash
-docker-compose -p lsky-pro up -d
-```
-
-### 反向代理配置示例 {#proxy-configuration-example}
-
-```nginx configuration
-location ~ ^/ {
-    proxy_pass http://localhost:8000;
-    proxy_http_version 1.1;
-
-    proxy_set_header Host $host;
-    proxy_set_header Scheme $scheme;
-    proxy_set_header Upgrade $http_upgrade;
-    proxy_set_header Connection $http_connection;
-    proxy_set_header X-Real-IP $remote_addr;
-    proxy_set_header X-Forwarded-Proto $scheme;
-    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-
-    add_header X-Cache $upstream_cache_status;
-    add_header Cache-Control no-cache;
-}
-```
