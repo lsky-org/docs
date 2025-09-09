@@ -35,25 +35,30 @@ mkdir -p ~/data && touch ~/data/.env
 docker run -d --name lsky-pro -p 8000:8000 \
     -v ~/data:/app/storage/app \
     -v ~/data/.env:/app/.env \
+    -v ~/data/themes:/app/themes \
     0xxb/lsky-pro:latest
 ```
 
 ::: details 相关参数解释
-- `-p 8000:8000` 参数解释：
+- `-p 8000:8000` 参数解释 <Badge type="danger" text="必须" />
   - 前面的 8000 是宿主机端口。
   - 后面的 8000 是容器内部端口。
   - 容器内 8000 端口是提供 web 服务的默认端口，此命令将宿主机 8000 端口转发到容器内容 8000 端口提供 web 服务。
 
-- `-v ~/data:/app/storage/app` 参数解释：
+- `-v ~/data:/app/storage/app` 参数解释：<Badge type="danger" text="必须" />
   - `~/data` 是宿主机目录。
   - `/app/storage/app` 是容器内目录。此目录保存了程序运行过程中生成的缩略图文件、上传的文件以及缓存文件。
   - 容器在 `/app/storage/app` 中产生或修改的文件会同步保存在宿主机的 `~/data`。持久化数据（防止容器删除时数据丢失），同时方便宿主机直接管理文件。
 
-- `-v ~/data:/.env:/app/.env` 参数解释：
+- `-v ~/data:/.env:/app/.env` 参数解释 <Badge type="danger" text="必须" />
   - `~/data/.env` 是刚刚创建的 `.env` 文件。
   - `/app/.env` 是容器内程序的 `.env` 文件位置。
   - `.env` 环境变量文件储存着系统的各项配置，将此文件映射到宿主机，防止在升级镜像时导致配置丢失，同时方便修改相关配置（例如数据库连接方式）。
 
+- `-v ~/data/themes:/app/themes` 参数解释 <Badge type="info" text="可选" />
+  - `~/data/themes` 是储存三方主题的目录。
+  - `/app/themes` 是容器内程序存放主题的目录。
+  - 如果您希望未来使用第三方主题或自己开发主题，建议将 `themes` 目录映射到宿主机，将主题放到此文件夹即可在后台管理的「主题管理」中识别，同时[创建新的主题](/advanced/theme#create-theme)也是存放在此目录。
 :::
 
 在上述命令中，由 docker 启动一个单容器的服务，并将宿主机的 8000 端口转发到容器内部的 8000 端口，启动成功后在宿主机浏览器访问 `http://宿主机IP:8000` 时，即可访问图形化安装页面，按照页面指引进行操作，配置程序基本信息和数据库。
