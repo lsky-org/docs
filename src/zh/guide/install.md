@@ -95,12 +95,14 @@ services:
     volumes:
       - lsky-storage:/app/storage/app
       - lsky-env:/app/.env # 单独一个卷挂载 .env 文件
+      - lsky-themes:/app/themes
     restart: unless-stopped
 
 volumes:
   mysql-data:
   lsky-storage:
   lsky-env:
+  lsky-themes:
 ```
 
 #### PostgreSQL 版本 {#docker-compose-pgsql}
@@ -126,12 +128,14 @@ services:
     volumes:
       - lsky-storage:/app/storage/app
       - lsky-env:/app/.env # 单独一个卷挂载 .env 文件
+      - lsky-themes:/app/themes
     restart: unless-stopped
 
 volumes:
   postgres-data:
   lsky-storage:
   lsky-env:
+  lsky-themes:
 ```
 
 #### 1Panel 外部 MySQL 挂载卷版本 {#docker-compose-mysql-with-volume}
@@ -176,6 +180,159 @@ networks:
   default:
     external: true
     name: 1panel-network
+```
+
+#### MySQL + Redis 完整版本 {#docker-compose-mysql-redis}
+
+包含 MySQL、Redis 缓存服务的完整编排配置：
+
+```yaml
+services:
+  mysql:
+    image: mysql:8.0
+    environment:
+      - MYSQL_ROOT_PASSWORD=root-password
+      - MYSQL_DATABASE=lsky
+      - MYSQL_USER=lsky
+      - MYSQL_PASSWORD=lsky-password
+    volumes:
+      - mysql-data:/var/lib/mysql
+    restart: unless-stopped
+
+  redis:
+    image: redis:7-alpine
+    command: redis-server --appendonly yes --requirepass "redis-password"
+    volumes:
+      - redis-data:/data
+    restart: unless-stopped
+
+  lsky-pro:
+    image: 0xxb/lsky-pro:latest
+    depends_on:
+      - mysql
+      - redis
+    ports:
+      - "8000:8000"
+    volumes:
+      - lsky-storage:/app/storage/app
+      - lsky-env:/app/.env
+      - lsky-themes:/app/themes
+    restart: unless-stopped
+
+volumes:
+  mysql-data:
+  redis-data:
+  lsky-storage:
+  lsky-env:
+  lsky-themes:
+```
+
+#### 本机目录映射完整版本 {#docker-compose-local-complete}
+
+将配置文件和数据目录映射到本机的完整配置：
+
+```yaml
+services:
+  mysql:
+    image: mysql:8.0
+    environment:
+      - MYSQL_ROOT_PASSWORD=root-password
+      - MYSQL_DATABASE=lsky
+      - MYSQL_USER=lsky
+      - MYSQL_PASSWORD=lsky-password
+    volumes:
+      - ./mysql-data:/var/lib/mysql
+    restart: unless-stopped
+
+  redis:
+    image: redis:7-alpine
+    command: redis-server --appendonly yes --requirepass "redis-password"
+    volumes:
+      - ./redis-data:/data
+    restart: unless-stopped
+
+  lsky-pro:
+    image: 0xxb/lsky-pro:latest
+    depends_on:
+      - mysql
+      - redis
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./data:/app/storage/app
+      - ./data/.env:/app/.env
+      - ./data/themes:/app/themes
+    restart: unless-stopped
+```
+
+::: tip 配置说明
+- `redis-password`：Redis 访问密码，建议修改为强密码
+- 数据持久化：MySQL 和 Redis 数据都会持久化存储
+- 本机映射版本：所有数据直接存储在当前目录的子文件夹中，便于管理和备份
+- 安装后，您需要在 `.env` 文件中配置相应的数据库和缓存连接信息
+:::
+
+#### Traefik 反向代理版本 {#docker-compose-traefik}
+
+适用于使用 Traefik 作为反向代理的配置：
+
+```yaml
+services:
+  mysql:
+    image: mysql:8.0
+    environment:
+      - MYSQL_ROOT_PASSWORD=root-password
+      - MYSQL_DATABASE=lsky
+      - MYSQL_USER=lsky
+      - MYSQL_PASSWORD=lsky-password
+    volumes:
+      - mysql-data:/var/lib/mysql
+    restart: unless-stopped
+    networks:
+      - lsky-internal
+
+  redis:
+    image: redis:7-alpine
+    command: redis-server --appendonly yes --requirepass "redis-password"
+    volumes:
+      - redis-data:/data
+    restart: unless-stopped
+    networks:
+      - lsky-internal
+
+  lsky-pro:
+    image: 0xxb/lsky-pro:latest
+    depends_on:
+      - mysql
+      - redis
+    volumes:
+      - lsky-storage:/app/storage/app
+      - lsky-env:/app/.env
+      - lsky-themes:/app/themes
+    restart: unless-stopped
+    networks:
+      - lsky-internal
+      - traefik
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.lsky.rule=Host(`your-domain.com`)"
+      - "traefik.http.routers.lsky.entrypoints=websecure"
+      - "traefik.http.routers.lsky.tls.certresolver=myresolver"
+      - "traefik.http.services.lsky.loadbalancer.server.port=8000"
+      - "traefik.docker.network=traefik"
+
+volumes:
+  mysql-data:
+  redis-data:
+  lsky-storage:
+  lsky-env:
+  lsky-themes:
+
+networks:
+  lsky-internal:
+    driver: bridge
+  traefik:
+    external: true
 ```
 
 #### 编排启动 {#docker-compose-up}
