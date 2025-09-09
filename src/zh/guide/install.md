@@ -485,7 +485,7 @@ DB_USERNAME=lsky                   # 数据库用户名
 DB_PASSWORD=lsky-password          # 数据库密码
 
 # Redis 缓存配置
-CACHE_DRIVER=redis                 # 缓存驱动，推荐使用 redis，也可设为 file
+CACHE_STORE=redis                  # 缓存驱动，推荐使用 redis，也可设为 file
 REDIS_HOST=redis                   # Redis 主机地址，Docker Compose 中使用服务名
 REDIS_PASSWORD=redis-password      # Redis 访问密码
 REDIS_PORT=6379                    # Redis 端口，默认 6379
