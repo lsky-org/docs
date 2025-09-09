@@ -107,7 +107,7 @@ DB_PASSWORD=root # 数据库连接密码 // [!code focus]
 接下来执行命令生成符号链接：
 
 ```shell
-php artisan storage:link
+php artisan storage:link --force --relative && php artisan symlinks:rebuild
 ```
 
 别急，还没完，我们还需要像教程[安装](./install)章节中那样，[配置站点运行目录以及伪静态](./install#configure-rewrite)。

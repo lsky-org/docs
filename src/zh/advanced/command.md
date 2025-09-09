@@ -59,3 +59,10 @@ php artisan storage:link
 php artisan storage:unlink
 ```
 
+## 重新生成程序所需要的符号链接 {#gen-app-symlink}
+
+此命令会重新建立系统中所有符合条件的储存、主题所需要的符号链接。
+
+```bash
+php artisan symlinks:rebuild
+```
