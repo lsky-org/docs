@@ -335,11 +335,172 @@ networks:
     external: true
 ```
 
+#### PostgreSQL + Redis 完整版本 {#docker-compose-pgsql-redis}
+
+包含 PostgreSQL、Redis 缓存服务的完整编排配置：
+
+```yaml
+services:
+  postgres:
+    image: postgres:15
+    environment:
+      - POSTGRES_DB=lsky
+      - POSTGRES_USER=lsky
+      - POSTGRES_PASSWORD=lsky-password
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U lsky -d lsky"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  redis:
+    image: redis:7-alpine
+    command: redis-server --appendonly yes --requirepass "redis-password"
+    volumes:
+      - redis-data:/data
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "redis-cli", "--raw", "incr", "ping"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  lsky-pro:
+    image: 0xxb/lsky-pro:latest
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    ports:
+      - "8000:8000"
+    volumes:
+      - lsky-storage:/app/storage/app
+      - lsky-env:/app/.env
+      - lsky-themes:/app/themes
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 30s
+
+volumes:
+  postgres-data:
+  redis-data:
+  lsky-storage:
+  lsky-env:
+  lsky-themes:
+```
+
 #### 编排启动 {#docker-compose-up}
 
 ```bash
 docker-compose -p lsky-pro up -d
 ```
+
+### Docker 运维管理 {#docker-maintenance}
+
+#### 查看容器状态和日志
+
+```bash
+# 查看所有容器状态
+docker-compose -p lsky-pro ps
+
+# 查看 lsky-pro 容器日志
+docker-compose -p lsky-pro logs -f lsky-pro
+
+# 查看数据库容器日志
+docker-compose -p lsky-pro logs -f mysql
+# 或 PostgreSQL
+docker-compose -p lsky-pro logs -f postgres
+
+# 查看 Redis 容器日志
+docker-compose -p lsky-pro logs -f redis
+```
+
+#### 容器重启和更新
+
+```bash
+# 重启所有服务
+docker-compose -p lsky-pro restart
+
+# 仅重启 lsky-pro 服务
+docker-compose -p lsky-pro restart lsky-pro
+
+# 更新镜像并重启
+docker-compose -p lsky-pro pull
+docker-compose -p lsky-pro up -d
+```
+
+#### 备份和恢复
+
+```bash
+# 备份数据库（MySQL 示例）
+docker-compose -p lsky-pro exec mysql mysqldump -u lsky -plsky-password lsky > backup.sql
+
+# 恢复数据库
+docker-compose -p lsky-pro exec -T mysql mysql -u lsky -plsky-password lsky < backup.sql
+
+# 备份整个数据目录（包含符号链接）
+tar -czf lsky-backup-$(date +%Y%m%d).tar.gz data/
+
+# 备份数据目录（保持符号链接，不解引用）
+tar -czhf lsky-backup-$(date +%Y%m%d).tar.gz --exclude='*.tmp' data/
+
+# 完整备份（包括 Docker volumes）
+docker-compose -p lsky-pro stop
+tar -czf lsky-full-backup-$(date +%Y%m%d).tar.gz data/ docker-compose.yml .env
+docker-compose -p lsky-pro start
+```
+
+::: tip 备份说明
+- `tar` 命令会备份 `data/` 目录下映射到宿主机的所有实际文件
+- 符号链接会被保留，但链接的目标文件需要确保在恢复环境中存在
+- 对于 Docker volume 挂载的目录，备份的是宿主机上的实际文件内容
+- 建议在备份前停止容器以确保数据一致性，特别是数据库相关文件
+- 如果使用 Docker volume 而非本地目录映射，需要使用 `docker cp` 命令备份
+:::
+
+### 环境变量配置说明 {#env-configuration}
+
+安装完成后，后续您可以在 `.env` 文件中修改以下重要参数：
+
+```bash
+# 应用配置
+APP_URL=https://your-domain.com    # 应用访问地址，用于生成链接和邮件
+APP_DEBUG=false                    # 调试模式，生产环境必须设为 false
+APP_ENV=production                 # 应用环境，生产环境设为 production
+
+# 数据库配置（MySQL 示例）
+DB_CONNECTION=mysql                # 数据库类型：mysql、pgsql、sqlite
+DB_HOST=mysql                      # 数据库主机地址，Docker Compose 中使用服务名
+DB_PORT=3306                       # 数据库端口，MySQL 默认 3306，PostgreSQL 默认 5432
+DB_DATABASE=lsky                   # 数据库名称
+DB_USERNAME=lsky                   # 数据库用户名
+DB_PASSWORD=lsky-password          # 数据库密码
+
+# Redis 缓存配置
+CACHE_DRIVER=redis                 # 缓存驱动，推荐使用 redis，也可设为 file
+REDIS_HOST=redis                   # Redis 主机地址，Docker Compose 中使用服务名
+REDIS_PASSWORD=redis-password      # Redis 访问密码
+REDIS_PORT=6379                    # Redis 端口，默认 6379
+
+# 会话配置
+SESSION_DRIVER=redis               # 会话存储驱动，推荐 redis，也可用 file、database
+SESSION_CONNECTION=default         # Redis 连接名称，使用默认连接
+
+# 队列配置
+QUEUE_CONNECTION=redis             # 队列驱动，推荐 redis，也可用 database、sync
+```
+
+::: warning
+`.env` 文件修改后需要重启容器使队列重载配置。
+:::
 
 ### 反向代理配置示例 {#proxy-configuration-example}
 
