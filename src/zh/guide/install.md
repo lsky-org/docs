@@ -15,14 +15,14 @@ docker 版本与普通安装包安装的版本会有一些区别，在 docker �
 
 现在我们假设需要将相关配置文件、静态文件存放在宿主机的 `~/data` 目录。
 
-### 创建环境变量文件 .env
+### 创建持久化数据目录
 
 ```shell
-mkdir -p ~/data && touch ~/data/.env
+mkdir -p ~/data
 ```
 
 ::: warning
-首次安装生成的 `.env` 请保持为空文件，启动成功后初次访问安装页面，系统检测到是空的文件才会写入正确的内容。这意味着你可以完全可以通过 `~/data/.env` 文件自定义环境变量。
+首次运行会在此目录生成 `.env` 文件，保持空文件，启动成功后初次访问安装页面，系统检测到是空的文件才会写入正确的内容。这意味着你可以完全可以通过 `~/data/.env` 文件自定义环境变量。
 :::
 
 ### Docker 容器启动 {#docker-container}
@@ -34,7 +34,6 @@ mkdir -p ~/data && touch ~/data/.env
 ```shell
 docker run -d --name lsky-pro -p 8000:8000 \
     -v ~/data:/app/storage/app \
-    -v ~/data/.env:/app/.env \
     -v ~/data/themes:/app/themes \
     0xxb/lsky-pro:latest
 ```
@@ -49,11 +48,6 @@ docker run -d --name lsky-pro -p 8000:8000 \
   - `~/data` 是宿主机目录。
   - `/app/storage/app` 是容器内目录。此目录保存了程序运行过程中生成的缩略图文件、上传的文件以及缓存文件。
   - 容器在 `/app/storage/app` 中产生或修改的文件会同步保存在宿主机的 `~/data`。持久化数据（防止容器删除时数据丢失），同时方便宿主机直接管理文件。
-
-- `-v ~/data:/.env:/app/.env` 参数解释 <Badge type="danger" text="必须" />
-  - `~/data/.env` 是刚刚创建的 `.env` 文件。
-  - `/app/.env` 是容器内程序的 `.env` 文件位置。
-  - `.env` 环境变量文件储存着系统的各项配置，将此文件映射到宿主机，防止在升级镜像时导致配置丢失，同时方便修改相关配置（例如数据库连接方式）。
 
 - `-v ~/data/themes:/app/themes` 参数解释 <Badge type="info" text="可选" />
   - `~/data/themes` 是储存三方主题的目录。
@@ -94,14 +88,12 @@ services:
       - "8000:8000"
     volumes:
       - lsky-storage:/app/storage/app
-      - lsky-env:/app/.env # 单独一个卷挂载 .env 文件
       - lsky-themes:/app/themes
     restart: unless-stopped
 
 volumes:
   mysql-data:
   lsky-storage:
-  lsky-env:
   lsky-themes:
 ```
 
@@ -127,14 +119,12 @@ services:
       - "8000:8000"
     volumes:
       - lsky-storage:/app/storage/app
-      - lsky-env:/app/.env # 单独一个卷挂载 .env 文件
       - lsky-themes:/app/themes
     restart: unless-stopped
 
 volumes:
   postgres-data:
   lsky-storage:
-  lsky-env:
   lsky-themes:
 ```
 
@@ -148,8 +138,7 @@ services:
       - "8000:8000"
     volumes:
       - lsky-storage:/app/storage/app
-      - lsky-env:/app/.env # 单独一个卷挂载 .env 文件
-      - lsky-themes:/app/themes  
+      - lsky-themes:/app/themes
     restart: unless-stopped
 
 networks:
@@ -158,7 +147,6 @@ networks:
     name: 1panel-network
 volumes:
   lsky-storage:
-  lsky-env:
   lsky-themes:
 ```
 
@@ -172,7 +160,6 @@ services:
       - "8000:8000"
     volumes:
       - /www/lsky:/app/storage/app
-      - /www/lsky/.env:/app/.env   
       - /www/lsky/themes:/app/themes   
     restart: unless-stopped
 
@@ -215,7 +202,6 @@ services:
       - "8000:8000"
     volumes:
       - lsky-storage:/app/storage/app
-      - lsky-env:/app/.env
       - lsky-themes:/app/themes
     restart: unless-stopped
 
@@ -223,7 +209,6 @@ volumes:
   mysql-data:
   redis-data:
   lsky-storage:
-  lsky-env:
   lsky-themes:
 ```
 
@@ -260,7 +245,6 @@ services:
       - "8000:8000"
     volumes:
       - ./data:/app/storage/app
-      - ./data/.env:/app/.env
       - ./data/themes:/app/themes
     restart: unless-stopped
 ```
@@ -307,7 +291,6 @@ services:
       - redis
     volumes:
       - lsky-storage:/app/storage/app
-      - lsky-env:/app/.env
       - lsky-themes:/app/themes
     restart: unless-stopped
     networks:
@@ -325,7 +308,6 @@ volumes:
   mysql-data:
   redis-data:
   lsky-storage:
-  lsky-env:
   lsky-themes:
 
 networks:
@@ -379,7 +361,6 @@ services:
       - "8000:8000"
     volumes:
       - lsky-storage:/app/storage/app
-      - lsky-env:/app/.env
       - lsky-themes:/app/themes
     restart: unless-stopped
     healthcheck:
@@ -393,7 +374,6 @@ volumes:
   postgres-data:
   redis-data:
   lsky-storage:
-  lsky-env:
   lsky-themes:
 ```
 
