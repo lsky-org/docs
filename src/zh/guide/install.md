@@ -87,14 +87,14 @@ services:
     ports:
       - "8000:8000"
     volumes:
-      - lsky-storage:/app/storage/app
-      - lsky-themes:/app/themes
+      - storage:/app/storage/app
+      - themes:/app/themes
     restart: unless-stopped
 
 volumes:
   mysql-data:
-  lsky-storage:
-  lsky-themes:
+  storage:
+  themes:
 ```
 
 #### PostgreSQL 版本 {#docker-compose-pgsql}
@@ -118,14 +118,14 @@ services:
     ports:
       - "8000:8000"
     volumes:
-      - lsky-storage:/app/storage/app
-      - lsky-themes:/app/themes
+      - storage:/app/storage/app
+      - themes:/app/themes
     restart: unless-stopped
 
 volumes:
   postgres-data:
-  lsky-storage:
-  lsky-themes:
+  storage:
+  themes:
 ```
 
 #### 1Panel 外部 MySQL 挂载卷版本 {#docker-compose-mysql-with-volume}
@@ -137,8 +137,8 @@ services:
     ports:
       - "8000:8000"
     volumes:
-      - lsky-storage:/app/storage/app
-      - lsky-themes:/app/themes
+      - storage:/app/storage/app
+      - themes:/app/themes
     restart: unless-stopped
 
 networks:
@@ -146,8 +146,8 @@ networks:
     external: true
     name: 1panel-network
 volumes:
-  lsky-storage:
-  lsky-themes:
+  storage:
+  themes:
 ```
 
 #### 1Panel 外部 MySQL 本机目录版本 {#docker-compose-mysql-with-local}
@@ -201,15 +201,15 @@ services:
     ports:
       - "8000:8000"
     volumes:
-      - lsky-storage:/app/storage/app
-      - lsky-themes:/app/themes
+      - storage:/app/storage/app
+      - themes:/app/themes
     restart: unless-stopped
 
 volumes:
   mysql-data:
   redis-data:
-  lsky-storage:
-  lsky-themes:
+  storage:
+  themes:
 ```
 
 #### 本机目录映射完整版本 {#docker-compose-local-complete}
@@ -290,8 +290,8 @@ services:
       - mysql
       - redis
     volumes:
-      - lsky-storage:/app/storage/app
-      - lsky-themes:/app/themes
+      - storage:/app/storage/app
+      - themes:/app/themes
     restart: unless-stopped
     networks:
       - lsky-internal
@@ -307,8 +307,8 @@ services:
 volumes:
   mysql-data:
   redis-data:
-  lsky-storage:
-  lsky-themes:
+  storage:
+  themes:
 
 networks:
   lsky-internal:
@@ -360,8 +360,8 @@ services:
     ports:
       - "8000:8000"
     volumes:
-      - lsky-storage:/app/storage/app
-      - lsky-themes:/app/themes
+      - storage:/app/storage/app
+      - themes:/app/themes
     restart: unless-stopped
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
@@ -373,8 +373,8 @@ services:
 volumes:
   postgres-data:
   redis-data:
-  lsky-storage:
-  lsky-themes:
+  storage:
+  themes:
 ```
 
 #### 编排启动 {#docker-compose-up}
