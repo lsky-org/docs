@@ -383,6 +383,18 @@ volumes:
 docker-compose -p lsky-pro up -d
 ```
 
+::: warning
+使用编排启动时，启动容器后安装时，填写配置中的连接地址应该填写您编排文件中的服务名，比如 MySQL：
+
+```yaml
+services: # [!code focus]
+  mysql: # 容器内的数据库连接地址 # [!code focus]
+    image: mysql:8.0
+    # 省略部分代码 ...
+```
+
+:::
+
 ### Docker 运维管理 {#docker-maintenance}
 
 #### 查看容器状态和日志
