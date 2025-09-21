@@ -209,7 +209,7 @@ extension=vips.so
 还需要安装 PHP FFI 拓展并启用，检查是否安装 ffi 拓展：
 
 ```shell
-php -m | grep ffi
+php -m | grep FFI
 ```
 
 如果输出 ffi，说明已经启用。如果没有，编辑 php.ini 配置文件，搜索 `ffi.enable`，增加配置以启用：
@@ -219,7 +219,7 @@ extension=ffi
 ffi.enable=1
 ```
 
-重新执行 `php -m | grep ffi` 命令查看结果，如果输出 ffi，表示已经安装成功。
+重新执行 `php -m | grep FFI` 命令查看结果，如果输出 ffi，表示已经安装成功。
 
 ::::
 
