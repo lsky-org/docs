@@ -214,7 +214,7 @@ php -m | grep FFI
 
 如果输出 ffi，说明已经启用。如果没有，可能需要安装并启用。
 
-我们以宝塔的 PHP 8.2 为例，演示如何按照 ffi 拓展：
+我们以宝塔的 PHP 8.2 为例，演示如何安装 ffi 拓展：
 
 ```shell
 cd /www/server/php/82/src/ext/ffi
