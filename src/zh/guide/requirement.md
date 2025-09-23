@@ -218,7 +218,7 @@ php -m | grep FFI
 
 ```shell
 cd /www/server/php/82/src/ext/ffi
-`
+```
 
 编译扩展
 
