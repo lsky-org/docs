@@ -58,3 +58,6 @@ proxy_set_header Connection $connection_upgrade;
 
 ## 分离部署后，第三方授权登录失败？ {#third-party-login-failed-after-deployment}
 大概率是回调地址错误导致失败，创建第三方登录驱动时，系统会自动识别回调地址并显示，请检查该地址是否为当前系统前端部署所绑定的域名，若不是，则需要自行修改回调地址然后保存生效。
+
+## 如何连接 Backblaze B2？ {#how-to-connect-backblaze-b2}
+创建储存时选择 AWS S3 驱动，然后 `Region` 填写 `auto`，自定义配置中，配置名填写 `params.ACL`，配置值留空。注意，Backblaze B2 强制开启版本管理，图片在图床后台删除后，b2 控制台依然可以看到文件存在，属于正常现象。
