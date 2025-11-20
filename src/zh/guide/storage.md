@@ -55,3 +55,12 @@
 | `{sha1}`     | 7c4a8d09ca3762af61e59520943dc26494f8941b | 文件 sha1 值   |
 | `{uuid}`     | ca083d36-1f0a-4d2a-83f7-f3e97f4f4bfa     | UUID        |
 | `{uid}`      | 1                                        | 用户ID        |
+
+## 如何连接 Backblaze B2？ {#how-to-connect-backblaze-b2}
+创建储存时选择 AWS S3 驱动，然后 `Region` 填写 `auto`，自定义配置中，配置名填写 `params.ACL`，配置值留空。如图所示：
+
+![配置示例](/storage/backblaze-b2.png)
+
+::: warning 注意
+Backblaze B2 强制开启版本管理，图片在图床后台删除后，b2 控制台依然可以看到文件存在，属于正常现象。
+:::
