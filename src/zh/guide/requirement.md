@@ -209,17 +209,34 @@ extension=vips.so
 还需要安装 PHP FFI 拓展并启用，检查是否安装 ffi 拓展：
 
 ```shell
-php -m | grep ffi
+php -m | grep FFI
 ```
 
-如果输出 ffi，说明已经启用。如果没有，编辑 php.ini 配置文件，搜索 `ffi.enable`，增加配置以启用：
+如果输出 ffi，说明已经启用。如果没有，可能需要安装并启用。
+
+我们以宝塔的 PHP 8.2 为例，演示如何安装 ffi 拓展：
+
+```shell
+cd /www/server/php/82/src/ext/ffi
+```
+
+编译扩展
+
+```shell
+www/server/php/82/bin/phpize
+./configure --with-php-config=/www/server/php/82/bin/php-config
+make
+make install
+```
+
+安装成功后，编辑配置文件：`/www/server/php/82/etc/php.ini`，搜索 `ffi`，增加配置以启用：
 
 ```ini
 extension=ffi
 ffi.enable=1
 ```
 
-重新执行 `php -m | grep ffi` 命令查看结果，如果输出 ffi，表示已经安装成功。
+重新执行 `php -m | grep FFI` 命令查看结果，如果输出 ffi，表示已经安装成功。
 
 ::::
 
