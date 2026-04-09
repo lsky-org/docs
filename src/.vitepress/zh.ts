@@ -123,6 +123,7 @@ function sidebarGuide(): DefaultTheme.SidebarItem[] {
         { text: '支付', link: 'payment' },
         { text: '云处理', link: 'process' },
         { text: '图片处理', link: 'handle' },
+        { text: 'AI', link: 'ai' },
       ]
     },
   ]
