@@ -12,7 +12,7 @@
 
 您应该确保您的 Web 服务器具有以下最低 PHP 版本和扩展：
 
-- PHP 版本 >= 8.2
+- PHP 版本 >= 8.3
 - SourceGuardian PHP 拓展（在宝塔面板中名称为 sg16）
 - Ctype PHP 扩展
 - cURL PHP 扩展
