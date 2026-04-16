@@ -683,3 +683,14 @@ sudo supervisorctl reread && sudo supervisorctl update && sudo supervisorctl sta
 
 至此，程序安装完成。
 
+::: warning 注意
+如果安装过程中，出现请求授权服务器错误，比如提示“请求授权服务器失败，请稍后再试。”，请检查服务器是否能正常进行 DNS 查询：
+
+```shell
+# 测试 DNS 是否正常
+nslookup huohuastudio.com
+# 或
+nslookup huohuastudio.com 8.8.8.8
+```
+如不通，联系服务器运营商开放 UDP/TCP 53 出站端口，或在安全组添加出站规则允许 53 端口
+:::
