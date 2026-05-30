@@ -66,11 +66,23 @@ provide('toggle-appearance', async ({ clientX: x, clientY: y }: MouseEvent) => {
   color: white;
 }
 
+:root {
+  --migration-banner-height: 36px;
+}
+
 #migration-banner {
-  width: 100%;
-  text-align: center;
-  padding: 8px 12px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: var(--migration-banner-height);
+  z-index: 60;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 12px;
   font-size: 14px;
+  line-height: 1.4;
   background: linear-gradient(90deg, #f6821f, #e5740e);
   color: white;
 }
@@ -79,6 +91,27 @@ provide('toggle-appearance', async ({ clientX: x, clientY: y }: MouseEvent) => {
   color: white;
   font-weight: 600;
   text-decoration: underline;
+}
+
+/* 把 VitePress 的导航、侧边栏、本地导航全部下推 banner 的高度 */
+.VPNav,
+.VPSidebar,
+.VPLocalNav {
+  top: var(--migration-banner-height) !important;
+}
+
+/* 整体内容向下偏移，避免被 banner 遮住 */
+#app {
+  padding-top: var(--migration-banner-height);
+}
+
+@media (max-width: 600px) {
+  :root {
+    --migration-banner-height: 52px;
+  }
+  #migration-banner {
+    font-size: 12px;
+  }
 }
 
 ::view-transition-old(root),
