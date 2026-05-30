@@ -43,7 +43,7 @@ provide('toggle-appearance', async ({ clientX: x, clientY: y }: MouseEvent) => {
   <DefaultTheme.Layout>
     <template #layout-top>
       <div id="migration-banner">
-        本文档已迁移至新地址：<a href="https://docs.huohuastudio.com/lsky-pro/" target="_blank" rel="noopener">docs.huohuastudio.com/lsky-pro</a>，请前往查阅最新内容。
+        本文档已迁移至新地址：<a href="https://docs.huohuastudio.com/lsky-pro/guide/introduce" target="_blank" rel="noopener">docs.huohuastudio.com/lsky-pro</a>，请前往查阅最新内容。
       </div>
     </template>
 
