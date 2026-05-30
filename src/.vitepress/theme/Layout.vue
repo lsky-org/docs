@@ -41,6 +41,12 @@ provide('toggle-appearance', async ({ clientX: x, clientY: y }: MouseEvent) => {
 
 <template>
   <DefaultTheme.Layout>
+    <template #layout-top>
+      <div id="migration-banner">
+        本文档已迁移至新地址：<a href="https://docs.huohuastudio.com/lsky-pro/" target="_blank" rel="noopener">docs.huohuastudio.com/lsky-pro</a>，请前往查阅最新内容。
+      </div>
+    </template>
+
     <template #home-hero-before>
       <div id="notice">
         当前显示的是付费版最新版本(2.x)的文档。旧版本文档请点击<a style="border-bottom: 1px dashed #505050" href="/archive/enterprise/v1/">这里</a>。
@@ -58,6 +64,21 @@ provide('toggle-appearance', async ({ clientX: x, clientY: y }: MouseEvent) => {
   font-size: 14px;
   background: cornflowerblue;
   color: white;
+}
+
+#migration-banner {
+  width: 100%;
+  text-align: center;
+  padding: 8px 12px;
+  font-size: 14px;
+  background: linear-gradient(90deg, #f6821f, #e5740e);
+  color: white;
+}
+
+#migration-banner a {
+  color: white;
+  font-weight: 600;
+  text-decoration: underline;
 }
 
 ::view-transition-old(root),
